@@ -1,0 +1,105 @@
+% incl/pre/conf.tex : package configurations
+% ------------------------------------------------------------------------------
+% This file includes customisations for setting up the document
+
+
+% Custom colors ----------------------------------------------------------------
+% Official AAU color palette
+% https://www.design.aau.dk/om-aau-design/Farver/
+\definecolor{AAUblue1}{RGB}{ 33, 26, 82}
+\definecolor{AAUblue2}{RGB}{ 89, 79, 181}
+\definecolor{AAUgrey1}{RGB}{ 84, 97, 110}
+\definecolor{AAUgrey2}{RGB}{104,119,132}
+\definecolor{AAUgrey3}{RGB}{162,172,182}
+\definecolor{AAUgrey4}{RGB}{222,223,226}
+\definecolor{AAUgreen}{RGB}{157,187, 29}
+\definecolor{AAUteal} {RGB}{ 94,150,149}
+\definecolor{AAUred}  {RGB}{223,103, 82}
+
+% Headers and footers ----------------------------------------------------------
+% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/fancyhdr/fancyhdr.pdf
+\fancyhf{}
+\fancyhead{}                            % clear default header fields
+\fancyhead[L]{Group \projectgroup}  % left on even and right on odd
+\fancyhead[R]{\leftmark}               % right on even
+%\fancyhead[L]{\rightmark}              % left on odd
+\fancyfoot[C]{\thepage}             % centered page numbers
+\pagestyle{fancy}                       % activate fancy style
+
+\setlist[enumerate,1]{label={\normalfont (\roman*)}}
+% Section titles ---------------------------------------------------------------
+% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/titlesec/titlesec.pdf
+
+% Format chapter title style with a boxed number
+\titleformat
+{\chapter}
+[hang]
+{\Huge\bfseries\color{white}}
+{\colorbox{Black}{\makebox[30pt]{\strut\thechapter}}}
+{0.5em}
+{\Huge\bfseries\color{Black}}
+
+% Format part title styles to be on two lines
+\titleformat
+{\part}
+[display]
+{\Huge\bfseries\color{Black}\filcenter}
+{\huge\partname{} \thepart}
+{0em}
+{}
+
+% Adjust title and TOC settings of the appendix page
+\renewcommand{\appendixname}{Appendix}
+\renewcommand{\appendixtocname}{Appendices}
+\renewcommand{\appendixpagename}{\textcolor{Black}{Appendices}}
+\xpatchcmd{\addappheadtotoc}{{chapter}}{{part}}{}{}
+
+% Figure settings --------------------------------------------------------------
+% Format captions
+% http://mirrors.dotsrc.org/ctan/macros/latex/contrib/caption/caption-eng.pdf
+\captionsetup{font=it,labelfont=bf}
+
+% Useful TiKZ libraries
+% https://tex.stackexchange.com/q/42611
+\usetikzlibrary{arrows.meta}  % customisable arrow tips
+\usetikzlibrary{calc}         % extended coordinate calculations
+
+% Predefined TiKZ styles for drawing nodes and edge labels in a graph
+\tikzstyle{point} = [fill,shape=circle,minimum size=3pt,inner sep=0pt]
+\tikzstyle{edge}  = [fill=white,midway,inner sep=1pt]
+
+% Algorithms -------------------------------------------------------------------
+% Settings for displaying algorithm floats
+\floatname{algorithm}{Algorithm}
+\renewcommand{\listalgorithmname}{List of Algorithms}
+
+% Sections -----------------------------------------------------------------------
+% Settings for indents for sections
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{2mm}
+
+% Source code style ------------------------------------------------------------
+% Simple styling for Python source code
+% https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\lstdefinestyle{custompy}{
+  belowcaptionskip=\baselineskip,
+  breaklines=true,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{AAUblue1},
+  commentstyle=\itshape\color{AAUgrey3},
+  identifierstyle=\color{AAUblue2},
+  stringstyle=\color{AAUteal},
+}
+\lstset{language=Python,style=custompy,captionpos=b}
+\renewcommand{\lstlistingname}{Listing}
+\renewcommand{\lstlistlistingname}{List of Listings}
+
+% Autoref settings -------------------------------------------------------------
+% https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#autoref
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}}
+\urlstyle{same}
+
+\setcounter{tocdepth}{2}    % entries down to \subsubsections in the TOC

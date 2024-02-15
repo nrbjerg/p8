@@ -1,0 +1,14 @@
+#+title: P7 Planing
+
+Check citations
+* Finished
++ [X] Abstract
++ [X] Preface
++ [ ] Notation and shorthands
++ [X] Chapter 1
++ [ ] Chapter 2
+  - [ ] IS decoding. @High
++ [X] Chapter 3 (Laurent series example)
++ [X] Chapter 4
++ [X] Chapter 5
++ [ ] Appendix

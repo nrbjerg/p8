@@ -1,0 +1,164 @@
+% cmds.tex : custom commands and environments
+% ------------------------------------------------------------------------------
+% This file contains definitions for custom commands and environments, used for
+% shorthand notation for macros used often in the project
+
+% Mathematical symbols ---------------------------------------------------------
+\newcommand{\N}{\mathbb{N}}          % natural numbers
+\newcommand{\A}{\mathbb{A}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Z}{\mathbb{Z}}          % integers
+\newcommand{\Q}{\mathbb{Q}}          % rational numbers
+\newcommand{\R}{\mathbb{R}}          % real numbers
+\newcommand{\C}{\pazocal{C}}          % complex numbers
+\newcommand{\K}{\mathbbm{k}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\cF}{\overline{\F}}
+\newcommand{\pols}{\K[X_1, X_2, \ldots, X_{n}]}
+\newcommand{\fPols}{\F[\underline{x}_n]}
+\newcommand{\Zar}{\mathcal{T}_Z}
+\newcommand{\cZar}{\mathcal{F}_Z}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\wt}{\mathrm{wt}}
+\newcommand{\comp}{\mathbb{C}}
+\newcommand{\ind}{\mathbbm{1}}       % indicator function
+\newcommand{\bigO}{\mathcal{O}}      % big O
+\newcommand{\ev}{\textnormal{Ev}_\mathcal{P}}
+\newcommand{\Res}{\textnormal{Res}}
+\newcommand{\Char}{\textnormal{char}}
+\newcommand{\Rad}{\textnormal{Rad}}
+\newcommand{\support}{\textnormal{supp}}
+\newcommand{\ord}{\textnormal{ord}}
+\newcommand{\diag}{\textnormal{diag}}
+
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\gen}[1]{\langle#1\rangle}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\bar}{\overline}
+\renewcommand{\vec}[1]{\bm{#1}}      % bold vector style
+
+\newcommand{\rank}{\textnormal{rank}}
+\newcommand{\Null}{\textnormal{null}}
+\newcommand{\row}{\textnormal{row}}
+\newcommand{\Span}{\textnormal{span}}
+\newcommand{\col}{\textnormal{col}}
+\newcommand{\image}{\textnormal{image}}
+% NOTE: \ker is already defined by latex.
+
+% Theorem enviroments ----------------------------------------------------------
+% http://www.ctex.org/documents/packages/math/amsthdoc.pdf
+
+%BOKS:
+% for adjustwidth environment
+\usepackage[strict]{changepage}
+
+% now constructions of the frames for theorems and such
+\usepackage{framed}
+
+\newenvironment{formal}{%
+  \def\FrameCommand{%
+    \hspace{4pt}%
+    {\color{Black}\vrule width 2pt}%
+    {\color{White}\vrule width 4pt}%
+    %\colorbox{AAUblue2}%
+  }%
+   \MakeFramed{\advance\hsize-\width\FrameRestore}%
+   \noindent\hspace{-4.55pt}% disable indenting first paragraph
+   \begin{adjustwidth}{}{7pt}%
+   \vspace{-18pt}%
+}
+{%
+  \vspace{0pt}\end{adjustwidth}\endMakeFramed%
+}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}[algorithm]{Theorem}   % Theorems, numbered by chapter
+\newtheorem{lemma}[algorithm]{Lemma}         % Lemmas, numbered like theorems
+\newtheorem{proposition}[algorithm]{Proposition}  % Propositions, numbered like theorems
+\newtheorem{corollary}[algorithm]{Corollary}         % Corollaries, unnumbered
+
+\theoremstyle{definition}            % Bold title, upright body text
+\newtheorem{DEFN}[algorithm]{Definition}   % Definitions, numbered like theorems
+\newtheorem{EXMP}[algorithm]{Example}      % Examples, numbered like theorems
+\newtheorem{problem}[algorithm]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[algorithm]{Remark}      % Remarks, numbered like theorems
+
+% Now framed environments
+\newenvironment{definition}{\begin{formal}\begin{DEFN}}{\end{DEFN}\end{formal}}
+\newenvironment{example}{\begin{EXMP}\pushQED{\qed}\renewcommand{\qedsymbol}{$\square$}}{\popQED\end{EXMP}}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% Figure commands --------------------------------------------------------------
+
+% imgfig ("image figure")
+% Shortcut command for inserting an image from the fig/img folder
+% Arguments:
+%   * (optional) figure width; percentage of text width (default: 0.75)
+%   * file name (without fig/img/ and file extension); also used for label
+%   * the figure caption
+% Examples:
+%   \imgfig{image-name}{Caption goes here}
+%   \imgfig[0.5]{image-name}{Caption goes here}
+\newcommand{\imgfig}[3][0.75]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=#1\textwidth]{fig/img/#2}
+    \caption{#3}
+    \label{fig:#2}
+  \end{figure}
+}
+
+% dimgfig ("double image figure")
+% Shortcut command for inserting two images side by side
+% Arguments:
+%   * (optional) width split ratio (default: 0.5, i.e. even split)
+%   * file name for the left figure, without fig/img/ and file extension
+%   * caption for the left figure
+%   * file name for the right figure, without fig/img/ and file extension
+%   * caption for the right figure
+% Examples:
+%   \dimgfig{img1}{First caption}{img2}{Second caption}
+%   \dimgfig[0.3]{img1}{First caption}{img2}{Second caption}
+% Alteratively, see
+% https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats
+\newcommand{\dimgfig}[5][0.5]{
+  \ifx\dimgleftwidth\undefined
+    \newlength{\dimgleftwidth}
+    \newlength{\dimgrightwidth}
+  \fi
+  \setlength{\dimgleftwidth}{#1\textwidth-0.02\textwidth}
+  \setlength{\dimgrightwidth}{0.96\textwidth-\dimgleftwidth}
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{\dimgleftwidth}
+      \centering
+      \includegraphics[width=\linewidth]{fig/img/#2}
+      \caption{#3}
+      \label{fig:#2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{\dimgrightwidth}
+      \centering
+      \includegraphics[width=\linewidth]{fig/img/#4}
+      \caption{#5}
+      \label{fig:#4}
+    \end{minipage}
+  \end{figure}
+}
+
+% Adds line comments to algorithmic environments
+\makeatletter
+\algnewcommand{\LineComment}[1]{\Statex \hskip\ALG@thistlm $\triangleright$ #1}
+\makeatother
+
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}

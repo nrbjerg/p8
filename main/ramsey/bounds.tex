@@ -1,0 +1,28 @@
+\section{Bounds on Ramsey Numbers}
+
+\subsection{The Probabilistic Method}
+The probabilistic method is due to Paul Erdős, the core idea is to consider a random $2$-edge coloring $\chi$ on a the complete graph $K_{N}$ if the probability of $K_N$ containing a monochromatic clique of order $\ell$ is non-zero we must have $R(\ell, \ell) > N$.
+
+
+\begin{theorem}
+  Let $\ell \geq 3$ then $R(\ell, \ell) > \frac{\ell}{e \sqrt{2}} 2^{\ell / 2}$.
+\end{theorem}
+\begin{proof}
+  Let $\chi: E(K_N) \to \left\{red, blue\right\}$ be a random $2$-edge (Uniformly and independently). Let $C$ be a subgraph of $K_N$ such that $C$ forms a clique and $A_C$ be the event that $\abs{\chi(E(C))} = 1$, meaning $C$ is monochromatic. Then:
+  \begin{equation*}
+    \mathbb{P}(A_C) = 2 (\frac{1}{2})^{\binom{n}{2}} = 2^{1 - \binom{\ell}{2}}
+  \end{equation*}
+  since all $\binom{n}{2}$ edges of $C$ is must be colored the same color by $\chi$. Let $\mathcal{C}(K_N;\ell)$ be the set of cliques of $K_N$ of order $\ell$, then:
+  \begin{equation*}
+    \mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) \leq \sum_{C \in \mathcal{C}(K_N; \ell)} \mathbb{P}(A_{C}) = \binom{N}{\ell} 2^{1 - \binom{\ell}{2}}
+  \end{equation*}
+  which follows as $\mathcal{C}(K_N; \ell) = \binom{N}{\ell}$. Now if this probability is less than $1$, we must have:
+  \begin{equation*}
+    \mathbb{P}(\bigcap_{C \in \mathcal{C}(K_N; \ell)} \overline{A}_{C}) = 1 - \mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) \neq 0
+  \end{equation*}
+  and hence in this case there must exist a $2$-edge coloring which emits no monochromatic clique of order $\ell$. However it remains to find an integer $N$ such that $\mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) < 1$.
+
+  \begin{equation*}
+    \mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) \leq \frac{N^{\ell}}{\ell!} 2^{1 - \binom{\ell}{2}}
+  \end{equation*}
+\end{proof}

@@ -1,0 +1,32 @@
+\chapter{Results from Previus Projects.}
+This appendix contains some results from previous projects which we will reference throughout the project.
+We will not provide proofs instead we refer the reader to \cite{bachellor} or \cite{Fulton}.
+
+\section*{Results on Riemann-Roch Spaces}
+\begin{lemma}\label{lem:2.87}
+Let $D$ be the zero divisor on $\mathcal{X}$, defined over $\mathbb{F}_q$, then $L(D) = \mathbb{F}_{q}$.
+\end{lemma}
+\begin{proposition}\label{prop:2.88}
+  Let $\mathcal{X}$ be a smooth projective algebraic curve and $D$ be a divisor on $\mathcal{X}$, then:
+  \begin{enumerate}
+    \item $\deg(D) < 0$ implies $\ell(D) = 0$. \label{prop:2.88i}
+    \item If $D$ is effective then $\ell(D) \leq 1 + \deg(D)$. \label{prop:2.88ii}
+  \end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Riemann-Roch Theorem]\label{thm:RR}
+  Let $\mathcal{X}$ be a smooth projective curve of genus $g$ and $D$ be a divisor on $\mathcal{X}$ then:
+  \begin{equation*}
+    \ell(D) - \ell(D - W) = \deg(D) - g + 1
+  \end{equation*}
+  for all canonical divisors $W$ on $\mathcal{X}$.
+\end{theorem}
+
+\section*{Results on Algebraic Geometry Codes}
+
+\begin{theorem}\label{thm:RS_is_AG}
+  Let $\mathbb{F}_q$ be a finite field and $n, k \in \mathbb{N}$ such that $1 \leq k < n \leq q$. Furthermore let $x \in \mathbb{F}_q^n$ then:
+  \begin{equation*}
+    RS_{k, q}(x) = \mathcal{C}_L\left(\mathbb{P}^1, \sum^n_{i = 1} (x_i : 1), (k - 1)P_{\infty}\right)
+  \end{equation*}
+\end{theorem}

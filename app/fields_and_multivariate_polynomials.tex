@@ -1,0 +1,93 @@
+\chapter{Algebraic Preleminaries}
+In this appendix we start by defining multivariate polynomials over an arbetary ring $R$, before moving on to algebraically closed fields and algebraic closures.
+The following definitions will be based on those found in \cite{Fulton}[Section 1.1] and \cite{lang}[Section 2.3]
+\begin{definition} \label{def:multivariate_polynomials}
+  Let $R$ be a ring, then we define the \textbf{ring of multivariate polynomials} with $n \geq 1$ variables over $R$ inductively as $R[X_{1}, \ldots, X_{n}] := R[X_{1}, \ldots, X_{n - 1}][X_{n}]$ with $R[X_{1}]$, defined the usual way.
+\end{definition}
+\begin{remark}
+If $n = 1, 2$ or $3$ we may write $R[X]$, $R[X, Y]$ or $R[X, Y, Z]$ instead of $R[X_1, X_2, \ldots, X_{n}]$.
+\end{remark}
+We will now introduce some special types of multivariate polynomials, with the end goal of being able to define the degree of a arbitrary multivariate polynomial.
+\begin{definition}\label{def:monomial}
+  Multivariate polynomials of the form $g = \prod_{i = 1}^{n} X_{i}^{k_{i}}$ where $k_{i} \in \N$ are called \textbf{monomials}. The degree of the monomial $g$ is defined  as $\deg(g) := \sum^{n}_{i = 1} k_{i}$.
+\end{definition}
+We will now consider polynomials given as a linear combinations of monomials of the same degree.
+\begin{definition}\label{def:homogeneous_poly}
+  Let $h \in R[X_1, X_2, \ldots, X_{n}]$. Suppose that there exists $d, k \in \N$, as well as $g_1, \ldots, g_{k} \in R[X_1, X_2, \ldots, X_{n}]$ all monomials of degree $d$, and $a_{1}, \ldots, a_{k} \in R$ such that $h = \sum^{k}_{i = 1} a_{i} g_{i}$. Then $h$ is called \textbf{homogeneous} and we define $\deg(h) := d$.
+\end{definition}
+Finally we are able to define the degree of an arbitrary multivariate polynomial.
+\begin{definition}\label{def:degree}
+  Let $f \in R[X_1, X_2, \ldots, X_{n}]$ then there exists some $d \in \N$ and $h_{1}, \ldots, h_{d} \in R[X_1, X_2, \ldots, X_{n}]$, all homogeneous, with $\deg(h_{i}) = i$, such that $f = \sum^{d}_{i = 1} h_{i}$.
+  Then we define the \textbf{degree} of $f$ to be $\deg(f) = d$.
+\end{definition}
+\begin{remark}\label{rem:deg_0}
+  Since the $0 \in R[X_1, X_2, \ldots, X_{n}]$, can be written as the empty sum of homogeneous polynomials, we will use the convention that $\deg(0) = 0$.
+\end{remark}
+It is worth noting that if $f$ is a monomial or a homogeneous polynomial, the degree defined in definition \ref{def:degree} agrees with the degree in \ref{def:monomial} or \ref{def:homogeneous_poly} respectively.
+Finally if $n = 1$, the degree of $f$ defined in definition \ref{def:degree} also coresponds to the standard definition, since $X^{k}$ where $k \in \N$ are the only monomials in $R[X]$.
+
+In Chapter \ref{chap:geom} we will be especially interested in prime ideals in $R[X_1, X_2, \ldots, X_{n}]$ below we list some important results on polynomial rings, which will come in handy later. The first theorem will be stated without proof, as we would first need to introduce some prereqruistes first, however it's proof can be found in \cite{lang}[Section 2.2].
+\begin{theorem}\label{thm:R_UFT_implies_polynomial_ring_over_R_is_UFD}
+  Let $R$ be a UFD, then $R[X]$ is also a UFD.
+\end{theorem}
+
+The theorem above have a very natural extension, to multivariate polynomial rings.
+\begin{corollary}\label{cor:multivariate_polynomial_ring_is_UFD}
+  If $R$ is a UFD, then $R[X_1, X_2, \ldots, X_{n}]$ is also a UFD.
+\end{corollary}
+
+\begin{proof}
+Follows by induction, as $R$ being a UFD implies that $R[X_{1}]$ is a UFD, by Theorem \ref{thm:R_UFT_implies_polynomial_ring_over_R_is_UFD}, which in turn implies $R[X_{1}, X_{2}]$ is a UFD ect.
+\end{proof}
+
+%---------------------------------------------------------------------------------------------%
+\section{Algebraicly Closed Fields}%
+Unless otherwise specified the definitions and results in this section will be based on those presented in \citep{alg_notes}[Sections 3.1 to 3.3].
+Most of the theory of algebraic geometry assumes that we are working over fields, where polynomials always has at least one root. It is thus natural to introduce the following definition.
+\begin{definition}\label{def:alg_closed}
+  Let $\F$ be a field, if there for all $f \in \F[X] \backslash \F^*$, exists an $\alpha \in \F$ such that $f(\alpha) = 0$. Then $\F$ is said to be \textbf{algebraically closed}.
+\end{definition}
+\begin{remark}
+  We often denote a arbitrary closed field with the letter $\K$.
+\end{remark}
+
+When applying algebraic geometry to error correcting codes, we will be working with finite fields, these are however not algebraically closed, as we will show in the following proposition.
+\begin{proposition}\label{prop:finite_fields_arent_algebraicly_closed}
+  Let $\F_{q}$ be a finite field, then $\F_{q}$ is not algebraically closed
+  %Let $p$ be prime and $n \in \N \backslash \{0\}$, then $\F_{p^{n}}$ is not algebraically closed.
+\end{proposition}
+\begin{proof}
+  Enumerate the distinct elements in $\F_{q}$ as $a_{1}, \ldots, a_{q}$. Consider the polynomial $f = 1 + \prod^{q}_{k = 1} (a_{k} - x) \in \F_{q}[X] \backslash \F_{q}^{*}$. If $\alpha \in \F_{q}$ then
+  \begin{equation*}
+    f(\alpha) = 1 + \prod^{q}_{k = 1} (a_{k} - \alpha) = 1,
+  \end{equation*}
+  since $\alpha = a_{i}$ for some $i \in \{1, \ldots, q\}$, thus $f$ has no roots in $\F$.
+\end{proof}
+
+%\begin{definition}
+%  Let $\mathbb{K}$ be a field, if $\F \subseteq \mathbb{K}$ is a subfield, we say that $\mathbb{K}$ is a \textbf{field extension} of $\F$, also written $\mathbb{K} / \F$.
+%\end{definition}
+%If $\mathbb{K}$ is a field, and $\F, \mathbb{L} \subseteq \mathbb{K}$, are both subfields, such that $\mathbb{L} \subseteq \mathbb{F}$, then $\mathbb{L}$ is called an \textit{intermediate field}  of the field extension $\mathbb{K} / F$. If $\mathbb{L} \subset \mathbb{F}$ we instead say that $\mathbb{L}$ is a \textit{proper intermediate field}.
+%Finally suppose $\mathbb{K}$ and $\mathbb{L}$ are both field extensions of $\mathbb{F}$, then a isomorphism $\phi: \mathbb{K} \to \mathbb{L}$ with $\phi(x) = x$ for all $x \in \mathbb{F}$ is called a \textit{$\mathbb{F}$-isomorphism} and $\mathbb{K}$ and $\mathbb{L}$ is said to be \textit{$\mathbb{F}$-isomorphic}.
+%
+%\begin{definition}
+%  Let $\mathbb{K} / \F$ be a field extension, then $a \in \mathbb{K}$ is called \textbf{algebraic} over $\F$, if there exists $f \in \F[x]$ such that $f(a) = 0$, otherwise $a$ is called \textbf{trancendental}. If all $a \in \mathbb{K}$ are algebraic over $\F$, then $\mathbb{K}$ is called an \textbf{algebraic extension} of $\F$.
+%\end{definition}
+
+\begin{definition}
+  Let $\mathbb{K}$ be a field, if $\F \subseteq \mathbb{K}$ is a subfield, we say that $\mathbb{K}$ is a \textbf{field extension} of $\F$, also written $\mathbb{K} / \F$. The field extension $\mathbb{K}/\F$ is called an \textbf{algebraic closure} of $\F$, if $\mathbb{K}$ is algebraically closed.
+\end{definition}
+\begin{remark}
+  This definition, of algebraic closures, is less strict than the definition given in \citep{alg_notes}, where they require $\mathbb{K}$ to be the smallest algebraically closed field extension, however our defintion is sufficient for the scope of this project.
+\end{remark}
+In the previous proposition we showed that the arbitrary finite field $\F_{q}$ is not algebraically closed.
+This is a problem if we want to apply the theory of algebraic geometry, to error correcting codes which operate over finite fields, since we always assume our ground field to be algebraically closed.
+However if an algebraic closure of $\F_{q}$ exists, one can instead work with this as the ground field, minimizing the extend of the problem. In the following theorem we will show that such an algebraic closure of a finite field $\F_{p}$, where $p$ is a prime, exists.
+The proof will be based on the ideas found in \citep{Galois_theory}[Proof of Theorem 2.2.6], as well as \cite{alg_lauritzen}[Remark 4.6.8].
+\begin{theorem}\label{prop:algebraic_closure_of_finite_field}
+   Let $p$ be prime, then $\cF_{p} = \bigcup_{n = 1}^{\infty} \F_{p^{n}}$ is an algebraic closure of $\F_p$.
+ \end{theorem}
+ \begin{proof}
+   Let $f \in \cF_{p}[X]$ then there exists $n \in \N$ such that $f \in \F_{p^{n}}[X]$.
+   We can without loss of generality assume $f$ to be irreducible\footnote{Otherwise write $f$ as a product of irreducible polynomials, and continue the proof, by replacing $f$ with one of its irreducible factors.}. Then $F := \F_{p}[X] / \gen{f}$ is a finite field, with $p^{\deg(f)}$ elements and thus $F \cong \F_{p^{\deg(f)}}$, further more we have $[X] \in F$ and $f([X]) = 0 \in F$, this combined with the fact that $F$ is isomorphic to a subfield of $\cF_{p}$ implies that $f$ must have a root in $\cF_{p}$.
+ \end{proof}

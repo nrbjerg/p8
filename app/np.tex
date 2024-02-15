@@ -1,0 +1,16 @@
+\chapter{$\mathbf{NP}$-Complete Problems}\label{app:np_completeness}
+Our discussion of $\mathbf{NP}$-complete problems will be based on \cite{general_decoding_problem_is_np}. Since the topic of computational complexity theory is vast and not one of the primary topics of the project, the contents of this appendix will be quite informal. For a formal introduction we instead refer the reader to \cite{complexity}.
+
+We start by introducing the notion of a \textit{nondeterministic algorithm}. A nondeterministic algorithm is an algorithm which when presented with a choice between $k$ alternative execution paths, are able to create $k$ copies of it self, and simultaneously follow each of these $k$ paths. The algorithm is said to solve the corresponding problem if any one of these copies produces the correct answer. We note that this repeated splitting may lead to an exponentially growing number of copies.
+
+The problem space $\mathbf{NP}$ is defined to be the class of problems which are solvable by a nondeterministic algorithm whose time complexity is bounded by a polynomial in the length of the input (in the case of Problems \ref{prob:general_decoding} and \ref{prob:coset_weight}, this will be $n$).
+
+In contrast the problem space $\mathbf{P}$ is defined to be the class of all problems which can be solved by a deterministic algorithm whose time complexity is bounded by a polynomial in the length of the input.
+
+Clearly $\mathbf{P} \subseteq \mathbf{NP}$, however it has not yet been proven whether $\mathbf{P} = \mathbf{NP}$ or $\mathbf{P} \neq \mathbf{NP}$, this problem was first formulated in 1971 and is one of the remaining millennium price problems, see \cite{milenium}. If $\mathbf{NP} = \mathbf{P}$, then there exists deterministic algorithms for solving any $\mathbf{NP}$ problem, in polynomial time. In particular the general decoding problem could be solved efficiently, rendering the McEliece PKCS vulnerable to attack.
+
+A problem is called $\mathbf{NP}$-hard if it can be reduced to a problem in $\mathbf{NP}$, via an algorithm in polynomial time.
+
+Every problem in $\mathbf{NP}$ can be reduced to a problem called the \textit{satisfiability problem}, meaning that if a deterministic polynomial time algorithm for the satisfiability problem is discovered, then it can be modified to solve every problem in $\mathbf{NP}$ (also in polynomial time). A problem $\mathcal{P}$ for which the reverse is true, meaning that a deterministic polynomial time algorithm for solving $\mathcal{P}$ would yield a deterministic polynomial time algorithm for the satisfiability problem, is called $\mathbf{NP}$-complete.
+
+Hence if an algorithm for solving any one of these $\mathbf{NP}$-complete problems was discovered, then it would yield polynomial time algorithms for solving any problem in $\mathbf{NP}$. The existence of $\mathbf{NP}$-complete problems yields strong empirical evidence that $\mathbf{P} \neq \mathbf{NP}$, as no one has yet to find a algorithm with runs in polynomial time for a single of these well known problems. Before we conclude our discussion on the class $\mathbf{NP}$, we wish to emphasize that the evidence for their hardness is purely empirical!

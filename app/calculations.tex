@@ -1,0 +1,9 @@
+\chapter{Regarding the Product Rule}\label{app:calc}
+This appendix contains proof that $D$ from example \ref{exmp:first_example_of_derivation}, satisfies the product rule. Let $G / H, G' / H' \in \cF_{q}(\mathcal{X})$ be rational functions, then:
+\begin{align*}
+    D \left(\frac{G}{H} \frac{G'}{H'}\right) &= \frac{D(G G')H H' - D(H H') G G'}{(H H')^{2}}\\
+                                             &= \frac{\left(D(G)G' + D(G')G\right)H H' - \left(D(H)H' + D(H')H\right)G G'}{(H H')^{2}}\\
+                                             &= \frac{D(G)G' H H' - D(H) H' G G'}{H^{2}(H')^{2}} + \frac{D(G')G H H' - D(H')H G G'}{H^{2}(H')^{2}}\\
+                                             &= \frac{D(G)H - D(H)G}{(H^{2})} \cdot \frac{G'}{H'} + \frac{D(G')H' - D(H')G'}{(H')^{2}} \cdot \frac{G}{H} \\
+                                             &= D \left(\frac{G}{H}\right) \frac{G'}{H'} + D\left(\frac{G'}{H'}\right) \frac{G}{H}
+\end{align*}

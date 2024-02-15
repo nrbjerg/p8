@@ -1,0 +1,15 @@
+\chapter{Introduction}
+Most of the widely used public key cryptography schemes systems are build upon problems in abstract algebra and number theory, that are deemed hard to solve on classical computers, notable examples include the following problems:
+\begin{problem}[Integer Factorization]\label{prob:int_fac}
+  Given $n \in \mathbb{N}$, compute the prime factors of $n$.
+\end{problem}
+\begin{problem}[Discrete Logarithm]\label{prob:disc_log}
+  Let $n \in \mathbb{N}$ and $a$ be an element of a group $(G, \circ)$, then given $a^{n} = \underset{n \text{ times} }{\underbrace{a \circ a \circ \cdots \circ a}}$, compute $n$.
+\end{problem}
+\autoref{prob:int_fac} underpin the security of the well know RSA scheme, see \cite{alg_lauritzen}, while \autoref{prob:disc_log} underpin more recent cryptographic schemes, such as the Diffie-Hellman key exchange system\footnote{This scheme actually relies on the fact that given $g^{n}$ and $g^{m}$ it seems to be computationally infeasible to compute $g^{nm}$, however if there exists a method for solving \autoref{prob:disc_log}, then this problem is solved trivially.}, see \cite{n_t_and_c}. However these problems can both be solved in polynomial time, given an \textbf{quantum computer with high capacity}, see \cite{shor}
+
+
+\begin{problem}[General Decoding Problem]
+  Let $\mathcal{C} \subseteq \mathbb{F}_q^{n}$ be a linear code, let $t \in \mathbb{N}$ such that $t \leq n$ and $y \in \mathbb{F}_q^n$. Decide if there exists a codeword $c \in \mathcal{C}$, such that $d(c, y) \leq t$
+\end{problem}
+
