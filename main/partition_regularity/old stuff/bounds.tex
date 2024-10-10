@@ -1,0 +1,38 @@
+\subsection{Bounds on Schur Numbers}
+\begin{remark}\label{rem:initial_bound_on_schur}
+	By the proof of Theorem \ref{thm:additive_schur}, we have $S_k(r) \leq R(k + 1; r)$.
+\end{remark}
+\begin{definition}
+	Let $r, k, N \in \mathbb{N}^+$, with $k \geq 2$ and $\chi: [1; N] \to C$ be an $r$-coloring, then $\chi$ is said to be $k$-sum-free if there exists no monochromatic subset of $[1; N]$ of the form $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$. In the case where $k = 2$, we simply say that $\chi$ is sum-free.
+\end{definition}
+\begin{remark}\label{rem:sum_free}
+	If $N < S_k(r)$ we know that there exists at least one such $k$-sum-free $r$-coloring of $[1; N]$, by the definition of $S_k(r)$.
+\end{remark}
+To show that $N \in \mathbb{N}$ is a lower bound for $S_{k}(r)$, we look for $r$-colorings of $[1; N]$ which is not $k$-sum-free. Our first example of this approach occurs in the following theorem, the proof of this is based on the proof found in \cite{emogrt}[Chapter 2].
+\begin{theorem}[]
+	Let $r \in \mathbb{N}^{+}$, such that $r \geq 2$, then $S_{2}(r + 1) \geq 3(S_2(r) - 1)$
+\end{theorem}
+\begin{proof}
+	Let $\chi: [S_{2}(r) - 1] \to \left\{c_1, c_2, \ldots, c_{r}\right\}$ be an $r$-coloring which emits no monochromatic subsets of the form $\left\{x, y, x + y\right\}$. We will construct a $(r + 1)$-coloring $\gamma: [1; 3(S_2(r) - 1)] \to \left\{c_1, c_2, \ldots, c_r, c_{r + 1}\right\}$ which similarly emits no monochromatic subsets of the form $\left\{x, y, x + y\right\}$, we do this by setting:
+	\begin{equation*}
+		\gamma(n) = \begin{cases}
+			\chi(n)               & \text{ if }  n \leq S_2(r) - 1          \\
+			c_{r + 1}             & \text{ if } n \in [S_2(r); 2S_2(r) - 1] \\
+			\chi(3S_2(r) - 2 - n) & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	We will show that $\gamma$ emits no $c_{r + 1}$-monochromatic subset of the form $\left\{x, y, x + y\right\}$, hence let $x, y \in [1; 3(S_2(r) - 1)]$ with $\gamma(x) = \gamma(y)$, two major cases to consider:
+	\begin{enumerate}
+		\item $\gamma(x) = \gamma(y) = c_{r + 1}$ implies $x + y \geq 2S_2(r) > 2S_2(r) - 1$ meaning $\gamma(x + y) \neq c_{r + 1}$.
+		\item $\gamma(x) = \gamma(y) = c_{i}$, with $i \neq r + 1$, in which case we have three subcases:
+		      \begin{itemize}
+			      \item If $x, y \leq S_2(r) - 1$, we either have $x + y \leq S_2(r) - 1$ or $x + y \geq 2S_2(r)$. In the first case we must have $\gamma(x + y) = \chi(x + y) \neq c_{i}$ since $\left\{x, y, x + y\right\}$ would form a $c_i$-monochromatic subset emitted by $\chi$. In the second case we see that $x + y \leq 2(S_2(r) - 1) < 2S_2(r) - 1$, so $\gamma(x + y) = c_{r + 1}$, so $\left\{x, y, x + y\right\}$ cannot be monochromatic.
+			      \item If $x, y \geq 2S_2(r)$ then $x + y \geq 2S_2(r) + 2S_2(r) = 4S_2(r) > 3S(r) - 3$.
+			      \item Finally if precisely one of $x$ and $y$ is less than that $S_2(r)$ and one is greater than $2S_2(r)$, without loss of generalization we may assume that $x \leq S_2(r) - 1$ and $y \geq 2S_2(r)$. We will let $z := 3S_2(r) - 2 - y$, then $\gamma(y) = \chi(z)$ per the definition of $\gamma$. Next assume for the sake of contradiction that $\gamma(x + y) = c_{i}$, that is $\left\{x, y, x + y\right\}$ forms a $c_i$-monochromatic subset, then since:
+			            \begin{equation*}
+				            x + y \geq x + 2S_2(r) \geq 2S_2(r) + 1
+			            \end{equation*}
+			            we have $\gamma(x + y) = \chi(3S_2(r) - 2 - (x + y))$ if we let $z' := 3S_2(r) - 2 - (x + y)$ we see that $x + z' = z$, however since $x, z, z' \in [1; S_2(r) - 1]$ we see that $\{x, z', x + z'\}$ forms a $c_{i}$-monochromatic subset of $[1; S_2(r) - 1]$ under $\chi$ aswell. \qedhere
+		      \end{itemize}
+	\end{enumerate}
+\end{proof}

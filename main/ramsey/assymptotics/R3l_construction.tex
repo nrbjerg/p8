@@ -1,0 +1,157 @@
+\subsection{Explicit Constructions for $R(3, \ell)$ as $\ell \to \infty$ using Projective Planes}
+Our treatment will be based upon \cite{fg_and_rt}[Chapter 1 and Section 5.2], it is a well known that $R(3; \ell) = \Theta(\ell^2 / \log(t))$, the lower bound was first proven in \cite{R3t}, however proof was based upon the probabilistic method. In this section we will provide an explicit construction, based on finite projective planes, which shows that $R(3; \ell) = \Omega(t^{3 / 2})$.
+
+For our purposes it will be convenient to work from the axioms of finite geometry, instead of directly applying the definition of projective spaces found in related areas such as algebraic geometry.
+
+\begin{definition}
+	A \textit{point-line geometry} is a triple $(\mathcal{P}, \mathcal{L}, I)$, consisting of a non-empty set of \textit{points} $\mathcal{P}$ and a set \textit{lines} $\mathcal{L}$ as well as an \textit{incidence relation} $I \subseteq \mathcal{P} \times \mathcal{L}$. Such that $\mathcal{L} \cap \mathcal{P} = \emptyset$ and $I$ is a relation on $\mathcal{P}, \mathcal{L}$ such that for each $\ell \in \mathcal{L}$ there exists at least two distinct points $p \in \mathcal{P}$ such that $(p, \ell) \in I$.
+\end{definition}
+The incidence relation $I$, can be thought of as the relation that a point $p$ lies on the line $\ell$ if and only if $(p, \ell) \in I$. However as previously mentioned it will be more convenient for us to consider this axiomatic definition.
+\begin{remark}\label{rem:every_graph_is_a_point_line_geometry}
+	Every graph naturally corresponds to a point line geometry. More specifically the graph $G = (V, E)$ coresponds to the point line geometry $(V, E, \left\{(v, e) \in V \times E \middle| v \in e\right\})$.
+\end{remark}
+
+\begin{definition}
+	A point-line geometry $(\mathcal{P}, \mathcal{L}, I)$ is a \textit{linear space} if for every pair of distinct points $p, q \in \mathcal{P}$ there exists an unique line $\ell \in \mathcal{L}$ such that $(p, \ell), (q, \ell) \in I$.
+\end{definition}
+Let $\mathbb{F}_q$ be a finite field, then both the affine space $\mathbb{A}^n(\mathbb{F}_q)$ and the projective space $\mathbb{P}^n(\mathbb{F}_q)$ are examples of linear spaces, we will show that $\mathbb{P}^2(\mathbb{F}_q)$ is a linear space in Theorem \ref{thm:proj_is_proj}. Another natural example is the complete graph $K_n$, through the natural correspondence described in Remark \ref{rem:every_graph_is_a_point_line_geometry}.
+
+\begin{definition}
+	Let $(\mathcal{P}, \mathcal{L}, I)$ be a linear space, a set of points $\mathcal{Q} \subseteq \mathcal{P}$ is said to be \textit{collinear} if there exists a line $\ell \in \mathcal{L}$ such that $(q, \ell) \in I$ for all $q \in \mathcal{Q}$. A \textit{projective plane} is a linear space $(\mathcal{P}, \mathcal{L}, I)$ which satisfies the following:
+	\begin{enumerate}[label=(P\arabic*), leftmargin=*]
+		\item Let $\ell, \ell' \in \mathcal{L}$ be two distinct lines, then they intersect at a unique point. That is there exists a unique point $p \in \mathcal{P}$ such that $(p, \ell), (p, \ell') \in I$. \label{P1}
+		\item There exists a set of $4$ points $\mathcal{Q} \subseteq \mathcal{P}$ such that no three points in $\mathcal{Q}$ are collinear. \label{P2}
+	\end{enumerate}
+\end{definition}
+Property \ref{P2} is simply a non-degeneracy condition, to ensure that a projective plane, is for instance not simply a set of points on a single line.
+\newpage
+\begin{proposition}\label{prop:order_of_a_projective_plane}
+	Let $(\mathcal{P}, \mathcal{L}, I)$ be a projective plane, then there exists an unique $n \geq 2$, called the order of $(\mathcal{P}, \mathcal{L}, I)$ such that:
+	\begin{enumerate}
+		\item Every line $\ell \in \mathcal{L}$ is incident with $n + 1$ points in $\mathcal{P}$.
+		\item Every point $p \in \mathcal{P}$ is incident with $n + 1$ lines in $\mathcal{L}$.
+		\item $\abs{\mathcal{P}} = \abs{\mathcal{L}} = n^2 + n + 1$. \label{prop:order_of_a_projective_plane3}
+	\end{enumerate}
+\end{proposition}
+We will not give a proof of Proposition \ref{prop:order_of_a_projective_plane} instead we refer to \cite{fg_and_rt}[Proposition 1.17].
+
+\begin{theorem}\label{thm:proj_is_proj}
+	Let $\mathbb{F}_q$ be a finite field. Let $\mathcal{P}$ and $\mathcal{L}$ be the sets consisting of the points and lines in $\mathbb{P}^{2}(\mathbb{F}_q)$ respectively and finally let $I = \left\{(p, \ell) \in \mathcal{P}\times \mathcal{L} \middle| p \in \ell\right\}$. Then the triple $PG(2, q) := (\mathcal{P}, \mathcal{L}, I)$ is a projective plane.
+\end{theorem}
+\begin{proof}
+	We start by proving that $PG(2, q)$ is a linear space, thus assume $p, p' \in \mathcal{P}$ are two distinct points, then the linear system:
+	\begin{equation}\label{eq:lin_sys1}
+		\begin{bmatrix}
+			p_x  & p_y  & p_z  \\
+			p'_x & p'_y & p'_z
+		\end{bmatrix}
+		v= \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+	\end{equation}
+	has a unique solution, since the rows of the matrix must be linearly independent, since $p$ and $p'$ are two distinct points in $\mathbb{P}^2(\mathcal{F}_q)$. Thus there exists a unique line with defining equation $aX + bY + cZ = 0$, assuming $(a, b, c) \in \mathbb{F}_q^3$ is the unique solution to \eqref{eq:lin_sys1}, which is incident to both $p$ and $p'$.
+
+	Next we will show that $PG(2, q)$ satisfies properties \ref{P1} and \ref{P2}. We start by proving that \ref{P1} holds, thus let $\ell_1$ and $\ell_2$ be two distinct lines in $\mathbb{P}^2(\mathbb{F}_q)$, with defining equations $a_1 X + b_1 Y + c_1 Z = 0$ and $a_2 X + b_2 Y + c_2 Z = 0$ respectively. Consider the linear equation:
+	\begin{equation*}
+		\begin{bmatrix}
+			a_1 & b_1 & c_1 \\
+			a_2 & b_2 & c_2
+		\end{bmatrix}
+		v = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+	\end{equation*}
+	which once again has a unique solution since $\ell_1$ and $\ell_2$ are distinct lines in $\mathbb{P}^2(\mathbb{F}_{q})$.
+	Finally \ref{P2} holds since the matrix:
+	\begin{equation*}
+		\begin{bmatrix} 1 & 0 & 0 & 1 \\ 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 1\end{bmatrix}
+	\end{equation*}
+	has rank $3$ over any finite field $\mathbb{F}_q$ and hence no three of the points $[1: 0: 0], [0: 1: 0], [0: 0: 1]$ and $[1: 1: 1]$ are collinear.
+\end{proof}
+\begin{corollary}\label{cor:number_of_points_and_lines_in_proj_plane}
+	The projective plane $PG(2, q) = (\mathcal{P}, \mathcal{L}, I)$ has order $q$.
+	%If $PG(2, q) = (\mathcal{P}, \mathcal{L}, I)$, then $\abs{\mathcal{P}} = q^2 + q + 1$, and for each $\ell \in \mathcal{L}$, there exists $q + 1$ distinct points $q$ such that $(q, \ell) \in I$.
+\end{corollary}
+\begin{proof}
+	Suppose $p$ is an arbitrary point in $\mathbb{P}^2(\mathbb{F}_q)$, then either $p = [a: b : 1]$ for some $a, b \in \mathbb{F}_q$, $p = [a: 1: 0]$ for some $a \in \mathbb{F}_{q}$ or $p = [1: 0: 0]$. The result follows since $\abs{\mathbb{F}_q} = q$, implies that $\abs{\mathcal{P}} = q^2 + q + 1$, meaning the order of $PG(2, q)$ is $q$ by Proposition \ref{prop:order_of_a_projective_plane}\ref{prop:order_of_a_projective_plane3}.
+\end{proof}
+\newpage
+\begin{definition}
+	Let $PG(2, q)$ be a projective plane of order $q$, then the \textit{incidence graph} of $PG(2, q) = (\mathcal{P}, \mathcal{L}, I)$ is defined as:
+	\begin{equation*}
+		G_q := (\mathcal{P} \cup \mathcal{L}, \left\{\left\{p, \ell\right\} \middle| p \in \mathcal{P}, \ell \in \mathcal{L}, (p, \ell) \in I\right\})
+	\end{equation*}
+\end{definition}
+That is $G_q$ is a bipartite graph, whose vertex set is the union of the sets of points and lines of $PG(2, q)$. With a line $\ell \in \mathcal{L}$ and a point $p \in \mathcal{P}$ being adjacent if and only $(p, \ell) \in I$.
+
+Recall that a total ordering $\preccurlyeq$ on a set $A$ is a reflective, antisymmetric and transitive relation, which satisfies the property that for every $x, y \in A$ either $x \preccurlyeq y$ and $y \preccurlyeq x$.
+\begin{definition}
+	Let $\preccurlyeq$ be a total ordering on $E(G_q)$. Then we define the graph $H_q^{\preccurlyeq}$ on the vertex set $E(G_q)$ with $\left\{p, \ell\right\}, \left\{p', \ell'\right\} \in E(G_q)$ being adjacent if and only if $p \neq p', \ell \neq \ell'$ and either:
+	\begin{enumerate}[label=(H\arabic*), leftmargin=*]
+		\item $\left\{p, \ell\right\} \preccurlyeq \left\{p', \ell'\right\}$ and $\left\{p, \ell'\right\} \in E(G_q)$, \label{H1}
+		\item or $\left\{p', \ell'\right\} \preccurlyeq \left\{p, \ell\right\}$ and $\left\{p', \ell\right\} \in E(G_q)$. \label{H2}
+	\end{enumerate}
+\end{definition}
+Next we will prove that $H_q^{\preccurlyeq}$ has no cliques of order $3$ and no independent sets of order $2(q^2 + q + 1)$.
+\begin{lemma}\label{lem:no_triangles}
+	Let $\preccurlyeq$ be a total ordering on $E(G_q)$, then $H_q^{\preccurlyeq}$ has no cliques of order $3$.
+\end{lemma}
+\begin{proof}
+	Assume for the sake of contradiction that $\left\{p_1, \ell_1\right\}, \left\{p_2, \ell_2\right\}, \left\{p_3, \ell_3\right\} \in E(G_q) = V(H_q^{\preccurlyeq})$ form a $3$ clique. Without loss of generalization we may assume that $\{p_1, \ell_1\} \preccurlyeq \{p_2, \ell_2\}\preccurlyeq \{p_3, \ell_3\}$. Then since $\{p_1, \ell_1\}$ is adjacent to $\{p_2, \ell_2\}$ and $\{p_3, \ell_3\}$ we see that $p_1$ is incident to $\ell_2$ and $\ell_3$, by \ref{H1}. Since $\left\{p_2, \ell_2\right\}$ and $\left\{p_3, \ell_3\right\}$ are adjacent we see that $p_2$ is incident with $\ell_{3}$ again by \ref{H1}.
+	However this implies that $p_1$ and $p_2$ are both incident with two distinct lines $\ell_2$ and $\ell_3$, which is a contradiction since $PG(2, q)$ is a projective plane, so there is a unique line incident with both $p_1$ and $p_2$.
+\end{proof}
+In order to prove the next lemma we will need the following rather trivial proposition, from elementary graph theory.
+\begin{proposition}\label{prop:cycle_in_graph}
+	Let $G = (V, E)$ be a finite graph, then $G$ has a cycle if $\abs{E} \geq \abs{V}$.
+\end{proposition}
+\begin{proof}
+	Let $v_{0}$ be one of the vertices with maximal degree in $G$, we will recursively construct a path by adding an arbitrary $v_i \in \mathcal{N}(v)$, with $\deg(v_i) \geq 2$, to the path if $v_i \neq v_j$ for every $j \leq i$, since $G$ has a finite number of vertices, this process must terminate giving the path $v_0, v_1, \ldots, v_{k}$. Finally augmenting the path with any vertex $u \neq v_{k - 1}$ adjacent to $v_k$, forms a cycle since there must exist an index $j \leq k - 1$ such that $u = v_{j}$. Note that such a vertex $u$ must exist since $\deg(v_k) \geq 2$.
+\end{proof}
+
+\begin{lemma}\label{lem:no_independent_sets}
+	Let $\preccurlyeq$ be a total ordering on $E(G_q)$, then $H_q^{\preccurlyeq}$ has no independent sets of order $2(q^2 + q + 1)$.
+\end{lemma}
+\begin{proof}
+	Suppose for the sake of contradiction that there exists an independent set of size $N := 2(q^2 + q + 1)$ in $H_q^{\preccurlyeq}$. As these vertices forms a set of $N$ edges in the $N$ vertex graph $G_q$ there must exist a cycle\footnote{Which only uses the $N$ edges corresponding to the set of independent verticies in $H_q^{\preccurlyeq}$.} $p_0, \ell_0, p_1, \ell_1, \ldots, p_{k - 1}, \ell_{k - 1}, p_{0}$ within $G_q$, confer Proposition \ref{prop:cycle_in_graph}. However this implies there exists an index $i$ such that $\{p_{[i + 1]_{k}}, \ell_{[i + 1]_{k}}\} \preccurlyeq \{p_i, \ell_i\}$. which in turn implies that $\left\{\left\{p_{[i + 1]_k}, \ell_{[i + 1]_k}\right\}, \left\{p_i, \ell_{i}\right\}\right\} \in E(H_q^{\preccurlyeq})$, a clear contradiction.
+\end{proof}
+
+Finally in order to prove the main theorem of this subsection we will need the following result, on prime numbers, and a couple of corollaries.
+\begin{theorem}[Bertrand's Postulate]\label{thm:bertrands_postulate}
+	Let $n \in \mathbb{N}^+$, then there exists a prime number $p$ with $n < p \leq 2n$.
+\end{theorem}
+We will not provide a proof of Theorem \ref{thm:bertrands_postulate}, instead we refer to \cite{proofs_from_the_book}[Chapter 2]
+\begin{corollary}\label{cor:bertrands_postulate}
+	Let $n \geq 2$, let $p$ be the largest prime such that $p \leq n$ and let $q$ be the smallest prime such that $n < q$, then $p \leq n < q < 2p$.
+\end{corollary}
+\begin{proof}
+	Follows directly since Bertrand's Postulate (Theorem \ref{thm:bertrands_postulate}) implies we must have a prime strictly between $p$ and $2p$, since $2p$ is a composite number.
+\end{proof}
+
+\begin{lemma}\label{lem:density_of_number_of_points}
+	Let $\ell \geq 14$, then there exists a prime number $p$ such that:
+	\begin{equation*}
+		2(p^2 + p + 1)  \leq \ell < 8(p^2 + p + 1)
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Let $x = -\frac{1 + \sqrt{-3 + 2\ell}}{2}$ then $2(x^2 + x + 1) = \ell$. Additionally notice that $x \geq 2$, since $\ell \geq 14$. By Corollary \ref{cor:bertrands_postulate}, there exists primes $p$ and $q$ such that $p \leq \floor{x} \leq x \leq q < 2p$, thus since $\mathbb{R}^{+} \ni X \mapsto 2(X^2 + X + 1) \in \mathbb{R}^{+}$ is a strictly increasing function we see that
+	\begin{equation*}
+		2(p^2 + p + 1) \leq 2(x^2 + x + 1) = \ell < 2(4p^2 + 2p + 1) < 8(p^2 + p + 1)\qedhere
+	\end{equation*}
+\end{proof}
+
+\begin{theorem}
+	$R(3, \ell) \in \Omega(\ell^{3 / 2})$
+\end{theorem}
+\begin{proof}
+	Let $\ell \geq 14$, then by Lemma \ref{lem:density_of_number_of_points} there exists a prime $p$ such that $2(p^2 + p + 1) \leq \ell < 8(p^2 + p + 1)$. Thus:
+	\begin{equation*}
+		R(3, \ell) \geq R(3, 2(p^2 + p + 1)) > \abs{V(H_p^{\preccurlyeq})}
+	\end{equation*}
+	by Lemmas \ref{lem:no_triangles} and \ref{lem:no_independent_sets}, combining this with the fact that
+	\begin{equation*}
+		\abs{V(H_p^{\preccurlyeq})} = \abs{E(G_p)} = (p + 1)(p^2 + p + 1) \in \Theta(p^{3})
+	\end{equation*}
+	since each of the $p^2 + p + 1$ points in $PG(2, p)$ are incident with $p + 1$ lines by Proposition \ref{prop:order_of_a_projective_plane} and Corollary \ref{cor:number_of_points_and_lines_in_proj_plane}, we see that $R(3, \ell) \in \Omega(p^{3})$. %, since $R(3, \ell) > \abs{V(H_p^{\preccurlyeq})} \in \Theta(p^{3})$.
+	Next since:
+	\begin{equation*}
+		\ell^{3 / 2} < (8(p^2 + p + 1))^{3 / 2} < 8^{3 / 2}(3p)^{3} = 27 \cdot 8^{3 / 2} p^3
+	\end{equation*}
+	see that $R(3, \ell) \in \Omega(\ell^{3 / 2})$.
+\end{proof}

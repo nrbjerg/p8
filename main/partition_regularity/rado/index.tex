@@ -1,0 +1,170 @@
+\section{Rado's Theorems}
+In this section we will investigate when systems of linear equations are partition regular, the section will be based upon \cite{rtoi}[Chapter 9]. We have already seen some notable examples in the previous section albeit indirectly, for example the homogenous linear equation:
+\begin{equation*}
+	\sum_{i = 1}^k x_i - x_{k + 1} = 0
+\end{equation*}
+is partition regular for all $k \in \mathbb{N}^{+}$, by Schurs Theorem \ref{thm:additive_schur}. However not all linear equations are partition regular, for instance any linear equation of the form $\sum_{i = 1}^k \lambda_i x_i = b$ with $\lambda_1, \lambda_2, \ldots \lambda_k \in \mathbb{N}^+$ and $b \leq 0$ does not have a solution in $\mathbb{N}^{+}$, least of all a monochromatic one. A less trivial example is given below.
+
+\begin{example}\label{exmp:less_trivial_example}
+	Any linear equation of the form $\sum_{i = 1}^{k} x_i - x_{k + 1} = b$, where $b \in \mathbb{N}^{+}$ and $k \geq 2$, with both $b$ and $k$ odd, is not partition regular over $\mathbb{N}^+$. Consider the $2$-coloring $\chi$ on $\mathbb{N}^{+}$ defined as:
+	\begin{equation*}
+		\chi(n) = \begin{cases}
+			red  & \text{ if } n \text{ is even } \\
+			blue & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	Let $\left\{x_1, x_2, \ldots, x_{k + 1}\right\}$ be an arbitrary monochromatic set under $\chi$, then $\sum_{i = 1}^k x_{i} - x_{k + 1}$ is even, since it is either a sum of even numbers or a sum of an even number of uneven numbers. The rest follows as $b$ is odd.
+\end{example}
+We will start by characterizing which homogeneous linear equations are partition regular.
+
+\begin{theorem}[Rados Single Equation Theorem]\label{thm:single_eq_rado}
+	Let $\lambda_1, \lambda_2, \ldots, \lambda_k \in \mathbb{Z} \setminus \left\{0\right\}$, then the equation:
+	\begin{equation}\label{eq:rado_single}
+		\sum_{i = 1}^{k} \lambda_{i}x_i = 0
+	\end{equation}
+	is partition regular if and only if there exists some non-empty index set $\mathcal{I} \subseteq [1; k]$ such that $\sum_{i \in \mathcal{I}} \lambda_i = 0$.
+\end{theorem}
+\begin{proof}
+	``$\impliedby$'' Without loss of generality we will assume that $\mathcal{I} = \left\{1, 2, \ldots, m\right\}$, that $\lambda_1 > 0$ (reordering the terms in $\sum_{i = 1}^{k} \lambda_i x_i$ if necessary) and that $m$ chosen maximally. If $m = k$, then $x_1 = x_2 = \cdots = x_{k} = 1$ is a monochromatic solution to Equation \eqref{eq:rado_single}, thus we may assume that $m < k$, meaning the sum $s := \sum_{i = m + 1}^{k} \lambda_{i}$ is non-empty and non-zero since $m$ was chosen maximally. \\
+	We will prove that Equation \eqref{eq:rado_single} is partition regular, by proving that every $r$-coloring ($r \in \mathbb{N}^{+}$ arbitary) of $\mathbb{N}^{+}$ yields a monochromatic solution. We will prove this by induction on $r$ starting with the case where $r = 1$. In this case setting $x_2 = x_3 = \cdots = x_{m}$ and $x_{m + 1} = x_{m + 2} = \cdots = x_{k}$, Equation \eqref{eq:rado_single} reduces to:
+	\begin{equation}\label{eq:proof_rado_single_1}
+		\lambda_1 x_1 + x_2\sum_{i = 2}^{m} \lambda_i + x_{m + 1} \sum_{i = m + 1}^k \lambda_{i} = 0
+	\end{equation}
+	Finally since $\sum_{i = 1}^{m} \lambda_i = 0$, Equation \eqref{eq:proof_rado_single_1} can be rewritten as:
+	\begin{equation}\label{eq:proof_rado_single_2}
+		\lambda_1 (x_1 - x_2) + sx_{m + 1} = 0
+	\end{equation}
+	Thus we may find a solution (and thus a monochromatic solution, since $r = 1$) to Equation \eqref{eq:proof_rado_single_2}, and thus a solution to Equation \eqref{eq:rado_single}, by finding $x_1, x_2 \in \mathbb{N}^{+}$ such that $x_2 - x_1 = s$ and letting $x_{m + 1} = \lambda_1$ completing the basis step.
+
+	Next for the induction step let $r \geq 2$ and assume that every $(r-1)$-coloring of $\mathbb{N}^{+}$ yields a monochromatic solution to Equation \eqref{eq:rado_single}, meaning there exists a least natural number $n$ such that every $(r-1)$-coloring of $[1; n]$ yields monochromatic solution to Equation \eqref{eq:rado_single}, confer Lemma \ref{lem:compactness_principle}.
+	%monochromatic the result holds for every $r' \in [1; r - 1]$.
+	Once again setting $x_2 = x_3 = \cdots = x_{m}$ and $x_{m + 1} = x_{m + 2} = \cdots = x_{k}$ Equation \eqref{eq:rado_single} reduces to Equation \eqref{eq:proof_rado_single_2}.
+
+	Let $\chi$ be an $r$ coloring of $[1; bW(n + 1; r)]$ with $b := \sum_{i = 1}^k \abs{c_{i}}$, we will find $x_1, x_2, x_{m + 1} \in [1; bW(n + 1; r)]$ satisfying Equation \eqref{eq:proof_rado_single_2}. By Theorem \ref{thm:strengthend_version_of_van_der_waerden} $\chi$ must admit a monochromatic $(n + 1)$-term arithmetic progression whose gap a multiple of $|s|$, since
+	\begin{equation*}
+		w^{*}\left(AP_{|s|\mathbb{N}^{+}}, n + 1; r\right) = |s|(W(n + 1; r) - 1) + 1 < bW(n + 1; r)
+	\end{equation*}
+	as $1 \leq |s| \leq b$.
+	That is $\chi$ admits some monochromatic set of the form
+	\begin{equation*}
+		\left\{a, a+ d\abs{s}, \ldots, a + nd \abs{s}\right\}
+	\end{equation*}
+	for some $a, d \in \mathbb{N}^{+}$ with $a + nd\abs{s} \leq bW(n + 1; r)$.
+	If there exists a $j \in [1; n]$ such that $\chi(jd\lambda_1) = \chi(a)$ we can construct a monochromatic solution to Equation \eqref{eq:proof_rado_single_2}, by letting $x_1 = a$, $x_2 = a + jd|s|$ and $x_{m + 1} = jd\lambda_{1}$, conversely if no such $j$ exist, then $\left\{d\lambda_1, 2d\lambda_1, \ldots, nd\lambda_1\right\} $ is $(r-1)$-colored, the rest follows by the definition of $n$ and Proposition \ref{prop:2.30_rtoi}.
+
+	``$\implies$'' We will prove this implication using contraposition, by showing that if there exists no non-empty subset $\mathcal{I} \subseteq [1; k]$ such that $\sum_{i \in \mathcal{I}} \lambda_{i} = 0$, then there exists a finite coloring of $\mathbb{N}^{+}$, which admits no monochromatic solution to Equation \eqref{eq:rado_single}.
+
+	Let $p > s$ be a prime, then $p \nmid \sum_{j \in \mathcal{J}} \lambda_{i}$ for each non empty $\mathcal{J} \subseteq [1; k]$, by our assumption. For every $n \in \mathbb{N}^{+}$ let $\mu_p(n)$ be the largest integer such that $p^{\mu_p(n)} \vert n$, notice that we may write $n = \sum_{j \geq \mu_p(n)} a_j p^{j}$ with each $a_j \in [0; p - 1]$ we will denote $a_{\mu_p(n)}$ by $\nu_{p}(n)$\footnote{That is $\nu_{p}(n)$ denotes the first non-zero digit in the base $p$ expansion of $n$}.
+
+	We will define a $2(p - 1)$-coloring $\chi: \mathbb{N}^{+} \to \left\{c_1, c_2, \ldots, c_{2(p-1)}\right\}$ which admits no monochromatic solution to Equation \eqref{eq:rado_single}. We claim that
+	\begin{equation*}
+		\chi(n) = \begin{cases}
+			c_{[n]_{p}}            & \text{ if } i \not \equiv 0 \mod p \\
+			c_{\nu_{p}(n) + p - 1} & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	is one such coloring. Hence assume for the sake of contradiction that $y_1, y_2, \ldots, y_k \in \mathbb{N}^{+}$ is a $c_m$-monochromatic solution to Equation \eqref{eq:rado_single}, for some $m \in [1; 2(p - 1)]$.
+
+	If $m < p$, then $\sum_{i = 1}^k \lambda_i y_i = 0$ implies that:
+	\begin{equation*}
+		m \sum_{i = 1}^k \lambda_i \equiv 0 \mod p
+	\end{equation*}
+	since $[y_{i}]_p = m$ for all $i \in [1; k]$.	However both $m$ and $\sum_{i = 1}^k \lambda_{i}$ are non zero by our assumption, and hence either $p \mid m$ or $p \mid \sum_{i = 1}^k \lambda_i$. Both of these cases leads to contradictions since $p > m$ and $p > s \geq \sum_{i = 1}^k \lambda_i $.
+
+	On the other hand if $m \geq p$, then we once again note that we may write $y_i = \sum_{j \geq \mu_p(y_{i})} a_{i,j} p^{j}$ with each $a_{i,j} \in [0; p - 1]$. Next let $y'_i := y_i - \alpha p^{\mu_p(y_{i})}$ with $\alpha := m - p  + 1$. Since $y_1, y_2, \ldots, y_k \in \mathbb{N}^{+}$ is a monochromatic solution to Equation \eqref{eq:rado_single}, we see that:
+	\begin{equation*}
+		\sum_{i = 1}^k \lambda_iy'_{i} + \alpha p^{\mu_p^{*}} \sum_{i = 1}^{k} \lambda_i p^{\mu_p(y_{i}) - \mu_{p}^{*}} = 0
+	\end{equation*}
+	where $\mu_{p}^{*} := \min \left\{\mu_{p}(y_1), \mu_{p}(y_2), \ldots, \mu_{p}(y_{k})\right\}$. Combining this with the fact that $p^{\mu^{*}_p + 1}$ divides $\sum_{ i = 1}^{k} \lambda_{i} y'_{i}$, since $\alpha = m + p - 1 = \nu_p(y_{i})$, we see that:
+	\begin{equation*}
+		\alpha p^{\mu_{p}^{*}} \sum_{i = 1}^k \lambda_i p^{\mu_{p}(y_i) - \mu^{*}_p} \equiv 0 \mod p^{\mu_p^{*} + 1}
+	\end{equation*}
+	Meaning $p^{\mu^{*} + 1} \mid \alpha p^{\mu_{p}^{*}} \sum_{i = 1}^{k} \lambda_{i} p^{\mu_p(y_i) - \mu^{*}_{p}}$ thus since $\alpha \in [1; p - 1]$, we must have that $p \mid \sum_{i = 1}^k \lambda_i p^{\mu_p(y_i) - \mu^{*}_p}$. Next by the definition of $\mu^{*}_{p}$, we have that the set:
+	\begin{equation*}
+	M := \left\{i \in [1; k] | \mu_p(y_{i}) = \mu^{*}_{p}\right\}
+	\end{equation*}
+	is non empty. Thus:
+	\begin{equation*}
+		\sum_{i = 1}^k \lambda_i p^{\mu_p(y_{i}) - \mu_{p}^{*}} = \sum_{i \in M} \lambda_i + \sum_{i \not \in M} \lambda_i p^{\mu_p(y_{i}) - \mu_p^{*}}
+	\end{equation*}
+	however since $p \mid \sum_{i = 1}^k \lambda_{i} p^{\mu_p(y_i) - \mu_p^{*}}$, and $p \mid \sum_{i \not \in M} \lambda_i p^{\mu_p(y_i) - \mu_{p}^{*}}$, we must have that $p \mid \sum_{i \in M} \lambda_i$, clearly a contradiction, since we choose $p$ strictly greater than $s$.
+\end{proof}
+
+In the following corollary we will see a nice generalization of Rados Theorem \ref{thm:single_eq_rado} which characterizes which homogeneous linear equations, with coefficients in $\mathbb{Q} \setminus \left\{0\right\}$, are partition regular over $\mathbb{N}^{+}$.
+
+\begin{corollary}
+	Let $\frac{a_1}{b_{1}}, \frac{a_{2}}{b_{2}}, \ldots, \frac{a_{k}}{b_{k}} \in \mathbb{Q} \setminus \left\{0\right\}$, then the equation
+	\begin{equation}\label{eq:rado_single_over_Q}
+		\sum_{i = 1}^{k} \frac{a_{i}}{b_{i}}x_i = 0
+	\end{equation}
+	is partition regular if and only if there exists some non-empty set of indices $\mathcal{I} \subseteq [1; k]$ such that $\sum_{i \in \mathcal{I}} \frac{a_{i}}{b_{i}} = 0$.
+\end{corollary}
+\begin{proof}
+	Fix an arbitary $r \in \mathbb{N}^{+}$ and an $r$-coloring $\chi$ on $\mathbb{N}^{+}$, then the
+	Equation \eqref{eq:rado_single_over_Q} has a monochromatic solution in $\mathbb{N}^{+}$ if and only if the equation:
+	\begin{equation}
+		\frac{1}{\prod_{i = 1}^k b_{i}} \sum_{i = 1}^k \lambda_{i} x_{i} = 0, \quad \text{ with } \lambda_i = a_i \prod_{\substack{j = 1 \\ j \neq i}} b_i
+	\end{equation}
+	has a monochromatic solution in $\mathbb{N}^{+}$. The rest follows as a non-empty set of indices $\mathcal{I} \subseteq [1; k]$ satisfies the condition that $\sum_{i \in \mathcal{I}} \lambda_{i} = 0$ if and only if $\mathcal{I}$ satisfies the condition $\sum_{i \in \mathcal{I}} \frac{a_{i}}{b_{i}} = 0$. % Since $\sum_{i \in \mathcal{I}} \frac{a_{i}}{b_{i}} = 0$ if and only if $\prod_{j = 1}^{k} b_{j} \sum_{i \in \mathcal{I}} \frac{a_{i}}{b_{i}} = \sum_{i \in \mathcal{I}} \lambda_i = 0$, afterall $\mathbb{Q}$ is a domain.
+	Hence the rest follows directly from Rados Theorem \ref{thm:single_eq_rado}.
+\end{proof}
+
+We also have the following proposition which characterizes which non-homogeneous linear equations are partition regular over $\mathbb{N}^{+}$.
+
+\begin{proposition}\label{prop:rado_non_homo}
+	Let $k \geq 2$ and $b, \lambda_1, \lambda_2, \ldots, \lambda_{k} \in \mathbb{Z} \setminus \left\{0\right\}$, finally let $s = \sum_{i = 1}^k \lambda_{i}$. Then the equation:
+	\begin{equation}\label{eq:non_homo}
+		\sum_{i = 1}^k \lambda_i x_i = b
+	\end{equation}
+	is partition regular over $\mathbb{N}^{+}$ if and only if one of the following conditions holds:
+	\begin{enumerate}[label=(NH\arabic*), leftmargin=*]
+		\item $b/s \in \mathbb{N}^{+}$. \label{NH1}
+		\item $b/s \in \mathbb{Z}^{-}$ and $\sum_{i = 1}^k \lambda_{i} x_{i} = 0$ is partition regular. \label{NH2}
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	``$\impliedby$'' Fix an arbitrary $r \in \mathbb{N}^{+}$ and an $r$-coloring $\chi: \mathbb{N}^+ \to \left\{c_1, c_2, \ldots, c_{r}\right\}$, if \ref{NH1} holds, then $x_1 = x_2 = \cdots = x_k = b / s$, is a monochromatic solution to Equation \eqref{eq:non_homo}.
+
+	On the other hand if \ref{NH2} holds, then consider the $\left(r - \frac{b}{s}\right)$-coloring\footnote{Recall that $b / s \in \mathbb{Z}^{-}$ in this case.}
+	\begin{equation*}
+		\chi': \mathbb{N}^+ \to \left\{c_1, c_2, \ldots, c_{r}, c_{r + 1}, \ldots, c_{r - \frac{b}{s}}\right\}
+	\end{equation*}
+	defined as $\chi'(i) = c_{r + i}$ if $i \leq - \frac{b}{s}$ and $\chi'\left(i -  \frac{b}{s}\right) = \chi(i)$ otherwise.
+	Since $\sum_{i = 1}^k \lambda_i x_{i} = 0$ is partition regular, the $\left(r - \frac{b}{s}\right)$-coloring $\chi'$ admits a monochromatic solution $y_1, y_2, \ldots, y_k$ to the homogeneous linear equation $\sum_{i = 1}^k \lambda_i x_i = 0$.
+
+	This solution cannot be colored $c_{r + i}$ for some $i > 0$, otherwise we would have that $y_1 = y_2 = \cdots = y_{k} = i$, since $\chi(y_{j}) = c_{r + i} \iff y_{j} = i$, which would imply that $s = 0$.
+
+	Thus we must have that the monochromatic solution is of the color $c_{i}$ for some $i \leq r$.
+	Meaning there exists a solution $z_1 - \frac{b}{s}, z_2 - \frac{b}{s}, \ldots, z_k - \frac{b}{s}$ to $\sum_{i = 1}^k \lambda_ix_{i} = 0$ which is monochromatic under $\chi'$, and thus the set $\{z_1, z_2, \ldots, z_k\}$ is monochromatic under $\chi$, however this implies that:
+	\begin{equation*}
+		\sum_{i = 1}^k \lambda_i z_i = b
+	\end{equation*}
+	since
+	\begin{equation*}
+		\sum_{i = 1}^k\lambda_i \left(z_i - \frac{b}{s}\right) = 0
+	\end{equation*}
+	``$\implies$'' First note that Equation \eqref{eq:non_homo} can be rewritten as
+	\begin{equation}\label{eq:non_homo_rewritten}
+		\sum_{i = 2}^k \lambda_i (x_i - x_1) = b - sx_{1}
+	\end{equation}
+	We will prove this implication using contraposition thus we consider three cases either $s = 0$ and hence $s \nmid b$, $s \neq 0$ but $s \nmid b$ or $\frac{b}{s} \in \mathbb{Z}^{-}$ but the equation $\sum_{i = 1}^{k} c_{i} x_{i} = 0$ is not partition regular:
+	\begin{enumerate}
+		\item If $s = 0$, then Equation \eqref{eq:non_homo_rewritten} yields:
+		      \begin{equation}\label{eq:non_homo_rewritten_s0}
+			      \sum_{i = 2}^k \lambda_i (x_i  - x_1) = b
+		      \end{equation}
+		      letting $p$ be a prime such that $p > b$, we may define an $p$-coloring $\chi: \mathbb{N}^{+} \to \left\{c_0, c_1, \ldots, c_{p - 1}\right\}$ as $\chi(n) = c_{[n]_{p}}$. Assume for the sake of contradiction that $\chi$ does admit a monochromatic solution to Equation \eqref{eq:non_homo}, say $y_1, y_2, \ldots, y_k \in \mathbb{N}^{+}$. Then by the definition of $\chi$ it follows that $(y_{i} - y_{1}) \equiv 0 \mod p$ for every $i \in [2; k]$ and thus by Equation \eqref{eq:non_homo_rewritten} it follows that $p \mid b$ since $s = 0$, a clear contradiction.
+		\item If $s \neq 0$, but $s \nmid b$, then we may without loss of generality assume that $s > 0$\footnote{Simply multiply both sides of equation \eqref{eq:non_homo}, by $-1$ if needed.}. In this case we will define a $s$-coloring $\chi: \mathbb{N}^{+} \to \left\{c_0, c_1, \ldots, c_{s - 1}\right\}$, which we similarly define as $\chi(n) = c_{[n]_{s}}$. Once again assume $y_1, y_2, \ldots, y_k \in \mathbb{N}^{+}$ is a monochromatic solution to Equation \eqref{eq:non_homo}. By the definition of $\chi$ we must have $\sum_{i = 2}^{k} \lambda_{i} (y_{i} - y_{1}) \equiv 0 \mod s$, and hence $s$ must divide the left hand side of Equation \eqref{eq:non_homo_rewritten} and thus we have:
+		      \begin{equation*}
+			      b - sy_1 \equiv 0 \mod s
+		      \end{equation*}
+		      however $sy \equiv 0 \mod s$, so $b \equiv 0 \mod s$, meaning $s \mid b$ afterall, a clear contradiction.
+		\item Finally if $b / s \in \mathbb{Z}^{-}$ but the equation $\sum_{i = 1}^k \lambda_i x_i = 0$ is not partition regular, then there exists some $r \in \mathbb{N}^{+}$ and $r$-coloring $\chi$ on $\mathbb{N}^{+}$ such that $\chi$ admits no monochromatic solution to $\sum_{i = 1}^k \lambda_i x_i = 0$. For the sake of a contradiction we will assume that Equation \eqref{eq:non_homo} is partition regular, then defining an $r$-coloring $\gamma$ on $\mathbb{N}^{+}$ by $\gamma(n) = \chi(n - \frac{b}{s})$ we obtain a monochromatic (under $\gamma$) solution $y_1, y_2, \ldots, y_k \in \mathbb{N}^{+}$ to Equation \eqref{eq:non_homo}, however by the definition of $\gamma$ we also have that $\left\{y_1 - \frac{b}{s}, y_2 - \frac{b}{s}, \ldots, y_k - \frac{b}{s}\right\}$ is a monochromatic subset under $\chi$, this leads to a contradiction since:
+		      \begin{equation*}
+			      \sum_{i = 1}^{k} \lambda_i \left(y_i - \frac{b}{s}\right) = b - b = 0
+		      \end{equation*}
+		      since $y_1, y_2, \ldots, y_k$ is a solution to Equation \eqref{eq:non_homo}.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\input{main/partition_regularity/rado/systems}

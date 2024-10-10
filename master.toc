@@ -1,6 +1,22 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Ramsey Numbers}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Bounds on Ramsey Numbers}{3}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}The Probabilistic Method}{3}{subsection.1.1.1}%
-\contentsline {chapter}{\numberline {2}Schurs}{4}{chapter.2}%
-\contentsline {part}{Appendices}{6}{section*.5}%
+\contentsline {chapter}{\numberline {1}Introduction to Ramsey Theory}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Graph Ramsey Theory}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Existence of Ramsey Numbers}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Upper Bounds}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Lower Bounds and the Probabilistic Method}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Exact Values of Small Ramsey Numbers}{10}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Asymptotic Behaviour of Certain Ramsey Numbers}{12}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Asymptotic Behaviour of $R(\ell ; r)$ as $r \to \infty $}{12}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Explicit Constructions for $R(3, \ell )$ as $\ell \to \infty $ using Projective Planes}{15}{subsection.2.5.2}%
+\contentsline {chapter}{\numberline {3}Partiton Regularity on $\mathbb {N}^{+}$}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Van Der Waerden's Theorem}{21}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}A Proof of Van Der Waerdens Theorem}{23}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Bounds on Van Der Waerden Numbers}{26}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Arithmetic Progressions $(\textnormal {mod } m)$}{29}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Schurs Theorem}{30}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Lower Bounds on $S(2; r)$ and the Asymptotics of $S(2; r)$ as $r \to \infty $}{33}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Rado's Theorems}{36}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Rado's Full Theorem}{40}{subsection.3.3.1}%
+\contentsline {part}{Appendices}{43}{section*.11}%
+\contentsline {chapter}{\numberline {A}Code which shows that $R(3, 5) > 13$ and $R(4, 4) > 17$}{44}{appendix.1.A}%
+\contentsline {chapter}{\numberline {B}Code which shows that every $2$-coloring $\chi $ on $[1; 39]$ admits a monochromatic instance of $\left \{x, y, x + y, x \cdot y\right \}$}{46}{appendix.1.B}%

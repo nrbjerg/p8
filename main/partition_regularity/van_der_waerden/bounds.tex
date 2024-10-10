@@ -1,0 +1,93 @@
+\subsection{Bounds on Van Der Waerden Numbers}
+During this section we will present some bounds on van der Waerden Numbers, we will focus our efforts on lower bounds of $W(k; r)$, since the upper bounds are generally enormous, for example the best known general upper bound is due to \cite{van_der_waerden_upper_bound} asserts that:
+\begin{equation*}
+	W(r; k) \leq 2^{2^{r^{2^{2^{k + 9}}}}}
+\end{equation*}
+for all $k, r \geq 2$. In contrast the following theorem is the best general lower bound for $W(p + 1; 2)$ when $p$ is a prime, the bound is due to \cite{berlekamp_lower_bound}. However our proof will be based on the proof found in \cite{berlekamp_proof}. First we will need some basic results on the properties of field extensions:
+
+\newpage
+\begin{lemma}\label{lem:field_extension}
+	Let $F / K$ be a field extension and $\alpha \in F \setminus K$ be algebraic over $K$ with minimal polynomial $f \in K[X]$. Then the following assertions holds:
+	\begin{enumerate}
+		\item Let $g \in K[X]$ with $g(\alpha) = 0$, then $f | g$. \label{lem:field_extension1}
+		\item $K(\alpha) = K[\alpha] \cong K[X] / \gen{f}$. \label{lem:field_extension2}
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	We start by proving that Assertion \ref{lem:field_extension1}, by polynomial division there exists $q, r \in K[X]$ with $\deg(r) < \deg(f)$ such that $g = fq + r$. Assume for the sake of contradiction that $r \neq 0$, then we have $r(\alpha) = g(\alpha) - f(\alpha)q(\alpha) = 0$, clearly a contradiction since this would imply that $f$ is not a minimal polynomial of $\alpha$.
+
+	Next to prove Assertion \ref{lem:field_extension2} consider the function $\ev_{\alpha}: K[X] \to K[\alpha]$ defined as:
+	\begin{equation*}
+		\ev_{\alpha}(f) = f(\alpha)
+	\end{equation*}
+	Note that $\ev_{\alpha}$ is a surjective homomorphism, and that by Assertion \ref{lem:field_extension1} we have:
+	\begin{equation*}
+		\ker(\ev_{\alpha}) = \left\{g \in K[X] \middle| f \text{ divides }  g\right\} = \gen{f}
+	\end{equation*}
+	Thus by the ring isomorphism theorem we have that $K[X] / \gen{f} \cong K[\alpha]$. Next since $f$ is irreducible\footnote{If $f$ is not irreducible, then $\alpha$ must be a root of one of its factors, contradicting the fact that $f$ is a minimal polynomial of $\alpha$} we have that $K[X] / \gen{f}$ is a field, which in turn implies that $K(\alpha) = K[\alpha]$, since $K[\alpha] \subseteq K(\alpha)$.
+\end{proof}
+
+\begin{lemma}\label{lem:no_roots}
+	Let $p$ be a prime and $g$ a primitive element of $\mathbb{F}_{2^p}$ and $f \in \mathbb{F}_{2}[X]$ with $\deg(f) \leq p - 1$, then $f(g^k) \neq 0$ for all $k \in [1; 2^{p} - 1]$.
+\end{lemma}
+\begin{proof}
+	First notice that there exists no intermediate field $F$ between $\mathbb{F}_2$ and $\mathbb{F}_{2^{p}}$, that is a field $F$ such that $\mathbb{F}_{2} \subset F \subset \mathbb{F}_{2^p}$, since this would imply that:
+	\begin{equation*}
+		[\mathbb{F}_{2^p} : F] [F : \mathbb{F}_2] = [\mathbb{F}_2 : \mathbb{F}_{2^p}] = p
+	\end{equation*}
+	with $[\mathbb{F}_{2^p} : F] \neq 1$ and $[F : \mathbb{F}_2] \neq 1$.
+
+	Consider an arbitrary element $g^k$ with $k \in [1; 2^p - 1]$, then $g^k \in \mathbb{F}_{2^p} \setminus \mathbb{F}_2$, notice that this means that $\mathbb{F}_2(g^k) = \mathbb{F}_{2^p}$, since there exists no intermediate fields. Additionally since $\mathbb{F}_{2^p} / \mathbb{F}_2$ is a finite and hence algebraic field extension, we see that $g^k$ has a minimal polynomial $h \in \mathbb{F}_2[X]$. By Lemma \ref{lem:field_extension}\ref{lem:field_extension2}, we must have $\deg(h) = p$, since $\mathbb{F}_{2^p} \cong \mathbb{F}_2[X] / \gen{h}$. The rest follows by Lemma \ref{lem:field_extension}\ref{lem:field_extension1}.
+\end{proof}
+
+\begin{theorem}[Berlekamps Lower Bound]\label{thm:berlekamps_lower_bound}
+	Let $p$ be a prime, then $W(p + 1; 2) > p (2^{p} - 1)$.
+\end{theorem}
+\begin{proof}
+	Consider the finite field $\mathbb{F}_{2^p}$ with $2^p$ elements, and let $g$ be a primitive element of $\mathbb{F}_{2^p}^{*}$. Fixing a $\mathbb{F}_{2}$ basis $v_1, v_2, \ldots, v_p \in \mathbb{F}_{2^p}$ of $\mathbb{F}_{2^{p}}$, we may write:
+	\begin{equation}\label{eq:lin_comb}
+		g^j = \sum_{i = 1}^p a_{i,j} v_i \text{ for } j \in [1; p(2^p - 1)]
+	\end{equation}
+	where $a_{i, j} \in \mathbb{F}_2$. We claim that the coloring $\chi: [1; p(2^p - 1)] \to \{c_0, c_1\}$, defined as $\chi(j) = c_{a_{1, j}}$ does not yield a monochromatic $(p + 1)$-term arithmetic progression. Assume for the sake of contradiction that $\chi$ does yield a monochromatic $(p + 1)$-term arithmetic progression, say:
+	\begin{equation*}
+		\left\{a, a + d, \ldots, a + pd\right\} \subseteq [1; p(2^p - 1)]
+	\end{equation*}
+	Next we will let $\alpha = g^{a}$ and $\beta = g^{d}$, note that since $a + pd \leq p(2^p - 1)$ and $a \geq 1$ we see that $d \leq 2^p - 2$, thus $\beta \neq 1$. Consider the set $A := \left\{g^a, g^{a + d}, \ldots, g^{a + pd}\right\} = \left\{\alpha, \alpha \beta, \ldots, \alpha \beta^{p}\right\}$
+	We will consider the cases where the monochromatic $(p + 1)$-term arithmetic progression is colored $c_0$ and $c_1$ separately.
+	\begin{enumerate}
+		\item If $\chi\left(\left\{a, a + d, \ldots, a + pd\right\}\right) = \{c_0\}$, then all of the $p + 1$ elements of $A$ must be contained within the $p - 1$ dimensional space $\Span_{\mathbb{F}_2} \left\{v_2, \ldots, v_{p}\right\}$. Hence any subset of $A$ containing $p$ elements are linearly dependent over $\mathbb{F}_2$. In particular there exists $\lambda_0, \lambda_1, \ldots \lambda_{p - 1} \in \mathbb{F}_2$, not all $0$, such that:
+		      \begin{equation*}
+			      \sum_{i = 0}^{p - 1} \lambda_i \alpha \beta^{i} = 0
+		      \end{equation*}
+		      however $g$ is a primitive element of $\mathbb{F}_{2^p}$ we must have $\alpha \neq 0$ meaning we must have that $\sum_{i = 0}^{p - 1} \lambda_i \beta^i = 0$, which is a contradiction by Lemma \ref{lem:no_roots}.
+		\item Conversely if $\chi\left(\left\{a, a + d, \ldots, a + pd\right\}\right) = \{c_{1}\}$, then consider the set $I - \alpha = \left\{0, \alpha(\beta - 1), \ldots, \alpha(\beta^p - 1)\right\}$, this set is once again contained within $\Span_{\mathbb{F}_2} \left\{v_2, \ldots, v_p\right\}$\footnote{This can be seen by expanding each element in $I$ and $\alpha$ via the linear combination in Equation \eqref{eq:lin_comb}}, meaning there exists $\lambda_0, \lambda_1, \ldots, \lambda_{p - 1} \in \mathbb{F}_2$, not all $0$ such that:
+		      \begin{equation*}
+			      \sum_{i = 0}^{p - 1} \lambda \alpha (\beta^i - 1) = 0
+		      \end{equation*}
+		      once again since $\alpha \neq 0$, we see that $\sum_{i = 1}^{p - 1} \lambda_i \beta^{i} - \sum_{i = 0}^{p - 1} \lambda_{i} = 0$, which once again yields a contradiction by Lemma \ref{lem:no_roots}. \qedhere
+	\end{enumerate}
+\end{proof}
+
+Next discuss a generalization of Berlekamps lower bound, presented in the paper \cite{van_der_waerden_lower_bound}. In order to prove this generalization we will use the following theorem,
+\begin{theorem}\label{thm:from_paper}
+	Let $r, k \geq 2$, then $W(k; r) > p \left(w \left(k; r - \ceil{\frac{r}{p}}\right) - 1\right)$, where $p$ is the largest prime such that $p \leq k$.
+\end{theorem}
+We will not provide a proof of the theorem instead we refer to \cite{van_der_waerden_lower_bound}[Section 2]. However we note that the general idea of the proof is to ``blow-up'' a $r - \ceil{\frac{r}{p}}$-coloring $\chi$ on $\left[1; w \left(k; r - \ceil{\frac{r}{p}}\right) - 1\right]$, which admits no monochromatic $k$-term arithmetic progressions, to get a $r$-coloring of $\left[1; p \left(w \left(k; r - \ceil{\frac{r}{p}}\right) - 1\right) \right]$, which similarly admits no monochromatic $k$-term arithmetic progressions. Their approach is similar to the approach used in proof of Proposition \ref{prop:r_ell_k_is_super_multiplicative}, however instead of replacing vertices with copies of an edge colored graphs, they replace each $n \in \left[1; w \left(k; r - \ceil{\frac{r}{p}}\right) - 1\right]$ with a finite colored subset of $\mathbb{N}^{+}$ of cardinality $p$.
+
+%This leads us to the following easy corollary, which generalizes Berlekamps lower bound (Theorem \ref{thm:berlekamps_lower_bound}).
+\newpage
+\begin{corollary}[Berlekamps Lower Bound Generalized]
+	Let $r \geq 2$ and $p$ be any prime, such that $r \leq p$, then:
+	\begin{equation*}
+		W(r; p + 1) > p^{r - 1}(2^{p} - 1)
+	\end{equation*}
+\end{corollary}
+\begin{proof}
+	We prove the corollary using induction on $r$, the case where $r = 2$, is covered by Berlekamps lower bound (Theorem \ref{thm:berlekamps_lower_bound}). Next assume $W(p + 1; r) > p^{r - 1}(2^{p} - 1)$, then
+	\begin{align*}
+		W(p + 1; r + 1) & \stackrel{(a)}{>}p \left[w\left(p + 1; r - \ceil{\frac{r}{p}}\right) - 1\right]  \\
+		                & \stackrel{(b)}{=} p \left[W(p + 1; r - 1) - 1\right]                             \\
+		                & \stackrel{(c)}{\geq} p \left[p^{r - 1}(2^{p} - 1) + 1 - 1\right] = p^r (2^p - 1)
+	\end{align*}
+	where $(a)$ follows by Theorem \ref{thm:from_paper}, with $k = p + 1$, $(b)$ follows as $r \leq p$ and hence $\ceil{\frac{r}{p}} = 1$ and $(c)$ from the induction hypothesis.
+\end{proof}

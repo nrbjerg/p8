@@ -1,39 +1,93 @@
-\chapter{Ramsey Numbers}
-
-Before we can get started we will need some basic notions from graph theory.
+\chapter{Graph Ramsey Theory}\label{chap:graph_ramsey}
+This chapter introduces graph Ramsey theory, and is based upon \cite{rt} and \cite{rtoi}[Chapter 1]. We will start by introducing the concept of a coloring and some related concepts.
 \begin{definition}
-	Let $G = (V, E)$ be a graph, $G$ is called \textit{complete} if $v, u \in V$ such that $v \neq u$ implies $\left\{v, u\right\} \in E$. A \textit{subgraph} of $G$ is a graph $G' = (V', E')$ such that $V' \subseteq V$ and $E' \subseteq E$. Finally a complete subgraph is called a \textit{clique}.
+	Let $A$ be a set, an \textit{$r$-coloring} on $A$ is a function $\chi: A \to C$ where $C$ is the set of \textit{colors} and $\abs{C} = r$. Let $a \in A$ if $\chi(a) = c$, then $a$ is said to be \textit{colored} $c$ by $\chi$. The subset $B \subseteq A$ is called \textit{monochromatic} if $\abs{\chi(B)} = 1$. Finally if $\mathcal{F} \subseteq \mathcal{P}(A)$ we say that $\chi$ \textit{admits} a monochromatic instance in $\mathcal{F}$ is there exists some monochromatic $B \in \mathcal{F}$.
 \end{definition}
-We often denote a complete graph with $n$ vertices as $K_n$.
+In order to visually illustrate the ideas presented through examples we often simply color (this time literally) each object a given color.
 
-
+\begin{remark}\label{rem:color_sets}
+The concrete choice of color set $C$, in our $r$-coloring $\chi: A \to C$, is not really a concern, since given any bijection $\phi$ between $C$ and another color set $C'$ one would obtain a new $r$-coloring $\chi' = \phi \circ \chi$.
+Hence for the sake of simplicity we usually pick $C = \left\{c_1, c_2, \ldots, c_{r}\right\}$, unless $r = 2$ or $r = 3$ in which cases we usually let $C = \left\{red, blue\right\}$ or $C = \left\{red, blue, green\right\}$ respectively.
+\end{remark}
+\begin{remark}\label{rem:correspondence_between_colorings_and_partition}
+	Every $r$-coloring $\chi: A \to \left\{c_1, c_2, \ldots, c_{r}\right\}$, corresponds to a partition of $A$ into $r$-subsets, that is the sets $A_{i} = \left\{a \in A \middle| \chi(a) = c_{i}\right\}$ for $i \in [1; r]$, and vice versa. Throughout the project we will use this correspondence, to use what ever framework is deemed most appropriate.
+\end{remark}
+The following theorem will play a pivotal role, in establishing some of the more elemental results.
 \begin{theorem}[Generalized Pigeonhole Principle]\label{thm:gpp}
-	Let $A$ be a set such that $\abs{A} > m \cdot r$ if $A = \bigcup_{i = 1}^{r} A_i$, then there exists a $A_j$ such that $\abs{A_j} > m$.
+	Let $m, r \in \mathbb{N}^{+}$ and $A$ be a set such that $\abs{A} \geq m \cdot r$, if $A_1, A_2, \ldots A_r \subseteq A$ such that $A = \bigcup_{i = 1}^{r} A_i$, then there exists an $A_j$ with $\abs{A_j} > m$.
 \end{theorem}
 \begin{proof}
-	Assume for the sake of contradiction that $\abs{A_j} < m$ for $j = 1, 2, \ldots, r$, then:
+	Assume for the sake of contradiction that $\abs{A_j} < m$ for all $j = [r]$, then:
 	\begin{equation*}
 		\abs{A} \leq \sum_{j = 1}^r \abs{A_i} < r \cdot m
 	\end{equation*}
 	clearly a contradiction.
 \end{proof}
+We will primarily use the Generalized Pigeonhole Principle (Theorem \ref{thm:gpp}) by using the natural correspondence between partitions and colorings as desribed in Remark \ref{rem:correspondence_between_colorings_and_partition}.
+
+Throughout this section we will primarily be interested in the case where $A$ is the set of edges $E$ of some graph $G$, in which case we will refer to $\chi$ as an \textit{edge coloring} on $G$.
+Hence we shall need some basic notions from graph theory. Throughout the rest of this project a graph shall refer to a simple graph, unless otherwise specified. We say that a subgraph $H$ of $G$ is monochromatic, under $\chi$, if every edge in $H$ is colored the same color by $\chi$
 
 \begin{definition}
-	Let $A$ be a set, a \textit{$r$-coloring} on $A$ is a function $\chi: A \to C$ where $C$ is the set of \textit{colors} and $\abs{C} = r$. The subset $A' \subseteq A$ is called \textit{monochromatic} if $\chi(a) = c$ for all $a \in A$.
+	Let $G = (V, E)$ be a graph, $G$ is called \textit{complete} if $v, u \in V$ such that $v \neq u$ implies $\left\{v, u\right\} \in E$. A \textit{subgraph} of $G$ is a graph $G' = (V', E')$ such that $V' \subseteq V$ and $E' \subseteq E$. Finally a complete subgraph is called a \textit{clique}.
 \end{definition}
 \begin{remark}
-	The concrete choice of color set $C$, in our $r$-coloring $\chi: A \to C$, is not really a concern, since given any bijection $\phi$ between $C$ and another color set $C'$ one would obtain a new $r$-coloring $\chi' = \phi \circ \chi$.
-	Hence for the sake of simplicity we pick $C = [r]$, unless $r = 2$ or $r = 3$ in which cases we usually let $C = \left\{red, blue\right\}$ or $C = \left\{red, blue, green\right\}$ respectively. Additionally we note that an $r$-coloring $\chi$ on $A$, can be thought of as an partitioning of $A$ into the sets $A_i = \left\{a \in A | \chi(a) = i\right\}$.
+	Given a graph $G$ we will some times abuse the notation and simply write $V(G)$ to mean the vertex set of $G$ and $E(G)$ to mean the edge set of $G$.
 \end{remark}
+We often denote a complete graph with $n$ vertices as $K_n^{*}$ or $K_n$. With the conventions that $V(K_n^{*}) = [0; n - 1]$ and $V(K_n) = [1; n]$ that is the sets $\left\{0, 1, \ldots, n - 1\right\}$ and $\left\{1, 2, \ldots, n\right\}$ respectively.
 
-We will primarily be interested in the case where $A$ is the set of edges $E$ of the complete graph $K_n$, in which case we will refer to $\chi$ as an edge coloring on $K_n$.
-
-\begin{definition}
-	Let $n$ be a positive natural number we will write $n \to (\ell_1, \ell_2, \ldots, \ell_{r})$ if for every $r$-edge coloring $\chi: E_{n} \to \left\{c_1, c_2, \ldots, c_{r}\right\}$ on $K_n$, there exists an $i \in \left\{1, 2, \ldots, r\right\}$ such that $\chi$ emits a $c_{i}$-monochromatic clique of order $k_{i}$.
+\begin{definition}\label{def:cliques_and_neighbours}
+	Let $G = (V, E)$ be a graph and $U \subseteq V$. We denote the subgraph of $G$ consisting of the vertices in $U$ by $G|_U$ that is:
+	\begin{equation*}
+		G|_U := \left(U, E \cap (U \times U)\right)
+	\end{equation*}
+	If $\chi: E \to C$ an $r$-edge coloring on $G$, we will define the set:
+	\begin{equation*}
+		\mathcal{C}_{\chi}(G; \ell) := \left\{ G|_{U} \middle| U \subseteq V, \abs{U}  = \ell \text{ and }  \abs{\chi(E \cap \left(U \times U)\right)} = 1 \right\}
+	\end{equation*}
+	That is $\mathcal{C}_{\chi}(G; \ell)$ is the set of all monochromatic cliques (under $\chi$) of order $\ell$, note that $\chi$ may be omitted if no confusion is likely to be occur. Additionally we let:
+	\begin{equation*}
+		\mathcal{N}_{\chi}(v; c) := \left\{u \in V \middle| \{u, v\} \in E \text{ and } \chi\left(\left\{u, v\right\}\right) = c\right\}
+	\end{equation*}
+	That is $\mathcal{N}_{\chi}(v; c)$ is the set of notes adjacent to $v$ through a $c$-colored edge. Again we may simply write $\mathcal{N}(v; c)$ if no confusion is likely to occur.
 \end{definition}
-\begin{remark}
-	Clearly $k_i \leq k_i'$ and $n \to (k_1, k_2, \ldots, k_{r})$ implies that $n \to (k_1', k_2', \ldots, k_{r}')$
-\end{remark}
+\begin{example}\label{exmp:cliques_and_neighbours}
+	To illustrate the contents of Definition \ref{def:cliques_and_neighbours} we will consider graph the $G$ and  $2$-edge coloring, illustrated in figure \ref{fig:cliques_and_neighbours}.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\tikzset{punkt/.style={circle, thick, draw=black, minimum width=0.2cm,inner sep=1}}
+			\node[punkt] at (0.0, 2.0) (a) {$v_1$};
+			\node[punkt] at (1.73, 1.0) (b) {$v_2$};
+			\node[punkt] at (1.73, -1.0) (c) {$v_3$};
+			\node[punkt] at (0.0, -2.0) (d) {$v_4$};
+			\node[punkt] at (-1.73, -1.0) (e) {$v_5$};
+			\node[punkt] at (-1.73, 1.0) (f) {$v_6$};
+			%\draw (0,0) circle [radius=2];
+
+			% Blue edges
+			\draw [thick, draw=blue] (a) -- (b);
+			\draw [thick, draw=blue] (b) -- (c);
+			\draw [thick, draw=blue] (e) -- (a);
+			\draw [thick, draw=blue] (f) -- (d);
+			\draw [thick, draw=blue] (f) -- (b);
+			\draw [thick, draw=blue] (f) -- (c);
+
+			% Red edges
+			\draw [thick, draw=red] (a) -- (c);
+			\draw [thick, draw=red] (c) -- (d);
+			\draw [thick, draw=red] (b) -- (d);
+			\draw [thick, draw=red] (c) -- (e);
+			\draw [thick, draw=red] (a) -- (d);
+		\end{tikzpicture}
+		\caption{A graph $G$ with a $2$-edge coloring}
+		\label{fig:cliques_and_neighbours}
+	\end{figure}
+	We see that $\mathcal{C}(G; 3) = \left\{G|_{\{v_1, v_2, v_3\}}, G|_{\{v_2, v_3, v_{6}\}}\right\}$ additionally we see that $\mathcal{N}(v_3; red) = \left\{v_1, v_{4}, v_5\right\}$ and $\mathcal{N}(v_3; blue) = \left\{v_2, v_{6}\right\}$.
+\end{example}
 
 \input{main/ramsey/existence}
-\input{main/ramsey/bounds}
+\input{main/ramsey/upper}
+\input{main/ramsey/prob}
+\input{main/ramsey/exact_values}
+\input{main/ramsey/assymptotics/index}

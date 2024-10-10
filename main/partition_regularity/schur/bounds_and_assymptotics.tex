@@ -1,0 +1,142 @@
+\subsection{Lower Bounds on $S(2; r)$ and the Asymptotics of $S(2; r)$ as $r \to \infty$}\label{sub:schur_bounds_and_ass}
+In this subsection we will consider the asymptotic behaviour of $S(2; r)$ as $r \to \infty$, although the asymptotic behaviour of $S(2; r)$ is interesting in its own right, the main purpose of our study is to improve on the lower bound of the limit of $\sqrt[k]{R(3; r)}$ as $r \to \infty$, which we established in Section \ref{sec:ramsey_ass}.
+
+Additionally we have already know that $R(k + 1; r) + 1$ is an upper bound of $S(k; r)$, by the proof of Theorem \ref{thm:additive_schur}, we will focus our efforts on establishing lower bounds for Schur numbers, more specifically we will focus on lower bounds for $S(2; r)$, since these are sufficient for our study of the asymptotic behaviour of $S(2; r)$ as $r \to \infty$. Our primary reference will be \cite{emogrt}[Chapter 2].
+\begin{definition}
+	Let $r, k, N \in \mathbb{N}^+$, with $k \geq 2$ and $\chi: [1; N] \to C$ be an $r$-coloring, then $\chi$ is said to be $k$-sum-free if $\chi$ admits no monochromatic instances of the configuration $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$ in $[1; N]$. In the case where $k = 2$, we simply say that $\chi$ is sum-free.
+\end{definition}
+\begin{remark}\label{rem:sum_free}
+	The definition of a sum-free coloring $\chi$, closely resembles the definition of a sum-free set, see Definition \ref{def:set_sum_free}. Also note that if $N < S(k; r)$ we know that there exists at least one such $k$-sum-free $r$-coloring of $[1; N]$, by the definition of the Schur number $S(k; r)$.
+\end{remark}
+To show that $N \in \mathbb{N}^{+}$ is a lower bound for $S(k; r)$, we look for $r$-colorings of $[1; N]$ which are $k$-sum-free. Our first example of this approach occurs in the following proposition:
+
+\begin{proposition}\label{prop:schur_first_lower_bound}
+	Let $r \in \mathbb{N}^{+}$, such that $r \geq 2$, then $S(2; r + 1) > 3S(2; r) - 1$
+\end{proposition}
+\begin{proof}
+	Let $\chi: [1; S(2; r) - 1] \to \left\{c_1, c_2, \ldots, c_{r}\right\}$ be a sum-free $r$-coloring. We will construct a $(r + 1)$-coloring $\gamma: [1; 3S(2; r) - 1] \to \left\{c_1, c_2, \ldots, c_r, c_{r + 1}\right\}$ which we claim is sum-free, we do this by defining $\gamma$ as:
+	\begin{equation*}
+		\gamma(n) = \begin{cases}
+			\chi(n)               & \text{ if }  n \leq S(2; r) - 1          \\
+			c_{r + 1}             & \text{ if } n \in [S(2; r); 2S(2; r) - 1] \\
+			\chi(3S(2; r) - 1 - n) & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	Next we will show that $\gamma$ is indeed sum-free. Hence let $a, b \in [1; 3(S(2; r) - 1)]$ with $\gamma(a) = \gamma(b)$, we have two major cases to consider:
+	\begin{enumerate}
+		\item If $\gamma(a) = \gamma(b) = c_{r + 1}$ then $a + b \geq 2S(2; r) > 2S(2; r) - 1$ meaning $\gamma(a + b) \neq c_{r + 1}$.
+		\item If $\gamma(a) = \gamma(b) = c_{i}$, with $i \neq r + 1$, then we have three subcases:
+		      \begin{itemize}
+			      \item If $a, b \leq S(2; r) - 1$, we either have $a + b \leq S(2; r) - 1$ or $S(2; r) \leq a + b \leq 2(S(2; r) - 1)$. In the first case we must have $\gamma(a + b) = \chi(a + b) \neq c_{i}$ since $\left\{a, b, a + b\right\}$ would form a $c_i$-monochromatic subset admitted by $\chi$, contradicting the assumption that $\chi$ was sum-free. In the second case we have that $a + b \in [S(2; r); 2S(2; r) - 1]$, and hence $\gamma(a + b) = c_{r + 1}$, so $\left\{a, b,a + b\right\}$ cannot be monochromatic.
+			      \item If $a, b \geq 2S(2; r)$ then $a + b \geq 4S(2; r) > 3S(2; r) - 1$, since $S(2; r) \geq 2$ for all $r \in \mathbb{N}^{+}$.
+				\item Finally we might have that exactly one of $a$ and $b$ is not larger than that $S(2; r)$ and that the other one is not smaller than $2S(2;r)$. Without loss of generalization we may assume that $a \leq S(2; r) - 1$ and $b \geq 2S(2; r)$. We will let $d := 3S(2; r) - 1 - b$, then $\gamma(b) = \chi(d)$ per the definition of $\gamma$. Next assume for the sake of contradiction that $\gamma(a + b) = c_{i}$, that is $\left\{a, b, a + b\right\}$ forms a $c_i$-monochromatic subset, then since:
+			            \begin{equation*}
+				            a + b \geq a + 2S(2; r) \geq 2S(2; r) + 1
+			            \end{equation*}
+			            we have $\gamma(a + b) = \chi(3S(2; r) - 1 - (a + b))$ if we let $d' := 3S(2; r) - 1 - (a + b)$ we see that $a + d' = d$, however since $a, d, d' \in [1; S(2; r) - 1]$ we see that $\{a, d', a + d'\}$ forms a $c_{i}$-monochromatic subset of $[1; S(2; r) - 1]$ under $\chi$ as well, which once again contradicts our assumption that $\chi$ is sum-free. \qedhere
+		      \end{itemize}
+	\end{enumerate}
+\end{proof}
+
+The following theorem is a generalization of Proposition \ref{prop:schur_first_lower_bound}.
+\begin{theorem}\label{thm:ass_schur}
+	Let $r, r' \in \mathbb{N}^{+}$ then $S(2; r + r') - 1 > (S(2; r) - 1)(S(2; r') - 1) + S(2; r) - 1$.
+\end{theorem}
+\begin{proof}
+	For the sake of convenience we will let $M := 2S(2; r) - 1$ throughout the proof. By Remark \ref{rem:correspondence_between_colorings_and_partition}, it is sufficient to construct a $(r + r')$-partition $D_1, D_2, \ldots, D_{r + r'}$ of $[1; M(S(2; r') - 1) + S(2; r) - 1]$, such that each $D_i$ is sum-free. Let:
+	\begin{align*}
+		X_c   & := \left\{bM + c | b \in [0; S(2; r') - 1]\right\} \text{ for } c \in [1; S(2; r) - 1] \\
+		Y_{b} & := \left\{bM - c | c \in [0; S(2; r) - 1]\right\} \text{ for } b \in [1; S(2; r') - 1]
+	\end{align*}
+	and
+	\begin{equation*}
+		\mathcal{X} := \bigcup_{c = 1}^{S(2; r) - 1} X_c, \quad \mathcal{Y} := \bigcup_{b = 1}^{S(2; r') - 1} Y_{b}
+	\end{equation*}
+	notice that
+	\begin{equation*}
+		\mathcal{X} = \bigcup_{b = 0}^{S(2; r') - 1} \left\{bM + c | c \in [1; S(2; r) - 1]\right\}
+	\end{equation*}
+	and hence $[M(S(2; r') - 1) + S(2; r) - 1] = \mathcal{X} \cup \mathcal{Y}$. Finally note that $\mathcal{X}$ and $\mathcal{Y}$ are disjoint.
+
+	We will construct $D_1, D_2, \ldots, D_r$ and $D_{r + 1}, D_{r + 2}, \ldots, D_{r + r'}$ such that they partition $\mathcal{X}$ and $\mathcal{Y}$ respectively. %and does not contain a subset of the form $\left\{x, y, x + y\right\}$. \\
+	We will start by constructing $D_1, D_2, \ldots, D_r$. Let $C_1, C_2, \ldots, C_r$ be a sum-free partition of $[1; S(2; r) - 1]$, such a partition exists by Remarks \ref{rem:correspondence_between_colorings_and_partition} and \ref{rem:sum_free}. Let
+	\begin{equation*}
+		D_i := \bigcup_{c \in C_i} X_c
+	\end{equation*}
+	for every $i \in [1; S(2; r) - 1]$. Since $X_1, X_2, \ldots, X_{S(2; r) - 1}$ partitions $\mathcal{X}$, we only need to show that every $D_i$ is sum-free, for the sake of contradiction suppose this is not the case, that is there exists an index $i \in [1; S(2; r) - 1]$ and $(b_1M + c_1), (b_2M + c_2), (b_3M + c_3) \in D_{i}$ such that:
+	\begin{equation*}
+		(b_1 M + c_1) + (b_2M + c_2) = b_3M + c_3
+	\end{equation*}
+	Then
+	\begin{equation*}
+		c_1 + c_2 \equiv c_3 \mod M
+	\end{equation*}
+	however $2 \leq c_1 + c_2 \leq 2(S(2; r) - 1) < M$ and $1 \leq c_3 \leq S(2; r) - 1 < M$, implies that $c_1 + c_2 = c_3$ contradicting the fact that $C_i$ was sum-free.
+
+	Next we will construct $D_{r + 1}, D_{r + 2}, \ldots, D_{r + r'}$. Let $C_{r + 1}, C_{r + 2}, \ldots, C_{r + r'}$ be a sum-free partition of $[1; S(2; r') - 1]$, again such a partition exists by Remarks \ref{rem:correspondence_between_colorings_and_partition} and \ref{rem:sum_free}. We similarly let:
+	\begin{equation*}
+		D_{r + i} := \bigcup_{b \in C_{r + i}} Y_{b}
+	\end{equation*}
+	for every $i \in [1; S(2; r') - 1]$. Once again since $Y_0, Y_1, \ldots, Y_{S(2; r') - 1}$ partitions $\mathcal{Y}$, it is sufficient to show that every $D_{r + i}$ is sum-free. Suppose $(b'_1 M - c'_1), (b'_2 M - c'_2), (b'_3M - c'_3) \in D_{r + i}$, then we must have that $b'_1 + b'_2 \neq b'_3$ since $C_{r + i}$ is sum-free. Thus we have two cases:
+	\begin{enumerate}
+		\item If $b'_1 + b'_2 \geq b'_3 + 1$, then:
+		      \begin{equation*}
+			      (b'_1 M - c'_1) + (b'_2 M - c'_2) \stackrel{(a)}{\geq} b'_3 M - 1 > b_3 M - c'_3
+		      \end{equation*}
+		      where $(a)$ follows as $M - c'_1 - c'_2 \leq 2S(2;  r) - 1 - 2(S(2; r) - 1) = 1$.
+		\item If $b'_1 + b'_2 \leq b'_3 - 1$, then:
+		      \begin{equation*}
+			      (b'_1 M - c'_1) + (b'_2 M - c'_2) \stackrel{(b)}{\leq} (b'_3 - 1) M \stackrel{(c)}{<} b_3 M - c'_3
+		      \end{equation*}
+		      where $(b)$ follows since $c'_1, c'_2 \geq 0$ and $(c)$ as $0 \leq c'_3 < M$.
+	\end{enumerate}
+	hence every $D_{r + i}$ is sum free, meaning we have constructed a $(r + r')$-partition
+	$D_1, D_2, \ldots, D_{r + r'}$ of $[1; M(S(2; r') - 1) + S(2; r) - 1]$ consisting of sum-free sets.
+	%we start by defining two ways of partitioning $A := [M(S_2(r') - 1) + S_2(r) - 1]$, for every $b \in [0; S_2(r') - 1]$ let:
+	%\begin{equation*}
+	%	A_b := \left\{bM + c \middle| c \in [1; S_2(r)]\right\}
+	%\end{equation*}
+	%and for every $c \in [1; S_2(r) - 1]$ we let:
+	%\begin{equation*}
+	%	A^{(c)} := \left\{bM + c \middle| b \in [0; S_2(r') - 1]\right\}
+	%\end{equation*}
+	%Finally let $\chi: [1; M] \to C$ be an sum-free $r$-coloring, we will construct an $r$-coloring $\gamma$ on $A$, by defining $\gamma(a) = \chi(c)$ if and only if $a \in A^{(c)}$. We claim that $\gamma$ is sum-free, suppose this is not the case, then there exists monochromatic elements $b_1M + c_1, b_2M + c_2, b_3M + c_3$, under $\gamma$, such that:
+	%\begin{equation*}
+	%	(b_1 M + c_1) + (b_2 M + c_2) = (b_3 M + c_3)
+	%\end{equation*}
+	%where $\chi(c_1) = \chi(c_2) = \chi(c_3)$, thus:
+	%\begin{equation*}
+	%	c_1 + c_2 \equiv c_3 \mod M
+	%\end{equation*}
+	%however $2 \leq c_1 + c_2 \leq 2S_{2}(r) - 2 < M$ and $1 \leq c_3 \leq S_{2}(r) - 1 < M$. So $c_1 + c_2 = c_3$ contradicting the fact that $\chi$ is sum-free.
+\end{proof}
+
+\begin{corollary}\label{cor:ass_lower_bound}
+	The function $\mathbb{N}^{+} \ni r \mapsto 2S(2; r) - 1 \in \mathbb{N}^{+}$ is super-multiplicative and:
+	\begin{equation*}
+		S(2; r') > c_r(2S(2; r) - 1)^{r' / r}
+	\end{equation*}
+	for some constant $c_r > 0$, for every $r' \geq r$.
+\end{corollary}
+\begin{proof}
+	The fact that $f$ is super-multiplicative follows directly from Theorem \ref{thm:ass_schur}, since:
+	\begin{equation*}
+		S(2; r + r') - 1 \geq (2S(2; r) -  1)(S(2; r') - 1) + S(2; r) - 1
+	\end{equation*}
+	implies:
+	\begin{align*}
+		2S(2; r + r') - 1 & \geq 2 \left[(2S(2; r) -  1)(S(2; r') - 1) + S(2; r) - 1\right] + 1 \\
+		                 & = 4S(2; r)S(2; r') - 2S(2; r') - 2S(2; r) + 1                        \\
+		                 & = (2S(2; r) - 1)(2S(2; r') - 1)                                    \\
+	\end{align*}
+	Furthermore by Lemma \ref{lem:limit_of_super_multiplicative} there exists a constant $c_r > 0$ such that:
+	\begin{equation*}
+		2S(2; r') - 1 \geq c'_r (2S(2; r) - 1)^{r' / r}
+	\end{equation*}
+	and hence by setting $c_r := \frac{c'_{r}}{2}$, we see that:
+	\begin{equation*}
+		S(2; r') > S(2; r') - \frac{1}{2} \geq c_{r} (2S(2; r) - 1)^{r' / r} \qedhere
+	\end{equation*}
+\end{proof}
+
+Proposition \ref{prop:schur_first_lower_bound} gives that $S(2; 6) > 3S(2; 5) - 1 = 482$, since $S(2; 5) = 161$. However this lower bound has been improved, in \cite{lower_bound_for_s6}, to $S(2; 6) \geq 537$. Hence by Corollary \ref{cor:ass_lower_bound}, we have $S(2; r) \geq c_6 1073^{r / 6}$, for some constant $c_6 > 0$ and all $r \geq 6$. In particular since $S(2; r) \leq R(3; r)$, by the proof of Theorem \ref{thm:additive_schur}, we have $R(3; r) \geq c_6 1073^{r / 6} > c_6 3.199^{r}$, for all $r \geq 6$, since $1073^{1 / 6} > 3.199$.

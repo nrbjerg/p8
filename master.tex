@@ -10,12 +10,12 @@
 % Some top level variables that are used to automatically input title, authors,
 % etc. in the title page and front page.
 \def \projecttitle       {Ramsey Theory}
-\def \projectsubtitle    {The Computation of Ramsey Graphs}
-\def \projecttheme       {Combinatorics\\\-\ Graph Theory}
+\def \projectsubtitle    {An Introduction to Graph Ramsey Theory and Partition Regularity over $\mathbb{N}^{+}$}
+\def \projecttheme       {Combinatorics\\\-\ Ramsey Theory\\\-\ Graph Theory}
 \def \projectdegree      {Mathematics}
 \def \projectperiod      {Spring Semester 2024}
 \def \projectnumber      {P8}
-\def \projectgroup       {5.242c}
+\def \projectgroup       {1.217c}
 \def \projectauthors     {
 	Martin Sig Nørbjerg\\
 	% ...
@@ -52,8 +52,10 @@
 % arabic numbers.
 \mainmatter
 
+\include{main/introduction}
 \include{main/ramsey/index}
-\include{main/schur/index}
+%\include{main/van_der_waerden/index}
+\include{main/partition_regularity/index}
 
 % Input files should be partitioned such that each file corresponds to one
 % chapter. The \include command forces a page break and inserts the contents of
@@ -63,7 +65,8 @@
 % Appendices are included inside an appendices block, which enumerates chapters
 % with letters, starting from A, instead of numbers.
 \begin{appendices}
-
+	\include{app/code_ramsey}
+	\include{app/code_schur}
 \end{appendices}
 
 % The backmatter is for extra stuff. Headings are not numbered.

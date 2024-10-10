@@ -1,0 +1,101 @@
+\section{Lower Bounds and the Probabilistic Method}\label{sec:lower_bound}
+The probabilistic methodprobability was pioneered by Paul Erdős, and it is generally used throughout combinatorics to establish various lower bounds using methods from probability theory, for graph Ramsey theory it yields some of the best lowerbounds for large Ramsey numbers. Suppose we wish to find a lower bound for $R(\ell_1, \ell_2, \ldots,  \ell_{r})$ the basic idea, at least when applying the method to graph Ramsey theory is to consider a random $r$-edge coloring $\chi$ on a the complete graph $K_{N}$. If the probability, that there exists no indices $i \in [1; r]$ such that $\chi$ admits a $c_{i}$-monochromatic clique of order $\ell_{i}$, is less than $1$, then we must have:
+\begin{equation*}
+	R(\ell_1, \ell_2, \ldots, \ell_{r}) > N
+\end{equation*}
+We will need the following lemma, which we state without proof.
+
+\begin{lemma}[Stirlings formula]\label{lem:stirling}
+	Let $n \in \mathbb{N}$, then:
+	\begin{equation*}
+		n! > \sqrt{2 \pi n} \left(\frac{n}{\e}\right)^{n}
+	\end{equation*}
+\end{lemma}
+We now state and prove the main theorem of this section.
+\begin{theorem}
+	Let $r, \ell \geq 2$, then:
+	\begin{equation*}
+		R(\ell; r) > \frac{\left(2\pi \ell\right)^{\frac{1}{2\ell}}\ell \sqrt{r}^{\ell}}{r^{\frac{1}{2\ell}}\e}
+	\end{equation*}
+\end{theorem}
+\begin{proof}
+	Let $N \geq \ell$ be arbitrary for now. Let $\chi: E(K_N) \to \left\{c_1, c_2, \ldots, c_{r}\right\}$ be a random $r$-edge coloring, with each edge $e$ colored uniformly and independently of the other edges, that is $\mathbb{P}(\chi(e) = c_{i}) = \frac{1}{r}$ for every $i \in [1; r]$. Enumerate the $\ell$-cliques of $K_{N}$ as $C_1, C_2, \ldots, C_{\binom{N}{\ell}}$ and consider the stochastic variables $X_1, X_2, \ldots X_{\binom{N}{\ell}}$ as:
+	\begin{equation*}
+		X_i = \begin{cases}
+			1 & \text{ if } \abs{\chi(E(G \vert_{C_i}))} = 1 \\
+			0 & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	that is $X_i$ is an indicator function which indicates if the clique $C_i$ is monochromatic under $\chi$. Next notice that
+	\begin{equation}\label{eq:prop_mon_clique}
+		\mathbb{P}(X_i = 1) = r \cdot \left(\frac{1}{r}\right)^{\binom{\ell}{2}} = r \cdot \left(\frac{\sqrt{r}}{\sqrt{r}^{\ell}}\right)^\ell
+	\end{equation}
+	since $\abs{E(G \vert_{C_i})} = \binom{\ell}{2} = \frac{\ell^2 - \ell}{2}$. Thus:
+	\begin{equation}\label{eq:prob_method}
+		\mathbb{E} \left[\sum_{i = 1}^{\binom{N}{\ell}} X_{i}\right]
+		= \sum_{i = 1}^{\binom{N}{\ell}} \mathbb{P}(X_i = 1)
+		\stackrel{(a)}{\leq} \frac{N^{\ell}}{\ell!} \frac{r}{r^{\binom{\ell}{2}}}
+		\stackrel{(b)}{<} \frac{N^{\ell}r}{\sqrt{2\pi \ell} \left(\frac{\ell}{\e}\right)^{\ell}}   \left(\frac{\sqrt{r}}{\sqrt{r}^{\ell}}\right)^{\ell}
+		= \frac{r}{\sqrt{2\pi\ell}} \left(\frac{N \e \sqrt{r}}{\ell \sqrt{r}^{\ell}}\right)^{\ell}
+	\end{equation}
+	where $(a)$ follows by Equation \eqref{eq:prop_mon_clique} and $\frac{N!}{(N - \ell)!} = \prod^N_{k = N - \ell + 1} k < N^{\ell}$ and $(b)$ by Stirlings formula (Lemma \ref{lem:stirling}). \\
+	The rest follows as $\frac{r}{\sqrt{2\pi\ell}} \left(\frac{N \e \sqrt{r}}{\ell \sqrt{r}^{\ell}}\right)^{\ell} \geq 1$ if and only if $N \geq \frac{\ell \sqrt{r}^{\ell}}{\e \sqrt{r}} \left(\frac{\sqrt{2\pi\ell}}{r}\right)^{\frac{1}{\ell}}$. Thus since inequality $(b)$ is strict we see that $R(\ell; r) > \frac{\ell \sqrt{r}^{\ell}}{\e \sqrt{r}} \left(\frac{\sqrt{2\pi\ell}}{r}\right)^{\frac{1}{\ell}}$.
+	%Now if $\frac{r}{\sqrt{2\pi\ell}} \leq 1$, then setting $N := \frac{\ell\sqrt{r}^{\ell}}{e \sqrt{r}}$ implies $\mathbb{E} \left[\sum_{i = 1}^{\binom{N}{\ell}} X_{i}\right] < 1$, by Equation \eqref{eq:prob_method}, meaning $R(\ell; r) > N$. Alternately if $\frac{r}{\sqrt{2\pi\ell}}$ setting $N := \frac{\ell \sqrt{r}^{\ell}}{\e \sqrt{r}} \left(\frac{\sqrt{2\pi\ell}}{r}\right)^{\frac{1}{\ell}}$, then Equation \eqref{eq:prob_method}, once again gives $\mathbb{E} \left[\sum_{i = 1}^{\binom{N}{\ell}} X_{i}\right] < 1$ concluding the proof.
+\end{proof}
+%\begin{theorem}
+%	Let $\ell \geq 3$ then $R(\ell, \ell) > \frac{\ell}{\e \sqrt{2}} 2^{\ell / 2}$.
+%\end{theorem}
+%\begin{proof}
+%	Let $\chi: E(K_N) \to \left\{red, blue\right\}$ be a random $2$-edge coloring with, we will assume the $\chi(e)$ of is chosen uniformly and independently. Let $C$ be a subgraph of $K_N$ such that $C$ forms a clique and $A_C$ be the event that $\abs{\chi(E(G \vert_{C}))} = 1$, meaning $C$ is monochromatic. Then:
+%	\begin{equation*}
+%		\mathbb{P}(A_C) = 2 \left(\frac{1}{2} \right)^{\binom{\ell}{2}} = 2^{1 - \binom{\ell}{2}}
+%	\end{equation*}
+%	since all $\binom{\ell}{2}$ edges of $C$ is must be colored the same color by $\chi$. Let $\mathcal{C}(K_N;\ell)$ be the set of cliques of $K_N$ of order $\ell$, then:
+%	\begin{equation*}
+%		\mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) \leq \sum_{C \in \mathcal{C}(K_N; \ell)} \mathbb{P}(A_{C}) = \binom{N}{\ell} 2^{1 - \binom{\ell}{2}}
+%	\end{equation*}
+%	which follows as $\mathcal{C}(K_N; \ell) = \binom{N}{\ell}$. Now if this probability is strictly less than $1$, we must have:
+%	\begin{equation*}
+%		\mathbb{P}\left(\bigcap_{C \in \mathcal{C}(K_N; \ell)} \overline{A_{C}}\right) = 1 - \mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) \neq 0
+%	\end{equation*}
+%	where $\overline{A_C}$ is the complement of $A_C$, meaning it is the event that $C$ is not a monochromatic clique. Meaning if this is the case then there must exist a $2$-edge coloring which emits no monochromatic clique of order $\ell$. However it remains to find an integer $N$ such that $\mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) < 1$. We start by computing an upper bound, for the probability that there is at least one monochromatic clique in $K_N$:
+%	\begin{equation*}
+%		\mathbb{P} \left(\bigcup_{C \in \mathcal{C}(K_{N}; \ell)} A_{C}\right) \leq \binom{N}{\ell} 2^{1 - \binom{\ell}{2}} \stackrel{(a)}{\leq} \frac{N^{\ell}}{\ell!} 2^{1 - \binom{\ell}{2}} \stackrel{(b)}{<} \frac{2}{\sqrt{2\pi \ell}} \left(\frac{\e \sqrt{2} N}{\ell 2^{\ell/2}}\right)^{\ell}
+%	\end{equation*}
+%	where inequality $(a)$ follow as $\binom{N}{\ell} = \frac{N(N - 1)\cdots(N - \ell + 1)}{\ell!} \leq \frac{N^{\ell}}{\ell!}$ and $(b)$ by Stirlings formula (Lemma \ref{lem:stirling}) and the fact that:
+%	\begin{equation*}
+%		2^{1 - \binom{\ell}{2}} = 2 \cdot 2^{(-\ell^2 + \ell) / 2} = \frac{2 \cdot \sqrt{2}^{\ell}}{2^{\frac{\ell^2}{2}}}
+%	\end{equation*}
+%	The rest follows by setting $N = \frac{\ell}{\e \sqrt{2}} 2^{\ell / 2}$.
+%\end{proof}
+
+The following theorem are based upon \cite{fg_and_rt}[Theorem 5.5] and gives us our first lower bound for the non-diagonal Ramsey numbers, note that the theorem can also be applied recursively to give a lower bound a general Ramsey number $R(\ell_1, \ell_2, \ldots, \ell_{r})$, via a process similar to the approach used in the proof of Corollary \ref{cor:ramsey_for_arbitarily_many_colors}.
+\begin{theorem}
+	Let $\ell \geq 2$, there exists a $c_{\ell} > 0$ such that:
+	\begin{equation*}
+		R(\ell, k) \geq c_{\ell} \left(\frac{k}{\log(k)}\right)^{\frac{\ell - 1}{2}}
+	\end{equation*}
+	for all $k \geq 2$.
+\end{theorem}
+We will only give a sketch of the proof.
+\begin{proof}[Proof (Sketch)]
+	Let $N = \floor{c_{\ell} \left(\frac{k}{\log(k)}\right)^{\frac{\ell - 1}{2}}}$\footnote{Please note that $N$, is not actually fixed, but rahter $N$ depends on $c_{\ell}$.} and $\chi: E(K_N) \to \left\{red, blue\right\}$ be a random $2$-edge coloring on $K_N$, with each edge $e \in E(K_{N})$ colored independently of the others, and with $\mathbb{P}(\chi(e) = red) = \frac{1}{N^{\frac{2}{\ell  - 1}}}$. Next enumerate the $\ell$ and $k$ cliques of $K_N$ as $C_1, C_2, \ldots, C_{\binom{N}{\ell}}$ and $C'_1, C'_2, \ldots, C'_{\binom{N}{k}}$ respectively. We will define the stochastic variables $X_1, X_2, \ldots, X_{\binom{N}{\ell}}$ and $Y_1, Y_2, \ldots, Y_{\binom{N}{k}}$ as:
+	\begin{equation*}
+		X_i = \begin{cases}
+			1 & \text{ if } \chi(E(G \vert_{C_i})) = \left\{red\right\} \\
+			0 & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	and
+	\begin{equation*}
+		Y_i = \begin{cases}
+			1 & \text{ if } \chi(E(G \vert_{C'_i})) = \left\{blue\right\} \\
+			0 & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	Letting $p := \mathbb{P}(\chi(e) = red)$ we see that:
+	\begin{equation*}
+		\mathbb{E} \left[\sum_{i = 1}^{\binom{N}{\ell}} X_i + \sum_{i = 1}^{\binom{N}{k}} Y_{i}\right] \stackrel{a}{=} \binom{N}{\ell} p^{\binom{\ell}{2}} + \binom{N}{k}(1 - p)^{\binom{k}{2}}
+	\end{equation*}
+	where $(a)$ follows since each edge is colored independently meaning $\mathbb{P} \left(X_i = 1\right) = p^{\binom{\ell}{2}}$ since each of the $\binom{\ell}{2}$ edges in $G \vert_{C_i}$ must be colored $red$ by $\chi$ and similarly $Y_j = 1$ if and only if each edge in $G \vert_{C'_{i}}$ is colored $blue$ by $\chi$. Finally we note that if $c_{\ell}$ is chosen sufficiently small, then $\binom{N}{\ell} p^{\binom{\ell}{2}} + \binom{N}{k}(1 - p)^{\binom{k}{2}} < 1$.
+\end{proof}

@@ -1,0 +1,130 @@
+\section{Schurs Theorem}
+In this section, we will show that for each $k \in \mathbb{N}^{+}$ the configurations
+\begin{equation*}
+\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\} \text{ and }  \left\{x_1, x_2, \ldots, x_{k}, \prod_{i = 1}^k x_i\right\}
+\end{equation*}
+are partition regular. Our treatment is based on the treatment found in \cite{rtoi}[Chapter 8].
+%\begin{enumerate}[label=(S\arabic*), leftmargin=*]
+%	\item The configuration $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$ is partition regular for every $k \in \mathbb{N}^{+}$. \label{schur_1}
+%	\item Let $r, k \in \mathbb{N}^{+}$, then there exists a least positive natural number $S_k(r)$ such that every $r$-coloring of $[1; S_k(r)]$ admits a monochromatic subset of the form $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$. \label{schur_2}
+%\end{enumerate}
+%Statement \ref{schur_2} seems stronger than Statement \ref{schur_1}, since it implies Statement \ref{schur_1}. However they are actually equivalent we need to show the opposite direction, so fix $r, k$ and for each $r$-coloring $\chi$ on $\mathbb{N}$, let
+%\begin{equation*}
+%	N_{\chi} = \min \left\{\sum_{i = 1}^k x_{i} \middle| \left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\} \text{ is monochromatic under } \chi \right\}
+%\end{equation*}
+%(is well defined by \ref{schur_1} and the well ordering of the natural numbers.) The rest should follow by setting $S_k(r) = \max_{\chi} N_{\chi}$. (\textcolor{red}{\textbf{HELP}} I think at least, since although we have an infinite number of $r$-colorings on $\mathbb{N}$ we only have a finite number of $N_{\chi}$'s, since we only have a finite number of colorings if we restrict our selves to $[1; N]$, where $N \in \mathbb{N}^{+}$)
+
+\begin{example}\label{exmp:schur}
+	To get a better intuition for the problem, consider the case where $r = 3$ and $k = 2$ and $\mathbb{N}^+$ is colored by:
+	\begin{equation*}
+		\chi(n) = \begin{cases} red   & \text{ if } n \equiv 0 \mod 3  \\
+              blue  & \text{ if }  n \equiv 1 \mod 3 \\
+              green & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	%A visual representation of $\chi$ would be: $\textcolor{blue}{1}, \textcolor{green}{2}, \textcolor{red}{3}, \textcolor{blue}{4}, \textcolor{green}{5}, \textcolor{red}{6}, \ldots$
+	Then $\chi$ admits at least one $red$-monochromatic instance $\left\{3, 3, 6\right\}$ of the configuration $\left\{x, y, x + y\right\}$.
+\end{example}
+
+\begin{theorem}[Additive Schur Theorem]\label{thm:additive_schur}
+	Let $r, k \in \mathbb{N}^{+}$, then there exists a least natural number $S(k; r)$ such that any $r$-coloring $\chi: [1, S(k; r)] \to C$ admits a monochromatic instance of the configuration $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$.
+\end{theorem}
+\begin{proof}
+	We will show that any $r$-coloring $\chi$ of $[1, R(k + 1; r)]$ admits a monochromatic instance of $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$. The rest follows directly by the well ordering of $\mathbb{N}^{+}$.
+
+	Let $K$ be the complete graph with vertex set $[1, R(k + 1; r) + 1]$. We will define an $r$-edge coloring $\chi'$ on $K$ by defining $\chi'(\left\{a, b\right\}) := \chi(\abs{a - b})$, by the definition of $R(k + 1; r)$, the $r$-edge coloring $\chi'$ must admit a monochromatic clique $C$ of order $k + 1$. Next we enumerate the verticies $v_1, v_2, \ldots v_{k + 1}$ in $C$ in increasing order
+	Then, since $C$ is monochromatic, we see that:
+	\begin{equation*}
+		\chi(v_i - v_j) = \chi'(\{v_i, v_j\}) = \chi'(\{v_{i'}, v_{j'} \}) = \chi(v_{i'} - v_{j'})
+	\end{equation*}
+	for all $i > j$ and $i' > j'$, since the verticies are ordered in increasing order. The rest follows by setting $x_j := v_{j + 1} - v_{j}$, notice that $v_{j + 1} - v_j \in [1, R(k + 1; r)]$ and $\sum_{j = 1}^k x_{j} = v_{k + 1} - v_{1} \in [1, R(k + 1; r)]$, since $v_1 < v_{k + 1}$ and $v_{k + 1}, v_1 \in [1, R(k + 1;r) + 1]$.
+\end{proof}
+Combining the fact that $S(2; r) \leq R(3; r)$ with Corollary \ref{cor:R3r}, we obtain the following upper bound for $S(2; r)$:
+\begin{corollary}\label{cor:schur_upper}
+  Let $r \in \mathbb{N}^{+}$, then $S(2; r) \leq 3r!$
+\end{corollary}
+The Schur numbers $S(k; r)$ with $k \neq 2$, is normally refereed to as generalized Schur numbers. The only\footnote{Atleast to the authors knowledge} known values of non-generalized Schur numbers are $S(2; 1) = 2, S(2; 2) = 5, S(2; 3) = 14$, $S(2; 4) = 45$ \cite{fourth_schur_number} and $S(2; 161)$ \cite{fidth_schur_number}. We will primarily be interested in non-generalized Schur numbers, hence we simply refer the reader to \cite{generalized_schur_numbers} for an overview of the known values in the generalized case.
+\begin{remark}
+	Some authors define the Schur number $S(k; r)$ to be the greatest natural number $N$ such that $[1; N]$ can be colored using $r$-colors without admitting a monochromatic instance of $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$. Hence the values presented here and the values found in other literature, may differ by one, depending on the definition of $S(k; r)$.
+\end{remark} % S1 = 2, S2 = 5, S3 = 14, S4 = 45, S5 = 161.
+
+
+%Let $\chi_{0}: \mathbb{N}^+ \to C$ be an $r$-coloring then, by the additive version of Schur's Theorem \ref{thm:additive_schur}, there exists a monochromatic subset $A_0 := \left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$ of $[1, S_{k}(r)]$. Next we may define a new coloring $\chi_1$, which colors every element in $\mathbb{N}^+ \setminus A_{0}$ the same color as $\chi_{0}$, but each element in $A_{0}$ a distinct new color, hence $\chi_1$ is at most a $(r + k + 1)$-coloring, which similarly admits a monochromatic subset $A_1 := \left\{y_1, y_2, \ldots, y_{k}, \sum_{i = 1}^k y_{i}\right\}$ of $[1, S_{k}(r + k + 1)]$. Additionally we note that $\chi_1(n) = \chi_0(n)$ for each $n \in A_1$ since only the elements in $A_0$ are colored a new distinct color, by $\chi_{1}$ compared to $\chi_{0}$. Hence $A_1$ is also monochromatic under $\chi_0$. Repeating this argument we obtain the following corollary:
+%\begin{corollary}
+%	Let $r, k$ be positive integers, any $r$-coloring $\chi$ of $\mathbb{N}^{+}$ admits infinitely many monochromatic subsets $\mathbb{N}^{+}$ of the form $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i\right\}$.
+%\end{corollary}
+
+%\begin{definition}
+%	Let $k, r \in \mathbb{N}^{+}$ we define the \textit{Schur number} $S_k(r)$ to be the smallest positive integer such that every $r$-coloring of $[1; S_k(r)]$ admits a monochromatic subset of the form $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^{k} x_{i}\right\}$.
+%\end{definition}
+%Notice that $S_k(r)$ is well defined by Theorem \ref{thm:additive_schur} and the well ordering property of the integers.
+
+The ideas presented in the following definition and in the proof of Theorem \ref{thm:multiplicative_schur} is based upon the ideas found in \cite{exponential_ultrafilters_and_patterns_in_Ramsey_theory}[Section 1].
+\begin{definition}
+	Let $\chi: \mathbb{N}^{+} \to C$ be a $r$-coloring of $\mathbb{N}^+$, then the \textit{$\log_2$-base coloring} $\chi_{\log_2}: \mathbb{N}^+ \to C$, based on $\chi$, is defined as $\chi_{\log_2}(n) = \chi(2^{n})$.
+\end{definition}
+
+%The next theorem is a natural consequence of Theorem \ref{thm:additive_schur}.
+\begin{theorem}[Multiplicative Schur Theorem]\label{thm:multiplicative_schur}
+	Let $k \in \mathbb{N}^{+}$, then the configuration $\left\{x_1, x_2, \ldots, x_{k}, \prod_{i = 1}^k x_i\right\}$ is partition regular.
+\end{theorem}
+\begin{proof}
+	By the additive Schur Theorem \ref{thm:additive_schur} the $\log_2$-base coloring $\chi_{\log_2}$, based on $\chi$, admits a monochromatic instance of the configuration $\left\{y_1, y_2, \ldots, y_{k}, \sum_{i = 1}^k y_k\right\}$. Hence we must have:
+	\begin{equation*}
+		\chi(2^{y_1}) = \chi(2^{y_{2}}) = \cdots = \chi(2^{y_k}) = \chi \left(2^{\sum_{i = 1}^k y_{i}}\right)
+	\end{equation*}
+	the rest follows by setting $x_i = 2^{y_i}$ for $i \in [1; k]$, as $2^{\sum_{i = 1}^k y_k} = \prod_{i = 1}^k 2^{y_i} = \prod_{i = 1}^k x_i$.
+\end{proof}
+\newpage
+%Let $\chi: \mathbb{N}^+ \to C$ be an $r$-coloring on $\mathbb{N}^{+}$.
+The additive and multiplicative Schur Theorems \ref{thm:additive_schur} and \ref{thm:multiplicative_schur} respectively, asserts that the configurations $\left\{x_1, x_2, \ldots, x_{k}, \sum^k_{i = 1} x_i\right\}$ and $\left\{x_1, x_2, \ldots, x_{k}, \prod^k_{i = 1} x_i\right\}$ are partition regular. However it is still an open problem, if the configuration $\left\{x_1, x_2, \ldots, x_{k}, \sum_{i = 1}^k x_i, \prod_{i = 1}^k x_i\right\}$ is partition regular, even in the case where $k = 2$. We note that it is relatively easy to check that every $2$-coloring $\chi: [1; 39] \to C$, admits a monochromatic instance of $\left\{x, y, x + y, x \cdot y\right\}$, using the code provided in Appendix \ref{app:schur_code}\footnote{The case where $k = 2$, $r = 3$ was also attempted, however the program crashed due to a lack of RAM. Which the authors suspect is due to the growthrate of the number of possible $3$-colorings on $[1; k]$}.
+
+Next we show that statement of Fermats last theorem: ``The equation $x^n + y^n = z^n$, with $n \geq 2$, has no solution $x, y, z \in \mathbb{N}$, such that $xyz \neq 0$.'' is false if we instead require that $x, y, z$ are non-zero elements in some specific family of finite fields, with sufficiently large characteristics.
+
+%\begin{lemma}\label{lem:ker_of_hom}
+%	Let $q$ be a prime, $\phi: \mathbb{F}_q^{*} \to \mathbb{F}_q^*$ be defined by $\phi(x) = x^n$ and $\omega \in \mathbb{F}_q^{*}$ a primitive element, then $\ker(\phi) = \gen{\omega^{\frac{q - 1}{e}}}$ with $e = \gcd(n, q - 1)$.
+%\end{lemma}
+%\begin{proof}
+%	First notice that $\phi(\omega^{\frac{q - 1}{e}}) = \left(\omega^{\frac{q - 1}{e}}\right)^{n} = \left(\omega^{\frac{n}{e}}\right)^{q - 1} = 1$ since $\mathbb{F}_q^{*}$ is cyclic and $\omega$ has order $q - 1$. Hence we have that $\omega^{\frac{q - 1}{e}} \in \ker(\phi)$. Next we note that for all $a \in \ker(\phi)$ there exists an $s \in \mathbb{N}^{+}$ such that $a = \omega^s$, since $\omega$ is a primitive element, and hence $1 = a^n = \omega^{sn}$. Hence $\ord(\omega) = q - 1 | sn$ meaning $e \frac{q - 1}{e} | sn$ which in turn implies that $\frac{q - 1}{e} | s$ since $n$ and $\frac{q - 1}{e}$ are coprime. Hence $a = \omega^{\frac{q -1}{e} \cdot m}$  for some in $m \in \mathbb{N}$, in other words $\ker(\phi) = \gen{\omega^{\frac{q - 1}{e}}}$.
+%\end{proof}
+%\begin{remark}\label{rem:size_of_ker}
+%	In particular Lemma \ref{lem:ker_of_hom} implies that $\abs{\ker(\phi)} = \ord(\omega^{\frac{q - 1}{\gcd(n, q - 1)}}) = \frac{\ord(\omega)}{\gcd \left(\ord(\omega), \frac{q - 1}{\gcd(q - 1, n)}\right)} = \frac{q - 1}{\gcd(q - 1, n)}$.
+%\end{remark}
+%
+%\begin{theorem}
+%	Let $n \geq 1$, then there exists a prime $p$ such that for all primes $q \geq p$, the equation $x^n + y^n = z^{n}$ has a solution $x, y, z \in \mathbb{F}_{q}$ with $xyz \neq 0$.
+%\end{theorem}
+%\begin{proof}
+%	Let $q > S_{2}(n)$ be a prime, we will consider the multiplicative group $\mathbb{F}_q^{*}$, and the subgroup $G = \left\{x^n \mid x \in \mathbb{F}_q\right\}$, letting $\phi: \mathbb{F}_q^{*} \ni x \mapsto x^n \in \mathbb{F}_q^{*}$, we see that $\ker(\phi)$ is a subgroup of $G$ more over by the group isomorphism theorem $\mathbb{F}_q^{*} / \ker(\phi) \cong \phi(\mathbb{F}_q^{*}) = G$ and hence:
+%	\begin{equation*}
+%		\abs{G} = \frac{q - 1}{\frac{q - 1}{\gcd(q - 1, \frac{q-1}{\gcd(q - 1,n)})}} = \frac{q-1}{\gcd(q - 1, n)}
+%	\end{equation*}
+%	by Langranges Index Theorem and Remark \ref{rem:size_of_ker}. Additionally
+%	\begin{equation*}
+%		\abs{\mathbb{F}_{q}^{*} / G} = \frac{\abs{\mathbb{F}_{q}}}{\abs{G}} = \frac{q-1}{\frac{q-1}{\gcd(q - 1, n)}} = \gcd(q - 1, n)
+%	\end{equation*}
+%	Hence there exists $a_1, a_2, \ldots a_k \in \mathbb{F}_q^{*}$ such that $\mathbb{F}_q^{*} = \bigcup_{i = 1}^k a_i G$ with $k := \gcd(n, q - 1)$.
+%	Next, we define a $k$-coloring $\chi: \mathbb{F}_q^* \to [k]$ by $\chi(y) = j$ if and only if $y \in a_j G$. Now since $k \leq n$ and $q - 1 \geq S_2(n)$, there exists a monochromatic triple $\left\{x, y, z\right\} \subseteq \mathbb{F}_q^{*}$ such that $x + y = z$, by Theorem \ref{thm:additive_schur}. Meaning there exists an index $j \in [k]$ such that $a_{j}x^{n}, a_jy^{n}, a_{j}z^{n} \in a_jS$ with $a_{j}x^{n} + a_{j}y^{n} = a_jz^{n}$, the rest follows by multiplying by $a_{j}^{-1}$.
+%\end{proof}
+
+\begin{theorem}\label{thm:fermat_last_theorem_over_finite_field}
+	Let $n \geq 1$, then there exists a prime number $p$ such that for all prime numbers $q \geq p$, the equation $x^n + y^n = z^{n}$ has a solution $x, y, z \in \mathbb{F}_{q}$ with $xyz \neq 0$.
+\end{theorem}
+\begin{proof}
+	Let $q > S(2; n)$ be a prime, we will subgroup $G = \left\{x^n \mid x \in \mathbb{F}_q\right\}$ of the multiplicative group $\mathbb{F}_q^{*}$. Let $\omega$ be a primitive element of $\mathbb{F}_q$, we will show that $G = \gen{\omega^{n}}$, the fact that $\gen{\omega^n} \subseteq G$ follows directly as $\omega^n \in G$. The other inclusion follows since for every $x \in \mathbb{F}_q^{*}$ there exists some $m \in \mathbb{N}$ such that $x = \omega^{m}$ and hence $x^n = \left(\omega^m\right)^n = (\omega^{n})^{m} \in \gen{\omega^{n}}$. Now since $G = \gen{\omega^{n}}$ we see that:
+	\begin{equation*}
+		\abs{G} = \ord(\omega^{n}) = \frac{\ord(\omega)}{\gcd(\ord(\omega), n)} = \frac{q - 1}{\gcd(q - 1, n)}
+	\end{equation*}
+	and hence:
+	\begin{equation*}
+		\abs{\mathbb{F}_q^{*} / G} = \frac{\mathbb{F}^{*}_{q}}{\abs{G}} = \gcd(q - 1, n)
+	\end{equation*}
+	by Langranges Index Theorem, hence there exists $a_1, a_2, \ldots, a_k \in \mathbb{F}_q^{*}$ such that $\mathbb{F}_q^{*} = \bigcup_{i = 1}^k a_i G$ with $k := \gcd(n, q - 1)$.
+	Next, we define a $k$-coloring $\chi: \mathbb{F}_q^* \to [1; k]$ by $\chi(y) = j$ if and only if $y \in a_j G$. Now since $k \leq n$ and $q - 1 \geq S(2; n) \geq S(2; k)$, there exists a monochromatic triple $\left\{x' , y' , z' \right\} \subseteq \mathbb{F}_q^{*}$ such that $x'  + y'  = z' $, by Theorem \ref{thm:additive_schur}, afterall $q - 1 \geq S(2; k)$. Meaning there exists an index $j \in [1; k]$, such that $a_{j}x^{n}, a_jy^{n}, a_{j}z^{n} \in a_jS$, with $a_{j}x^{n} + a_{j}y^{n} = a_jz^{n}$, the rest follows by multiplying by $a_{j}^{-1}$.
+\end{proof}
+
+Notably Theorem \ref{thm:fermat_last_theorem_over_finite_field} shows that Fermats Last Theorem cannot be solved, by considering the behavior over finite fields, in the sense that if there where to exists a prime $p$ such that $x^{n} + y^{n} = z^{n}$ has no non-trivial solutions (that is $x, y, z$ such that $xyz \neq 0$) in every finite field $\mathbb{F}_q$ with $q$ a prime greater than $p$, then this would imply Fermats Last Theorem. This can be seen as follows, assume for the sake of contradiction that $x, y, z \in \mathbb{N}$ is a non-trivial solution to $x^n + y^n = z^n$, ensuring that $p \geq \max \left\{x^{n}, y^{n}, z^{n}\right\}$, we see that $x, y, z$ (this time regarded as elements in $\mathbb{F}_q$) gives a solution to $x^n + y^n = z^n$ in every finite field $\mathbb{F}_q$ where $q$ is a prime greater than $p$.
+\newpage
+\input{main/partition_regularity/schur/bounds_and_assymptotics}
+%\input{main/partition_regularity/schur/bounds}
+%\input{main/partition_regularity/schur/assymptotic_behaviour}

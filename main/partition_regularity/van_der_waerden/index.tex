@@ -1,0 +1,71 @@
+\section{Van Der Waerden's Theorem}
+In this chapter we will study a classical theorem of van der Waerden, concerning $r$-colorings on the integers and arithmetic progressions. Our treatment is based upon the treatment found in \cite{rtoi}[Chapter 2].
+
+\begin{definition}
+	Let $a \in \mathbb{Z}$ and $d \in \mathbb{N}^{+}$, the set $\left\{a, a + d, \ldots, a + (k - 1)d\right\}$ is called a \textit{$k$-term arithmetic progression} with \textit{gap} $d$. Let $D \subseteq \mathbb{N}^{+}$, then we will let $AP_D$ denote the family of arithmetic progressions, with gaps $d \in D$.
+\end{definition}
+That is a $k$-term arithmetic progression is a constant configuration. Next we will present the statement of van der Waerden's theorem, we will delay the proof of the theorem until later in the chapter, in Section \ref{sec:van_der_waerden_proof}.
+
+\begin{theorem}[van der Waerden]\label{thm:van_der_waerden}
+	Let $k, r \in \mathbb{N}^{+}$. Then there exists a least natural number $W(k;r)$ such that any $r$ coloring of $[1; W(k;r)]$ admits a monochromatic $k$-term arithmetic progression.
+\end{theorem}
+To get a better felling for the statement of the theorem we consider the following example.
+\begin{example}\label{exmp:Van_Der_Waerden_2_2}
+	Consider the case where $k = 2$ and $r \geq 2$, is arbitrary.
+	That is we wish to the least natural number $w$ such that any $r$-coloring $\chi: [1; w] \to C$ admits a $2$-term monochromatic arithmetic progression.\\
+	Clearly there exists an $r$-coloring of $[1; r]$ that admits no $2$-term monochromatic arithmetic progression, afterall each element in $[1; r]$ may be assigned a distinct color.\\
+	Next consider an $r$-coloring $\chi$ on $[1; r + 1]$, by the generalized pigeon hole principle (Theorem \ref{thm:gpp}) there must exist at least two elements $a, b \in [1; r +  1]$ such that $\chi(a) = \chi(b)$, without loss of generalization we may assume that $a < b$.
+	The rest follows by setting $d = b - a$ as $\{a, a + d = b\}$ forms a monochromatic $2$-term arithmetic progression.
+\end{example}
+
+Only a few small values of $W(k; r)$ are known\footnote{Atleast to the knowledge of the author.}, namely $W(3; 2) = 9, W(3; 3)= 27, W(3; 4) = 76, W(4; 2)= 35, W(4, 3) = 293, W(5; 2) = 178$ and $W(2; 6) = 1132$ confer \cite{van_der_waerden_lower_bound}[Section 6]. Additionally we note that $W(2; r) = r + 1$ for all $r \geq 2$, by Example \ref{exmp:Van_Der_Waerden_2_2}.
+
+The following theorem is based upon \cite{rtoi}[Lemma 4.6 and Theorem 4.9], before we state the theorem we will need some more notation. Let $D \subseteq \mathbb{N}^{+}$ be a set of gaps, then we will let $W^{*}(AP_D, k; r)$ be the least natural number such that every $r$-coloring of $[1; W^{*}(AP_D, k; r)]$ yields a monochromatic $k$-term arithmetic progression, with a gap in $D$, provided such an integer exist. If no such natural number exist we will use the convention that $W^{*}(AP_D, k; r) = \infty$.
+%when ever no such integer exists, so whenever $w^{*}(AP_D, k; r)$ is finite we know that each $r$-coloring of $\mathbb{N}^{+}$ admits a monochromatic $k$-term arithmetic progression of with a gap in $D$.
+
+\begin{example}\label{exmp:van_der_waerden_strengthend_version}
+	It is relatively easy to find subsets $D$ of $\mathbb{N}^{+}$ such that $W^{*}(AP_D, k; r) = \infty$, for sufficiently large $r$. One general example is when $D$ is any finite subset of $\mathbb{N}^{+}$, say $D = \left\{d_1, d_2, \ldots, d_{m}\right\}$ then $W^{*}(AP_D, k; r) = \infty$ if $r \geq \max D + 1$. This can be seen as follows define an $r$-coloring $\chi: \mathbb{N^{+}} \to \left\{c_0, c_1, \ldots, c_{r - 1}\right\}$ by defining:
+	\begin{equation*}
+		\chi(n) := c_{[n]_{r}}
+	\end{equation*}
+	This $r$-coloring $\chi$ admits no monochromatic $k$-term arithmetic progressions with gaps in $D$ since $\chi(n) = c$ implies $\chi(n + d_{j}) \neq c$ for each $j \in [1; m]$.
+\end{example}
+
+\begin{theorem}[Strengthened van der Waerden] \label{thm:strengthend_version_of_van_der_waerden}
+	Let $D \subseteq \mathbb{N}^{+}$, $r, k \geq 2$, and $m \in \mathbb{N}^{+}$, then
+	\begin{equation}\label{eq:strengthend_van_der_waerden_1}
+		W^{*}(AP_{mD}, k; r) = m(W^{*}(AP_D, k; r) - 1) + 1
+	\end{equation}
+	with the usual conventions for addition and multiplications involving $\infty$, and in particular:
+	\begin{equation}\label{eq:strengthed_van_der_waerden_2}
+		W^{*}(AP_{m\mathbb{N}^{+}}, k; r) = m(W(k; r) - 1) + 1
+	\end{equation}
+	for all $m, k, r \in \mathbb{N}^{+}$ such that $k, r \geq 2$.
+\end{theorem}
+\begin{proof}
+	To prove that Equation \eqref{eq:strengthend_van_der_waerden_1} holds, we consider two disjoint cases:
+	\begin{enumerate}
+		\item First consider the case where $W^{*}(AP_D, k; r) < \infty$. We will start by proving that:
+		      \begin{equation*}
+			      W^{*}(AP_{mD}, k; r) \leq m(W^{*}(AP_D, k; r) - 1) + 1
+		      \end{equation*}
+		      Thus, let $\chi$ be any $r$-coloring of $[1; m(W^{*}(AP_D, k; r) - 1) + 1]$, then we may define an $r$-coloring $\chi'$ on $[1; W^{*}(AP_D, k; r)]$ as $\chi'(n) := \chi(m(n - 1) + 1)$.
+		      However by our assumption on $W^{*}(AP_D, k; r)$, the $r$-coloring $\chi'$ admits a monochromatic $k$-term arithmetic progression $\left\{a, a + d, \ldots, a + (k - 1)d\right\}$ with $d \in D$.
+		      However by the definition of $\chi'$ the sequence $\left\{m(a - 1) + 1, m(a + d - 1) + 1, \ldots, m(a + (k - 1)d - 1) + 1\right\}$ is monochromatic under $\chi$, furthermore it is easy to see that this sequence is a $k$-term arithmetic progression with a gap $md \in mD$.
+
+		      Next we will show that:
+		      \begin{equation*}
+			      W^{*}(AP_{mD}, k; r) \geq m(W^{*}(AP_D, k; r) - 1) + 1
+		      \end{equation*}
+		      Let $\gamma$ be an $r$-coloring of $[1; W^{*}(AP_D, k; r) - 1]$, which does not admit a monochromatic $k$-term arithmetic progression with a gap in $D$.
+		      We may construct an $r$-coloring $\gamma'$ on $[1; m(W^{*}(AP_D, k; r) - 1)]$ which does not admit a monochromatic $k$-term arithmetic progression with a gap in $mD$, by defining $\gamma'$ as $\gamma'(n) = \gamma(n')$ if and only if $n \in [m(n' -1) + 1; mn']$.
+		      Then $\gamma'$ does not admit a monochromatic $k$-term arithmetic progression with a gap in $mD$, since $d \in D$ and $a < m(W^{*}(AP_D, k; r) - 1) - md$ implies $\gamma'(a) \neq \gamma'(a + md)$, since $d \geq 1$.
+		\item Finally if $W^{*}(AP_D, k; r) = \infty$, then for every $K \in \mathbb{N}$ there exists a $r$-coloring $\psi$ of $[1; K]$ such that $\psi$ admits no $k$-term arithmetic progression with a gap $d \in D$. We may construct an $r$-coloring $\psi'$ of $[1; m(K - 1) + 1]$, from $\psi$ analogously to how $\gamma'$ was constructed from $\gamma$, which admits no $k$-term arithmetic progression with a gap in $mD$.
+	\end{enumerate}
+	Finally Equation \eqref{eq:strengthed_van_der_waerden_2} follows directly by Equation \eqref{eq:strengthend_van_der_waerden_1} by setting $D = \mathbb{N}^{+}$, since $W^{*}(AP_{\mathbb{N}^+}, k; r) = W(k; r)$.
+\end{proof}
+
+\newpage
+\input{main/partition_regularity/van_der_waerden/proof}
+\input{main/partition_regularity/van_der_waerden/bounds}
+\input{main/partition_regularity/van_der_waerden/AP_mod}

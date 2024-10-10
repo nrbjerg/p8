@@ -1,0 +1,52 @@
+\subsection{Arithmetic Progressions $(\textnormal{mod } m)$}
+Before we move on from the topic of arithmetic progressions and in particular van der Waerdens Theorem, we will briefly consider a different type of arithmetic progression.
+
+\begin{definition}
+	Let $m \geq 2$, the strictly increasing sequence $\left\{x_i\right\}_{i = 1}^k$ with $x_i \in \mathbb{N}^{+}$ is called a \textit{$k$-term $(\textit{mod } m)$-arithmetic progression} if there exists an $a \in [1; m - 1]$ such that $x_{i + 1} - x_{i} \equiv a \mod m$ for all $i \in [1; k - 1]$. We will denote the family of $k$-term $(\textnormal{mod } m)$-arithmetic progressions by $AP_{(m, k)}$ and the family:
+	\begin{equation*}
+		AP_{(m)} := \bigcup_{k \in \mathbb{N}^{+}} AP_{(m, k)}
+	\end{equation*}
+	will be refereed to as \textit{family of $(\textit{mod } m)$-arithmetic progressions}.
+\end{definition}
+\begin{remark}
+	Notice that we do not allow $a$ to equal $0$ or equivalently $m$, if we did allow this would have $AP_{\left\{m\right\}} \subseteq AP_{(m)}$.
+\end{remark}
+
+\begin{example}\label{exmp:mod_arithmetic_progression}
+	The sequence $\left\{8, 17, 34, 43, 68\right\}$, forms a $5$-term $(\textnormal{mod } 8)$-arithmetic progression. Notice that we do not require that the gap between consecutive numbers in the arithmetic progression to be fixed, but rather we simply require that the gap between consecutive numbers are is in the same residue class modulo $8$.
+\end{example}
+
+Contrary to the partition regularity of the family $k$-term arithmetic progressions, by van der Waerdens Theorem \ref{thm:van_der_waerden}, and even the partition regularity of $k$-term arithmetic progressions in $AP_{m\mathbb{N}^{+}}$, by Theorem \ref{thm:strengthend_version_of_van_der_waerden}, we have that the family $AP_{(m, k)}$ is not partition regular, provided $k$ is sufficiently large with respect to $m$. We will prove this in the following theorem:
+
+\begin{theorem}
+	Let $m \geq 2$ and $k > \ceil{\frac{m}{2}}$. Then the family $AP_{(m, k)}$ is not partition regular.
+\end{theorem}
+\begin{proof}
+	%We may assume that $k = \ceil{\frac{m}{2}}$, since it is sufficient to show that the family of $\ceil{\frac{m}{2}}$-term $(\textnormal{mod } m)$-arithmetic progressions aren't partition regular\footnote{Since every $k$-term (\textnormal{mod m})-arithmetic progression, with $k \geq \ceil{\frac{m}{2}}$, must contain a $\ceil{\frac{m}{2}}$-term $(\textnormal{mod } m)$-arithmetic progression.}.
+	For the sake of simplicity we will let $M := \ceil{\frac{m}{2}}$ throughout the proof. To prove the theorem we will consider that the following $2$-coloring $\chi: \mathbb{N} \to \left\{red, blue\right\}$ defined as:
+	\begin{equation*}
+		\chi(n) = \begin{cases}
+			red  & \text{ if } [n]_{M} < M \\
+			blue & \text{ otherwise }
+		\end{cases}
+	\end{equation*}
+	where $[n]_{M}$ denotes the remainder of $n$ after division by $M$. We will show that if $\chi$ admits a $K$-term $(\textnormal{mod } m)$-arithmetic progression then we must have $K \leq M$.
+
+	Next, fix an arbitrary $a \in [1; k - 1]$ and let $d := \gcd(a, m)$ as well as $q = \frac{m}{d}$.
+	Next assume that $\left\{x_i\right\}_{i = 1}^q$ is some $q$-term $(\textnormal{mod } m)$-arithmetic progression (not necessarily monochromatic under $\chi$), with gaps which are congruent to $a$ modulo $m$ that is:
+	\begin{equation*}
+		x_{i + 1} = x_i + d_i \text{ with } d_i \equiv a \mod m
+	\end{equation*}
+	We know that since $q$ is a divisor of $m$, there exists a unique $q$-element cyclic subgroup $H$ of $\mathbb{Z}_{m}$, by \cite{alg_lauritzen}[Theorem 2.7.4], thus since $\left\{0, d, \ldots, (q - 1)d\right\}$ and $\gen{a}$ are both subgroups, of $\mathbb{Z}_m$, with cardinalities $q$ since $\gcd(a, q) = 1$, by \cite{alg_lauritzen}[Remark 2.7.5], thus we must have:
+	\begin{equation*}
+		H = \left\{0, d, \ldots, (q - 1)d\right\} = \gen{a}
+	\end{equation*}
+	It follows that:
+	\begin{equation*}
+		\left\{[x_1]_{m}, [x_2]_{m}, \ldots, [x_{q}]_{m}\right\} = \left\{[x_1]_{m} + [i a]_{m} | i \in [0; q - 1]\right\} = [x_1]_m + H
+	\end{equation*}
+	thus $[x_1]_m + H$ a subset of $\mathbb{Z}_{m}$, which is an $q$-term arithmetic progression with gap $d$, thus $\abs{([x_1]_m + H) \cap [0; \ceil{\frac{m}{2}}]} \leq \ceil{\frac{q}{2}}$ and $\abs{([x_1]_m + H) \cap [\ceil{\frac{m}{2}} + 1; m - 1]} \leq \ceil{\frac{q}{2}}$.
+	Hence by the definition of $\chi$, no more than $\ceil{\frac{q}{2}}$ members of $[x_1]_m + H$ can be monochromatic.
+	However by the definition of $\chi$ we have $\chi(x_i) = \chi([x_{i}]_{m})$ and hence at most $\ceil{\frac{q}{2}}$ elements in $\left\{x_1, x_2, \ldots, x_{q}\right\}$ can be monochromatic.
+	The rest follows as $a$ was chosen arbitrarily and $\ceil{\frac{q}{2}} = \ceil{\frac{m}{2\gcd(a, m)}} \leq \ceil{\frac{m}{2}}$.
+\end{proof}

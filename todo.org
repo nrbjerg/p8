@@ -1,14 +1,35 @@
-#+title: P7 Planing
+#+title: P8 Planing
 
-Check citations
-* Finished
-+ [X] Abstract
-+ [X] Preface
-+ [ ] Notation and shorthands
-+ [X] Chapter 1
-+ [ ] Chapter 2
-  - [ ] IS decoding. @High
-+ [X] Chapter 3 (Laurent series example)
-+ [X] Chapter 4
-+ [X] Chapter 5
-+ [ ] Appendix
+* Correct
++ [X] Abstract #2
++ [X] Introduction / Chapter 1 #2
+
++ [X] Chapter 2
+  - [X] Indledning
+  - [X] Section 2.1
+  - [X] Section 2.2
+  - [X] Section 2.3
+  - [X] Section 2.4 #1
+  - [X] Section 2.5 #4
+
++ [-] Chapter 3
+  - [x] Indledning
+    * [x] Mangler del med uendeligt antal instances.
+
+  - [ ] Section 3.1
+    * [x] Indledning
+    * [ ] 3.1.1
+    * [x] 3.1.2
+    * [ ] 3.1.3
+
+  - [X] Section 3.2
+    * [X] Index
+    * [x] 3.2.1
+
+  - [x] Section 3.3
+    * [x] 3.3.1
+
++ [ ] General
+  - [ ] Notation
+  - [ ] w -> W
+  - [x] Emits -> Admits

@@ -1,0 +1,69 @@
+\chapter{Partiton Regularity on $\mathbb{N}^{+}$}\label{chap:partition_regularity}
+In this chapter we will study when finite colorings of $\mathbb{N}^{+}$ yields a monochromatic member of certain families subsets of $\mathbb{N}^+$. Throughout the chapter we will use the correspondence between partitions and colorings, as discussed in Remark \ref{rem:correspondence_between_colorings_and_partition}, to use what every framework is deemed most convenient. Our primary reference will be \cite{rtoi}[Chapters 2, 8 and 9] but we will also use some of terminology presented in \cite{exponential_ultrafilters_and_patterns_in_Ramsey_theory}.
+
+\begin{definition}\label{def:partition_regularity}
+	A \textit{configuration} over $\mathbb{N}^{+}$ is a function $\mathcal{C}: (\mathbb{N}^{+})^n \to \mathcal{P}(\mathbb{N}^{+})$. Every value of $\mathcal{C}$ is called an \textit{instance} of the configuration $\mathcal{C}$ and the configuration $\mathcal{C}$ is said to be \textit{partition regular} on $\mathbb{N}^{+}$, if for every finite coloring $\chi$ of $\mathbb{N}^{+}$ there exists a monochromatic instance of $\mathcal{C}$.
+	%for all $r \in \mathbb{N}^{+}$ every $r$-coloring $\chi$ of $\mathbb{N}^{+}$ there exists a \textit{witness} $x \in (\mathbb{N}^{+})^{n}$ such that the instance $\mathcal{C}(x)$ is monchromatic.
+	%an monochromatic instance $\mathcal{C}(x)$ of $\mathcal{C}$, when this is the case $x$ is called the \textit{witness} of $\mathcal{C}$ under $\chi$.
+\end{definition}
+\begin{remark}
+	We will often abuse the notation and simply write the configuration $x \mapsto \left\{f_1(x), f_2(x), \ldots, f_{m}(x)\right\}$ as $\left\{f_1(x), f_2(x), \ldots, f_m(x)\right\}$. Additionally if $\mathcal{C}$ is a constant configuration we often say that $\mathcal{C}$ is monochromatic whenever the unique instance of $\mathcal{C}$ is monochromatic.
+\end{remark}
+
+If $\mathcal{F}$ is a family of configurations, then $\mathcal{F}$ is said to be \textit{partition regular}, if for every finite coloring $\chi$ of $\mathbb{N}^{+}$, there exists a configuration $\mathcal{C} \in \mathcal{F}$ an instance which is monochromatic under $\chi$. Notice that if $\mathcal{F}$ only contains one configuration, then the two definitions of partition regularity coincide.
+
+Analogously given $g_1, g_2, \ldots, g_{m'}: (\mathbb{N}^{+})^{n'} \to \mathbb{Z}$ we say that the system $\mathcal{S}$ defined by the equations $g_1(x) = 0, g_2(x) = 0, \ldots, g_k(x) = 0$ is partition regular if for every $r \in \mathbb{N}^+$ and every $r$-coloring $\chi$ on $\mathbb{N}$ there exists an $x \in (\mathbb{N}^{+})^{n'}$ such that $g_1(x) = g_2(x) = \cdots = g_k(x) = 0$ and $\chi(x_1) = \chi(x_2) = \cdots = \chi(x_{n'})$.
+
+%Throughout the section we will sometimes use the following shorthand for defining colorings over $\mathbb{N}^{+}$ or subsets of $\mathbb{N}$.
+%Let $C = \left\{c_1, c_2, \ldots, c_{r}\right\}$, and let $S$ be a string over $C$, then $S$ determines an $r$-coloring $\chi$ of $[1; \abs{S}]$, by letting $\chi(n) = S_{n}$
+Before we move on we will show that if $\mathcal{F}$ is a family of configurations, then the following statements are equivalent:
+%, we will show a brief but important result on the implications of a family of configurations being partition regular, namely let $\mathcal{F}$ be a family of configurations, we will show that the following statements are equivalent:
+\begin{enumerate}[label=(PR\arabic*), leftmargin=*]
+	\item $\mathcal{F}$ is partition regular. \label{statement_a}
+	\item For each $r \in \mathbb{N}^{+}$ there exists a least natural number $n(\mathcal{F}, r)$ such that every $r$-coloring $\chi$ of $[1; n(\mathcal{F}, r)]$ admits a monochromatic instance of some $\mathcal{C} \in \mathcal{F}$. \label{statement_b}
+\end{enumerate}
+Clearly \ref{statement_b} implies statement \ref{statement_a}, since if we have an $r$-coloring $\chi: \mathbb{N}^+ \to C$, then there exists a monochromatic instance of some $\mathcal{C} \in \mathcal{F}$ within the subset $[1; n(\mathcal{F}, r)]$ of $\mathbb{N}^{+}$. The other implication is less clear.
+%and wish to find a monochromatic $k$-term arithmetic progression, we can find one in the interval $[1; w(k; \abs{C})]$. The other implication is not as simple, however it will be a special case of the following theorem, namely when $\mathcal{F}$ is the family of $k$-term arithmetic progressions.
+\begin{lemma}\label{lem:compactness_principle}
+	Suppose $\mathcal{F}$ is a family of configurations over $\mathbb{N}^{+}$ and that every $r$-coloring on $\mathbb{N}^{+}$ admits a monochromatic instance of some $\mathcal{C} \in \mathcal{F}$. Then there exists a least natural number $n(\mathcal{F}, r)$ such that every $r$-coloring of $[1; n(\mathcal{F}; r)]$ admits a monochromatic instance of some $\mathcal{C} \in \mathcal{F}$.
+\end{lemma}
+\begin{proof}
+	Fix a set $C$ of $r$ distinct colors and assume for the sake of contradiction that for every $k \in \mathbb{N}^{+}$ there exists a $r$-coloring $\chi_k: [1; k] \to C$ which does not admit a monochromatic instance of any configuration $\mathcal{C} \in \mathcal{F}$.
+	%Next among $\chi_1(1), \chi_2(1), \ldots$ there must be some color $c_1 \in C$ which occurs an infinite number of times,
+	Let $\mathcal{T}_0 = \left\{\chi_{j} | j \in \mathbb{N}^{+}\right\}$, we will recursively define $\mathcal{T}_k$, with $k \in \mathbb{N}^{+}$, using the fact that there must exist at least one color $c_{k}$ which occurs infinitely often among $\chi_j(k)$, since $\abs{T_{k - 1}} = \infty$ and $C$ is a finite set of colors, by setting:
+	\begin{equation*}
+		\mathcal{T}_{k} := \left\{\chi_j \in \mathcal{T} | j \geq k, j \in \mathcal{T}_{k - 1}, \chi_{j}(k) = c_{k}\right\}
+	\end{equation*}
+	Consider the $r$-coloring $\chi: \mathbb{N}^{+} \to C$ defined as $\chi(k) = c_{k}$, now since $\mathcal{F}$ is partition regular, there exists a monochromatic instance $\mathcal{C}(x)$ of some configuration $\mathcal{C} \in \mathcal{F}$ under $\chi$. Letting $m = \max C(x)$ we see that every coloring in $\mathcal{T}_{m}$ admits a monochromatic instance in of a configuration $\mathcal{C} \in \mathcal{F}$, a clear contradiction.
+\end{proof}
+
+\begin{theorem}[Compactness Principle]\label{thm:compactness_principle}
+	Let $r \in \mathbb{N}^+$ such that $r \geq 2$ and $\mathcal{F}$ be a family of configurations. If $\mathcal{F}$ is partition regular, then there exists a least natural number $n(\mathcal{F}; r)$ such that every $r$-coloring of $[1; n(\mathcal{F}; r)]$ admits a monochromatic instance of some $\mathcal{C} \in \mathcal{F}$.
+\end{theorem}
+\begin{proof}
+	Follows directly from Lemma \ref{lem:compactness_principle}, since $\mathcal{F}$ being partition regular means that every finite coloring of $\mathbb{N}^{+}$ admits a monochromatic instance of some $\mathcal{C} \in \mathcal{F}$.
+\end{proof}
+
+\begin{remark}
+	A similar result holds for partition regular systems of equations, since the family of solutions $\mathcal{F}$, can be thought of a family of constant configurations over $\mathbb{N}^{+}$.
+\end{remark}
+
+Due to the lack of restrictions on the family $\mathcal{F}$ the Compactness Principle (Theorem \ref{thm:compactness_principle}) allows us to go back and fourth between a finite (in the sense that we are looking at finite coloring of $[1, k]$) and infinite (in the sense that we are looking at partition regularity) version of a particular Ramsey type theorem.
+
+Additionally the Compactness Principle (Theorem \ref{thm:compactness_principle}) implies that every $r$-coloring of a finite field $\mathbb{F}$ of prime order, yields a monochromatic instance of a configuration in $\mathcal{F}$, that is provided $[1; n(\mathcal{F}, r)]$ is viewed as a subset of $\mathbb{F}$ and that $\Char(\mathbb{F})$ is sufficiently large.
+
+\begin{theorem}
+	Let $\mathcal{F}$ be a family of partition regular configurations over $\mathbb{N}^{+}$, if $\abs{\mathcal{C}(x)} \geq 2$ for every instance $\mathcal{C}(x)$ of every configuration $\mathcal{C} \in \mathcal{F}$, then every finite coloring admits an infinite number of instances of configurations in $\mathcal{F}$.
+\end{theorem}
+\begin{proof} Let $A_{0} = [1; r]$ and $\chi_{0}: \mathbb{N}^+ \to A_{0}$\footnote{The result holds in general, by Remark \ref{rem:color_sets}, however we use this set of colors, for convenience throughout the proof} be an arbitrary $r$-coloring. By the partition regularity of $\mathcal{F}$, $\chi_{0}$ admits an instance $\mathcal{C}_{0}(x_{0})$ of some configuration $\mathcal{C}_{0} \in \mathcal{F}$. Enumerate the elements in $\mathcal{C}_{0}(x_{0})$ as $a_{0,1}, a_{0,2}, \ldots, a_{0, k_{0}}$, with $k_0 = \abs{C_{0}(x_{0})}$. Consider the $(r + k_{0})$-coloring $\chi_{1}$, defined as:
+	\begin{equation*}
+		\chi_1(n) := \begin{cases} \chi_{0}(n)   & \text{ if } n \not \in \mathcal{C}_{0}(x_{0}) \\
+              \max(A_0) + i & \text{ if }  n = a_{0, i}
+		\end{cases}
+	\end{equation*}
+	Notice that $\chi_1$ similarly admits a monochromatic instance $C_1(x_1)$ of some configuration $\mathcal{C}_1 \in \mathcal{F}$. However since $\abs{C_1(x_1)} \geq 2$ we must have that $C_1(x_1)$ is similarly monochromatic under $\chi_0$. The result follows since we can repeat the same argument.
+\end{proof}
+
+\input{main/partition_regularity/van_der_waerden/index}
+\input{main/partition_regularity/schur/index}
+\input{main/partition_regularity/rado/index}

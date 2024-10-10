@@ -1,0 +1,101 @@
+\subsection{Asymptotic Behaviour of $R(\ell; r)$ as $r \to \infty$}\label{sec:ramsey_ass}
+In this subsection we will briefly investigate the asymptotic behaviour of $R(\ell; r)$ as $r \to \infty$, with $\ell \geq 3$, our primary reference will be \cite{emogrt}[Subsection 2.3]. We will not consider the case where $\ell = 2$, since $R(2; r) = 2$ for all $r \in \mathbb{N}^{+}$.
+
+\begin{definition}
+	Let $f: \mathbb{N} \to \mathbb{R}^{+}$, then $f$ is called \textit{super-multiplicative} if
+	\begin{equation*}
+		f(n + m) \geq f(m)f(n)
+	\end{equation*}
+	for all $n,m \in \mathbb{N}^{+}$.
+\end{definition}
+
+\begin{lemma}\label{lem:limit_of_super_multiplicative}
+	Let $f: \mathbb{N} \to \mathbb{R}^{+}$ be a super-multiplicative function, then the limit of $f(k)^{1 / k}$ as $k \to \infty$ exists an is equal to $\sup_{k \in \mathbb{N}^{+}} f(k)^{1 / k}$. Furthermore if $m \in \mathbb{N}^{+}$ is fixed, then there exists some constant $c_m > 0$ such that:
+	\begin{equation*}
+		f(n) \geq c_{m} f(m)^{n / m}
+	\end{equation*}
+	for all $n \geq m$.
+\end{lemma}
+\begin{proof}
+	We clearly have $\limsup_{k \to \infty} f(k)^{1/k} \leq \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k}$, next we will show that $\liminf_{k \to \infty} f(k)^{1 / k} \geq \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k}$, by considering two distinct cases, namely $\sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} < \infty$ and $\sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} = \infty$, separately:
+	\begin{enumerate}
+		\item If $\sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} < \infty$, then for all $\varepsilon > 0$ there exists an $m \in \mathbb{N}^{+}$ such that:
+		      \begin{equation*}
+			      f(m)^{1/m} > \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} - \varepsilon
+		      \end{equation*}
+		      by the definition of $\sup_{k \in \mathbb{N}^+} f(k)^{1/k}$. Let $n \geq m$, then there exists $q, r \in \mathbb{N}$ with $0 \leq r < m$ such that $n = qm + r$ thus:
+		      \begin{equation*}
+			      f(n) \geq f(qm) f(r) \geq f(m)^q f(r)
+		      \end{equation*}
+		      Since $f$ is a super-multiplicative function. We note that $q / n \to 1 / m$ and $f(r)^{1/n} \to 1$ as $n \to \infty$, and hence:
+		      \begin{equation*}
+			      \liminf_{k \to \infty} f(k)^{1/k} \geq f(m)^{1/m} > \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} - \varepsilon
+		      \end{equation*}
+		      However $\varepsilon > 0$ was arbitrary and hence we must have:
+		      \begin{equation*}
+			      \liminf_{k \to \infty} f(k)^{1/k} \geq \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k}
+		      \end{equation*}
+		      and thus:
+		      \begin{equation*}
+			      \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} \leq \liminf_{k \to \infty} f(k)^{1/k} \leq \limsup_{k \to \infty} f(k)^{1/k} \leq \sup_{k \in \mathbb{N}^{+}} f(k)^{1/k}
+		      \end{equation*}
+		      since $\liminf_{k \to \infty} x_{n} \leq \limsup_{k \to \infty} x_{n}$ for every real sequence $\left\{x_k\right\}_{k = 1}^{\infty}$. Meaning
+		      \begin{equation*}
+			      \liminf_{k\to \infty} f(k)^{1/k} = \limsup_{k \to \infty} f(k)^{1/k} = \sup_{k \in \mathbb{N}^+} f(k)^{1/k}
+		      \end{equation*}
+		\item If $\sup_{k \in \mathbb{N}^{+}} f(k)^{1/k} = \infty$, then for every $M > 0$ there exists some $m \in \mathbb{N}^{+}$ such that $f(m)^{1/m} > M$, by writing $n \geq m$ as $n = qm + r$, again for suitable $q, r \in \mathbb{N}$ and repeating the same argument we get that:
+		      \begin{equation*}
+			      \liminf_{k \to \infty} f(k)^{1/k} \geq f(m)^{1/m} > M
+		      \end{equation*}
+		      Meaning $\liminf_{k \to \infty} f(k)^{1/k} = \infty$.
+	\end{enumerate}
+	Finally we will show that if $m \in \mathbb{N}^{+}$ is fixed, then there exists a constant $c_m > 0$ such that $f(n) \geq c_{m} f(m)^{n / m}$ for all $n \geq m$. Once again we may write $n = qm + r$ for suitable $q, r \in \mathbb{N}$ such that $0 \leq r < m$. Then:
+	\begin{equation*}
+		f(n) \geq f(qm) f(r) \geq f(m)^q f(r) \stackrel{(a)}{=} f(m)^{(n - r) / m} f(r) = \frac{f(r)}{f(m)^{r / m}} f(m)^{n / m}
+	\end{equation*}
+	The rest follows by setting $c_m := \min \left\{\frac{f(r)}{f(m)^{r / m}} \middle| 0 \leq r \leq m\right\}$, notice that $c_m \neq 0$, singe $f$ is strictly positive.
+\end{proof}
+
+We now reach the main result of this subsection.
+\begin{proposition}\label{prop:r_ell_k_is_super_multiplicative}
+	Let $\ell \geq 3$, then the function $r \mapsto R(\ell; r) - 1$ is super-multiplicative. In particular $\lim_{r \to \infty} \left(R(\ell; r) - 1\right)^{1/r} = \sup_{r \in \mathbb{N}} (R(\ell; r) - 1)^{1 / r}$ and for every $r \in \mathbb{N}^{+}$ there exists a constant $c_r > 0$ such that $R(\ell; r') \geq c_r R(\ell; r)^{r' / r}$ for all $r' \geq r$.
+\end{proposition}
+
+The proof of Proposition \ref{prop:r_ell_k_is_super_multiplicative} will use a technique which is normally refereed to as ``blowing-up'' an $r_1$-edge coloring $\chi$ using another $r_2$-edge coloring $\gamma$, on two complete graphs $K_{1}$ and $K_{2}$ respectively. The process creates an $(r_1 + r_2)$-edge coloring $\psi$ on a complete graph with $\abs{V(K_1)} \cdot \abs{V(K_{2})}$ verticies.
+Intuitively the process is the following:
+We replace each vertex $u \in V(K_{1})$ with a copy of $K_{2}$, denoted by $K_{2}^{(u)}$, with the edges in $K_2^{(u)}$ colored according to $\gamma$, and color the edges joining the verticies in $K_2^{(v)}$ and $K_2^{(w)}$ the same color as $\left\{v, w\right\}$ under $\chi$.
+
+\begin{proof}[Proof of Proposition \ref{prop:r_ell_k_is_super_multiplicative}]
+	Let $r_{1}, r_2 \in \mathbb{N}^{+}$ with $r_1, r_2 \geq 2$, let $n = R(\ell; r_{1}) - 1$ and $m = R(\ell; r_{2}) - 1$. Let $\chi$ and $\gamma$, be a $r_{1}$-edge-coloring or a $r_2$-edge-coloring on the complete graphs $K_V, K_U$ with vertex sets $V := \left\{v_1, v_2, \ldots, v_{n}\right\}$ and $U := \left\{u_1, u_2, \ldots, u_{m}\right\}$ respectively.
+	For the sake of simplicity we will without loss of generalization assume that the codomains of $\chi$ and $\gamma$ are disjoint\footnote{If the codomains are intersecting, simply compose either one of $\chi$ and $\gamma$, with a suitable bijection from its codomain to another finite set of colors.}. We will blow-up $\chi$ using $\gamma$ in order to construct a $(r_1 + r_2)$-edge coloring $\psi$ on the complete graph $K_{W}$ with vertex set $W := \left\{w_{i, j} | i \in [1; n], j \in [1; m]\right\}$ clearly $\abs{W} = nm$. We can construct a $(r_1 + r_2)$-edge coloring $\psi$, which admits no monochromatic cliques of order $\ell$, by blowing up $\chi$ with $\gamma$, since $\chi$ and $\gamma$ admits no monochromatic cliques of order $\ell$\footnote{The intuition here is that we have no cliques of order $\ell$, between copies of $K_{U}$ and no cliques contained within each copy of $K_{U}$, due to the properties of $\chi$ and $\gamma$.}.
+	That is by defining $\psi$ as:
+	\begin{equation*}
+		\psi(\left \{w_{i,j}, w_{i', j'}\right\}) := \begin{cases}
+			\chi(\left\{v_{i}, v_{i'}\right\})   & \text{ if } j = j' \\
+			\gamma(\left\{u_{j}, u_{j'}\right\}) & otherwise          \\
+		\end{cases}
+	\end{equation*}
+	Hence:
+	\begin{equation*}
+		R(\ell; r_{1} + r_{2}) - 1 \geq mn = (R(\ell; r_{1}) - 1)(R(\ell; r_{2}) - 1)
+	\end{equation*}
+	The rest follows directly by Lemma \ref{lem:limit_of_super_multiplicative}.
+\end{proof}
+
+\begin{corollary}\label{cor:limit_of_R}
+	Let $\ell \geq 3$, then $\lim_{r \to \infty} R(\ell; r)^{1/r} = \sup_{r \in \mathbb{N}^{+}} (R(\ell; r) - 1)^{1/r}$
+\end{corollary}
+\begin{proof}
+	We have $\lim_{r \to \infty} \frac{\left(R(\ell; r) - 1\right)^{1/r}}{R(\ell;r)^{1/r}} = \lim_{r \to \infty} \left(1 -  \frac{1}{R(\ell;r)}\right)^{1 / r} = 1$ since $\lim_{r \to \infty} \frac{1}{R(\ell; r)} = 0$, thus $\lim_{r \to \infty} R(\ell; r) ^{1/r} = \lim_{r \to \infty} \left(R(\ell; r) - 1\right)^{1/r} = \sup_{r \in \mathbb{N}^{+}} (R(\ell; r) - 1)^{1/r}$ by Proposition \ref{prop:r_ell_k_is_super_multiplicative}.
+\end{proof}
+
+From Corollary \ref{cor:limit_of_R} we see that:
+\begin{equation*}
+	\lim_{r \to \infty} R(3; r)^{1 / r} \geq \max \left\{(R(3; 2) - 1)^{1 / 2}, (R(3; 3) - 1)^{1/3}\right\}  = \max \left\{5^{1/2}, 16^{1/3}\right\} \geq \frac{5}{2}
+\end{equation*}
+Since $R(3, 3) = 6$ and $R(3, 3, 3) = 17$, by Example \ref{exmp:R3_3} and Theorem \ref{thm:R3_3_3}. More over we see that $R(3; r) \geq c_r (5 / 2)^r$, for some constant $c_r > 0$ and all $r \geq 2$ by Lemma \ref{lem:limit_of_super_multiplicative}. In subsection \ref{sub:schur_bounds_and_ass}, we will show that $R(3; r)$ grows even more rapidly, by relating it to a different construct.
+Finally we note the following conjecture by Paul Erdős:
+\begin{conjecture}[Erdős]\label{conj:erdos_limit}
+	The limit of $R(3; r)^{1/r}$ as $r \to \infty$ is infinity.
+\end{conjecture}
+If Conjecture \ref{conj:erdos_limit} holds, then $\ell \geq 3$ implies that $\lim_{r \to \infty} R(\ell; r)^{1/r} = \infty$ since $R(\ell; r) \geq R(3; r)$.

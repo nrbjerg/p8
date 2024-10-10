@@ -1,8 +1,122 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahmed and Schaal(2016)]{generalized_schur_numbers}
+T.~Ahmed and D.~J. Schaal.
+\newblock On generalized schur numbers.
+\newblock \emph{Experimental Mathematics}, 25\penalty0 (2):\penalty0 213--218,
+  2016.
+\newblock \doi{10.1080/10586458.2015.1070776}.
+\newblock URL \url{https://doi.org/10.1080/10586458.2015.1070776}.
+
+\bibitem[Aigner and Ziegler(2018)]{proofs_from_the_book}
+M.~Aigner and G.~M. Ziegler.
+\newblock \emph{Proofs from THE BOOK}.
+\newblock Springer, 6st edition, 2018.
+\newblock ISBN 9783662572641.
+
+\bibitem[Berlekamp(1968)]{berlekamp_lower_bound}
+E.~Berlekamp.
+\newblock A construction for partitions which avoid long arithmetic
+  progressions.
+\newblock \emph{Canadian Mathematical Bulletin}, 11\penalty0 (3):\penalty0
+  409–414, 1968.
+\newblock \doi{10.4153/CMB-1968-047-7}.
+
+\bibitem[Bishnoi(2021)]{fg_and_rt}
+A.~Bishnoi.
+\newblock Mini-course in finite geometry and ramsey theory, 2021.
+\newblock Avalible at {\small
+  \url{https://anuragbishnoi.wordpress.com/wp-content/uploads/2021/01/minicourse.pdf}}.
+
+\bibitem[Blankenship et~al.(2018)Blankenship, Cummings, and
+  Taranchuk]{van_der_waerden_lower_bound}
+T.~Blankenship, J.~Cummings, and V.~Taranchuk.
+\newblock A new lower bound for van der waerden numbers.
+\newblock \emph{European Journal of Combinatorics}, 69:\penalty0 163–168,
+  Mar. 2018.
+\newblock ISSN 0195-6698.
+\newblock \doi{10.1016/j.ejc.2017.10.007}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.ejc.2017.10.007}.
+
+\bibitem[Bondy and Murty(2008)]{graph_theory}
+J.~Bondy and U.~Murty.
+\newblock \emph{Graph Theory}.
+\newblock Graduate Texts in Mathematics. Springer, 1st edition, 2008.
+\newblock ISBN 978-1-84628-969-9.
+
+\bibitem[Fredricksen and Sweet(2000)]{lower_bound_for_s6}
+H.~Fredricksen and M.~M. Sweet.
+\newblock Symmetric sum-free partitions and lower bouds for schur numbers.
+\newblock \emph{electronic Journal of Combinatorics}, Volume 7 (2000), 2000.
+
+\bibitem[Gasarch and Haeupler(2011)]{berlekamp_proof}
+W.~Gasarch and B.~Haeupler.
+\newblock Lower bounds on the van der waerden numbers: Randomized- and
+  deterministic-constructive.
+\newblock 2011.
+
+\bibitem[Golomb and Baumert(1965)]{fourth_schur_number}
+S.~W. Golomb and L.~D. Baumert.
+\newblock Backtrack programming.
+\newblock \emph{J. ACM}, 12\penalty0 (4):\penalty0 516–524, oct 1965.
+\newblock ISSN 0004-5411.
+
+\bibitem[Goswami et~al.(2023)Goswami, Baglini, and
+  Patra]{exponential_ultrafilters_and_patterns_in_Ramsey_theory}
+S.~Goswami, L.~Baglini, and S.~Patra.
+\newblock Exponential ultrafilters and patterns in ramsey theory, Febuary 2023.
+
+\bibitem[Gowers(2001)]{van_der_waerden_upper_bound}
+W.~Gowers.
+\newblock A new proof of szemerédi's theorem.
+\newblock \emph{Geometric and Functional Analysis}, 11:\penalty0 465--588,
+  2001.
+
+\bibitem[Graham et~al.(1980)Graham, Rothschild, and Spencer]{rt}
+R.~L. Graham, B.~L. Rothschild, and J.~H. Spencer.
+\newblock \emph{Ramsey Theory}.
+\newblock Wiley-Interscience Series in Discrete Mathematics. John Wiley and
+  Sons, 1st edition, 1980.
+\newblock ISBN 0-471-05997-8.
+
+\bibitem[Heule(2017)]{fidth_schur_number}
+M.~J.~H. Heule.
+\newblock Schur number five.
+\newblock \emph{CoRR}, abs/1711.08076, 2017.
+
+\bibitem[Kim(1995)]{R3t}
+J.~H. Kim.
+\newblock The ramsey number $r(3, t)$ has order of magnitude $t^2 / \log(t)$.
+\newblock \emph{Random Structures and Algorithms}, 7:\penalty0 173--207, 1995.
+\newblock \doi{10.1002/rsa.3240070302}.
+
+\bibitem[Landman and Robertson(2003)]{rtoi}
+B.~M. Landman and A.~Robertson.
+\newblock \emph{Ramsey Theory on the integers}.
+\newblock Student Mathematical Library. American Mathematical Society, 1st
+  edition, 2003.
+\newblock ISBN 0-8218-3199-2.
+
+\bibitem[Lauritzen(2003)]{alg_lauritzen}
+N.~Lauritzen.
+\newblock \emph{Concrete Abstract Algebra: From Numbers to Gröbner Bases}.
+\newblock Cambridge University Press, 1st edition, 2003.
+\newblock ISBN 9780521534109.
+
+\bibitem[Li and Lin(2022)]{emogrt}
+Y.~Li and Q.~Lin.
+\newblock \emph{Elementary Methods of Graph Ramsey Theory}.
+\newblock Applied Mathematical Sciences. Springer, 1st edition, 2022.
+\newblock ISBN 978-3-031-12762-5.
+
+\bibitem[Radziszowski(2021)]{small_values}
+S.~P. Radziszowski.
+\newblock Small ramsey numbers.
+\newblock \emph{The Electronic Journal of Combinatorics}, 2021.
 
 \end{thebibliography}

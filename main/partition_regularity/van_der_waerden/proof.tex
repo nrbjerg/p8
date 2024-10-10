@@ -1,0 +1,148 @@
+\subsection{A Proof of Van Der Waerdens Theorem}\label{sec:van_der_waerden_proof}
+Finally we will provide a proof of van der Waerdens Theorem \ref{thm:van_der_waerden}. First we will need some results based on those found in \cite{rtoi}[Section 2.6 and Exercise 2.15]
+
+\begin{proposition}\label{prop:2.30_rtoi}
+	Let $a, b \in \mathbb{N}^+$ and $\mathcal{F}$ be a family of subsets of $\mathbb{N}^{+}$ such that $S \in \mathcal{F}$ if and only if $(a - b) + bS = \left\{a + b(s - 1) | s \in S\right\} \in \mathcal{F}$. Let $r \in \mathbb{N}^+$ then every $r$-coloring of $[1, n]$ yields a monochromatic member of $\mathcal{F}$ if and only if every $r$-coloring of
+	\begin{equation*}
+		a + b[0; n - 1] = \left\{a, a + b, \ldots, a + (n - 1)b\right\}
+	\end{equation*}
+	yields a monochromatic member of $\mathcal{F}$.
+\end{proposition}
+\begin{proof}
+	``$\implies$'' Let $\chi$ be an $r$-coloring on $a + b[0; n - 1]$, then we define an $r$-coloring $\chi'$ on $[1;n]$ as:
+	\begin{equation*}
+		\chi'(k) = \chi(a + b(k - 1))
+	\end{equation*}
+	then $\chi'$ admits a $S \in \mathcal{F}$, however this means that $(a - b) + bS$ is monochromatic under $\chi$ and is a subset of $a + b[0; n - 1]$. \\
+	``$\impliedby$'' Let $\chi$ be an $r$-coloring on $[1; n]$, then we define an $r$-coloring $\chi'$ on $a + b[0; n - 1]$ as:
+	\begin{equation*}
+		\chi'(a + bk) = \chi(k + 1)
+	\end{equation*}
+	now since $\chi'$ is an $r$-coloring on $a + b[0; n - 1]$, there exists a monochromatic subset $S \in \mathcal{F}$ of $a + b[0; n - 1]$, but then $S = (a - b) + bS'$, for some $S' \in \mathcal{F}$ by our condition on $a$ and $b$. Hence $S'$ is a monochromatic subset under $\chi$.
+\end{proof}
+We note that the family $\mathcal{F}$ described in Proposition \ref{prop:2.30_rtoi} can alternatively be thought of as constant configurations over $\mathbb{N}^{+}$.
+
+%\begin{proposition}\label{prop:2.30_rtoi}[original version]
+%	Let $a, b \in \mathbb{N}^+$ and $\mathcal{F}$ be a family of subsets of $\mathbb{N}^{+}$ such that $S \in \mathcal{F}$ if and only if $a + bS = \left\{a + bs | s \in S\right\} \in \mathcal{F}$. Let $r \in \mathbb{N}^+$ then every $r$-coloring of $[1, n]$ yields a monochromatic member of $\mathcal{F}$ if and only if every $r$-coloring of
+%	\begin{equation*}
+%		a + b[0; n - 1] = \left\{a, a + b, \ldots, a + (n - 1)b\right\}
+%	\end{equation*}
+%	yields a monochromatic member of $\mathcal{F}$.
+%\end{proposition}
+%
+%\begin{proof}[Proof of Proposition \ref{prop:2.30_rtoi} original version]
+%	``$\implies$'' \textcolor{red}{\textbf{TODO}} there is something iffy here. Let $\chi: a + b[0; n - 1] \to C$ be an $r$-coloring. Next we define another $r$-coloring $\chi': [1; n] \to C$ by $\chi'(k) = \chi(a + b (k - 1))$, by our assumption this $r$-coloring of $[1; n]$ admits a monochromatic subset $S \in \mathcal{F}$. The rest follows as $a + bS$ must be monochromatic under $\chi$.
+%
+%	``$\impliedby$'' Let $\chi: [1; n] \to C$ be an $r$-coloring, then we define $\chi': a + b[0; n - 1] \to C$ by $\chi'(a + b k) = \chi(k + 1)$ that is $\chi'(n) = \chi \left( \frac{n - a}{b} + 1\right)$, applying our assumption we see that $\chi'$ admits a monochromatic subset $S \in \mathcal{F}$ of $a + b[0; n - 1]$, however this implies that $(S - a) \cdot \frac{1}{b} \in \mathcal{F}$ is monochromatic under $\chi$, additionally we note that $(S - a) \cdot \frac{1}{b}$ is indeed a subset of $[1; n]$.
+%\end{proof}
+
+\begin{definition}
+	Let $r,m,n \in \mathbb{N}^{+}$. Let $\gamma: [1; n + m] \to C$ be an $r$-coloring, the \textit{$r^m$-coloring $\chi_{\gamma, m}: [1; n] \to C^{m}$ derived from $\gamma$} is defined as:
+	\begin{equation*}
+		\chi_{\gamma, m}(i) = (\gamma(i + 1), \gamma(i + 2), \ldots, \gamma(i + m))
+	\end{equation*}
+\end{definition}
+Note that $\chi_{\gamma, m}(i) = \chi_{\gamma, m}(j)$ if and only if $[i + 1; i + m]$ and $[j + 1; i + m]$ is colored in the same way by $\gamma$, that is $\gamma(i + k) = \gamma(j + k)$ for all $k \in [1; m]$.
+
+\begin{definition}\label{def:refined}
+	Let $k, t, r \in \mathbb{N}^{+}$ then the triple $(k, t, r)$ is called \textit{refined} if there exists an $m \in \mathbb{N}^{+}$ such that for every $r$-coloring $\chi: [1; m] \to C$, there exists $z, x_0, x_1, \ldots, x_t \in \mathbb{N}^+$ such that every set:
+	\begin{equation*}
+		T_s := \left\{b_{s} + \sum_{i = 0}^{s - 1} \lambda_i x_i \middle| \lambda_i \in [1; k]\right\} \text{ with }  b_s = z + (k + 1) \sum_{i = s}^t x_i
+	\end{equation*}
+	is monochromatic for all $s \in [0; t]$.
+\end{definition}
+\begin{remark}\label{rem:2.34_rtoi}
+	The definition of a refined triple $(k, t, r)$ may look quite abstract however if we take $\lambda_0 = \lambda_1 = \cdots = \lambda_{s - 1} = j$ with $j \in [1; k]$ see that $a + jd \in T_{s}$ where $a = b_s$ and $d = \sum_{i = 0}^{s - 1} x_{i}$ hence we have that the arithmetic progression $\left\{a + d, a + 2d, \ldots, a + kd\right\}$ is contained within the monochromatic set $T_{s}$.
+\end{remark}
+\begin{example}\label{exmp:refined}
+	To get a better intuition for what it means for a triple to be refined, we will consider the triple $(2, 2; r)$. In this case the sets $T_s$ using the same notation as in Definition \ref{def:refined} will be of the form\footnote{Note that $z, x_0, x_1, x_2$ depend on the coloring $\chi$, however the general forms of the sets remain the same.}:
+	\begin{align*}
+		T_0 & = \left\{b_0\right\}                                                                            \\
+		T_1 & = \left\{b_1 + x_0, b_1 + 2x_{0}\right\}                                                        \\
+		T_1 & = \left\{b_2 + x_0 + x_{1}, b_2 + 2x_{0} + x_{1}, b_2 + x_1 + 2x_2, b_{2} + 2x_1 + 2x_2\right\}
+	\end{align*}
+	with $b_0 = z + 3 (x_0 + x_1 + x_2), b_1 = z + 3 (x_1 + x_{2})$ and $b_2 = z + 3x_{2}$. Clearly $T_0$ is monochromatic, under all colorings, afterall $\abs{T_0} = 1$. Hence $(2, 2, r)$ is refined if and only if there exists an $m \in \mathbb{N}^+$ such that for any $r$-coloring $\chi$ on $[1; m]$ there exists $z, x_0, x_1, x_2 \in \mathbb{N}^{+}$ with:
+	\begin{equation*}
+		\chi(b_1 + x_{0}) =  \chi(b_1 + 2x_{0})
+	\end{equation*}
+	and
+	\begin{equation*}
+		\chi(b_2 + x_0 + x_1) = \chi(b_2 + 2x_0 + x_1) = \chi(b_2 + x_0 + 2x_1) = \chi(b_2 + 2x_0 + 2x_1)
+	\end{equation*}
+	Please notice that we do not require that $T_0, T_1, T_2$ to be colored the same color.
+\end{example}
+
+In order to prove van der Waerden's theorem we will need two lemmas, which asserts some results regarding refined triples and van der Waerden numbers.
+\begin{lemma}\label{lem:2.35_rtoi}
+	Let $k \geq 2$, if $W(k; r)$ exists for all $r \in \mathbb{N}^{+}$, then the triple $(k, t, r)$ is refined for all $r, t \in \mathbb{N}^{+}$
+\end{lemma}
+\begin{proof}
+	Let $r \in \mathbb{N}^{+}$, we will prove the lemma use induction on $t$. To prove that $(k, 1, r)$ is refined, we show that we may take $m$ (from Definition \ref{def:refined}) to be $3W(k; r) + k + 1$. Hence consider an arbitrary $r$-coloring $\chi: [1; 3W(k;r) + k + 1] \to C$. We wish to apply Proposition \ref{prop:2.30_rtoi}, by letting $\mathcal{F}$ to be the family of arithmetic progressions. Notice that we may pick $a = W(k;r) + k + 3$ and $b = 1$, since if $S$ is a $k$-term arithmetic progression, then $(a - b) + bS = \left\{W(k; r) + k + 2 + s | s \in S\right\}$, is simply another $k$-term arithmetic progression. Hence we see that the interval $[W(k;r) + k + 2; 2W(k; r) + k + 1]$ must contain a monochromatic $k$-term arithmetic progression\footnote{That is under our assumption that $W(k;r)$ exists.}
+	\begin{equation*}
+		\left\{a' + d, a' + 2d, \ldots, a' + kd\right\}
+	\end{equation*}
+	again using the notation of Definition \ref{def:refined}, let $z = a' - (k + 1), x_0 = d$ and $x_1 = 1$. Then $T_{0} = \left\{a' + (k + 1)d\right\}$ and $T_1 = S$ are both monochromatic, under $\chi$, and both are subsets of $[1; 3W(k; r) + k + 1]$. Hence $(k, 1, r)$ is a refined triple.
+
+	Next for the induction step assume that $t \in \mathbb{N}^+$ and that $(k, t, r)$ is refined. We will show that this implies that $(k, t + 1, r)$ is refined. First let $m := m_{k, t, r}$ be as in definition \ref{def:refined} we will show that we may take $m_{k, t + 1; r} := m + 2W(k; r^{m})$. Let $\gamma: [1, m_{k, t + 1; r}] \to C$ be an arbitrary $r$-coloring. Let $\chi_{\gamma, m}$ be the $r^m$-coloring of $[1; 2W(k; r^{m})]$ derived from $\gamma$. This coloring $\chi_{\gamma, m}$ must admit a $k$-term arithmetic progression\footnote{Again under our the assumption that $W(k; r^{m})$ exists}
+	\begin{equation*}
+		\left\{a' + d, a' + 2d, \ldots, a' + kd\right\} \subseteq [1; 2W(k; r^{m})]
+	\end{equation*}
+	Since $\chi_{\gamma, m}$ is a derived from $\gamma$, we must have that the $k$ intervals $I_j := [a' + jd + 1, a' + jd  + m], j \in [1; k]$ are colored identically under $\gamma$.
+	Additionally we note that since $(k, t, r)$ is refined, there exists $z, x_0, x_1, \ldots, x_t \in \mathbb{N}^{+}$ such that each $T_s$'s (as in Definition \ref{def:refined}) are monochromatic under $\gamma$.
+	Hence each interval $I_j$ contains the monochromatic (under $\gamma$) sets:
+	\begin{equation*}
+		S_s(j) = T_{s} + (a' + jd) = \left\{(b_s + a' + jd) + \sum_{i = 0}^{s - 1} \lambda_ix_i \middle| \lambda_i \in [1; k]\right\}, \text{ with }  s \in [0; t]
+	\end{equation*}
+	recall that $m = m_{k, t, r}$ and that each $I_j$ was colored the same under $\gamma$. Furthermore since each interval has the same coloring under $\gamma$, we have that $S_s(u)$ and $S_s(v)$ must have the same coloring under $\gamma$ for all $u, v \in [1; k]$. Hence the sets:
+	\begin{equation*}
+		Q_s = \left\{(b_s + a') + \sum_{i = 0}^{s -  1} \lambda_i x_i + jd \middle| j, \lambda_i \in [1; k]\right\},i \text{ with }  s \in [0; t]
+	\end{equation*}
+	is monochromatic under $\gamma$. It remains to find $z', x'_0, x'_1, \ldots, x'_{t + 1}$ which produces monochromatic sets (under $\gamma$) $T'_s$ for $s \in [0; t+ 1]$ to show that $(k, t + 1, r)$ is refined. This follows by letting:
+	\begin{align*}
+		z'   & = z + a',                                  \\
+		x_0' & = d                                        \\
+		x'_i & = x_{i - 1} \text{ for }  s \in [1; t + 1]
+	\end{align*}
+	since then, for each $s \in [0; t]$ we have:
+	\begin{align*}
+		T'_{s + 1} & = \Bigg\{b'_{s + 1} + \sum_{i = 0}^{s} \lambda_i x'_i \Bigg| \lambda_i \in [1; k]\Bigg\}                                                                                             \\
+		           & = \Bigg\{z' + (k + 1) \sum_{i = {s + 1}}^{t + 1} x'_i + \sum_{i = 1}^{s} \lambda_i x'_i + \lambda_0 d \Bigg| \lambda_i \in [1; k]\Bigg\}                                             \\
+		           & = \Bigg\{\underset{=(b_s + a')}{\underbrace{z + a' + (k + 1) \sum_{i = s}^t x_i}} + \sum_{i = 0}^{s - 1} \lambda_{i + 1} x_i +\lambda_0 d \Bigg| \lambda_i \in [0; k] \Bigg\}  = Q_s
+	\end{align*}
+	which are monochromatic under $\gamma$. The rest follows as $\abs{T'_0} = 1$ and hence it is trivially monochromatic, since each $Q_s$ is monochromatic under $\gamma$. Hence $(k, t + 1, r)$ is refined.
+\end{proof}
+\begin{lemma}\label{lem:2.36_rtoi}
+	Let $k \in \mathbb{N}^+$, if $(k, t, r)$ is a refined triple for all $t, r \in \mathbb{N}^{+}$, then $W(k + 1, r)$ exists for all $r \in \mathbb{N}^{+}$.
+\end{lemma}
+\begin{proof}
+	Let $r \in \mathbb{N}^{+}$ be arbitrary and $\chi$ be an arbitrary $r$-coloring on $\mathbb{N}^{+}$, by our assumption the triple $(k, r, r)$ is refined. Meaning there exists $z, x_0, x_1, \ldots, x_{r} \in \mathbb{N}^{+}$ such that $T_0, T_1, \ldots, T_{r}$, defined as in Definition \ref{def:refined}, is monochromatic under $\chi$. By the generalized pigeonhole principle (Theorem \ref{thm:gpp}) there exists at least two sets $T_v, T_w$, with $v \neq w$, which $\chi$ colors the same color, that is $\chi(T_v) = \chi(T_w)$. We have:
+	\begin{equation*}
+		T_v = \left\{ z + (k + 1)\sum_{i = v}^{r} x_{i} + \sum_{i = 0}^{r - 1} \lambda_ix_i \middle| \lambda_i \in [1;k]\right\}
+	\end{equation*}
+	and
+	\begin{equation*}
+		T_w = \left\{ z + (k + 1)\sum_{i = u}^{r} x_{i} + \sum_{i = 0}^{r - 1} \lambda_ix_i \middle| \lambda_i \in [1;k]\right\}
+	\end{equation*}
+	Without loss of generality we may assume that $v < w$, then setting $a = z + \sum_{i = 0}^{v - 1} x_i + (k + 1) \sum_{i = w}^{r} x_{i}$, we may write:
+	\begin{equation*}
+		T_v = \left\{a + (k + 1) \sum_{i = v}^{w - 1} x_i + \sum_{i = 0}^{v - 1} (\lambda_i - 1) x_i \middle| \lambda_i \in [1; k]\right\}
+	\end{equation*}
+	and
+	\begin{equation*}
+		T_w = \left\{a - \sum_{i = 0}^{v - 1} x_i + \sum_{i = 0}^{w - 1} \lambda_i x_i \middle| \lambda_i \in [1; k]\right\}
+	\end{equation*}
+	Fixing $\lambda_0 = \lambda_1 = \cdots = \lambda_{v - 1} = 1$ we have:
+	\begin{equation*}
+		T_w' = \left\{a + \sum_{i = v}^{w - 1} \lambda_i x_i \middle| \lambda_i \in [1; k]\right\} \subseteq T_{w}
+	\end{equation*}
+	Letting $d = \sum_{i = v}^{w - 1} x_i$ we see that $a + (k + 1)d \in T_v$ and by Remark \ref{rem:2.34_rtoi}, we have:
+	\begin{equation*}
+		\left\{a + d, a + 2d, \ldots, a + kd\right\} \subseteq T_w'
+	\end{equation*}
+	Hence $\{a + d, a + 2d, \ldots, a + (k + 1)d\}$ forms a monochromatic $(k + 1)$-term arithmetic progression of length $k + 1$ under $\chi$. The fact that $W(k + 1; r)$ exists follows directly by the well ordering principle.
+\end{proof}
+
+Now using Lemmas \ref{lem:2.35_rtoi} and \ref{lem:2.36_rtoi} we are finally able to prove van der Waerden's theorem.
+\begin{proof}[Proof of van der Waerden's Theorem \ref{thm:van_der_waerden}]
+	By Example \ref{exmp:Van_Der_Waerden_2_2} $W(2; r)$ exists for all $r \in \mathbb{N}^+$, hence by Lemma \ref{lem:2.35_rtoi} $(2, t, r)$ is refined for all $r, t$ which in turn implies that $W(3; r)$ exists, by Lemma \ref{lem:2.36_rtoi}. The rest similarly follows by repeated applications of Lemmas \ref{lem:2.35_rtoi} and \ref{lem:2.36_rtoi}.
+\end{proof}

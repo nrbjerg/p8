@@ -1,0 +1,86 @@
+\section{Upper Bounds}\label{sec:upper_bound}
+In this section we will prove several upper bounds for both regular and generalized Ramsey numbers, we will start by proving the following upper bound for $R(G_1, G_2, \ldots, G_{r})$.
+\begin{theorem}\label{thm:ramsey_upper_bound}
+	Let $G_1, G_2, \ldots, G_r$ be graphs with at least $2$ vertices, then:
+	\begin{equation*}
+		R(G_{1}, G_2, \ldots, G_{r}) \leq 2 - r + \sum_{i = 1}^r R(G_1, \ldots, G_{i - 1}, G_{i}', G_{i + 1}, \ldots, G_{r})
+	\end{equation*}
+	where the graph $G'$ is obtained from $G$ by deleting one vertex and all of the edges incident to it.
+\end{theorem}
+\begin{proof}
+	For the sake of convenience we will let $R_i = R(G_1, \ldots, G_{i - 1}, G'_{i}, G_{i + 1}, \ldots, G_{r})$ throughout the proof.
+	Let $N := 2 - r + \sum_{i = 1}^r R_{i}$ and $\chi$ be an $r$-edge coloring of $K_N$.
+	Let $v \in V(K_{N})$, then $v$ is adjacent with $N - 1 = 1 +\sum_{i = 1}^r \left(R_{i} - 1\right)$ other vertices in $K_N$.
+	By the Generalized Pigeon Hole Principle (Theorem \ref{thm:gpp}) there exists an $i \in [1; r]$ such that $\abs{\mathcal{N}_{\chi}(v, c_i)} \geq R_{i}$.
+	By the definition of $R_i$, we have two cases:
+	\begin{enumerate}
+		\item Either $\chi$ admits a $c_j$-monochromatic subgraph which is isomorphic with $G_j$, with vertices belonging to $\mathcal{N}_{\chi}(v, c_{i})$, with $j \neq i$, in which case we are done.
+		\item Or $\chi$ admits a $c_i$-monochromatic subgraph which is isomorphic with $G'_{i}$ with vertices belonging to $\mathcal{N}_{\chi}(v, c_i)$, of order $\ell_i - 1$, in which case adding $v$ along with the appropriate edges in the set $\left\{\{v, u\} \middle| u \in \mathcal{N}_{\chi}(v, c_{i})\right\}$ forms a $c_i$-monochromatic subgraph which is isomorphic with $G_{i}$. \qedhere
+	\end{enumerate}
+\end{proof}
+
+In particular Theorem \ref{thm:ramsey_upper_bound}, with $G_i = K_{\ell_{i}}$ implies that:
+\begin{equation}\label{eq:cor_1}
+	R \left(\ell_1, \ell_2, \ldots, \ell_{r}\right) \leq 2 - r +  \sum_{i = 1}^r R(\ell_1, \ldots, \ell_{i - 1}, \ell_i, \ell_{i + 1}, \ldots, \ell_{r})
+\end{equation}
+
+\newpage
+\begin{corollary}\label{cor:R3r}
+	Let $r \in \mathbb{N}^{+}$ then $R(3; r) \leq 3r!$.
+\end{corollary}
+\begin{proof}
+	We will prove the corollary using induction on $r$. Clearly the result holds in the case where $r = 1$. Next for an arbitrary $r \in \mathbb{N}^{+}$ it follows by Equation \eqref{eq:cor_1}, that:
+	\begin{equation}\label{eq:R3r}
+		R(3; r) \stackrel{(a)}{\leq} r R(2, 3, \ldots, 3) \stackrel{(b)}{=} r R(3; r - 1) \stackrel{(c)}{=} 3r (r - 1)! = 3r!
+	\end{equation}
+	where $(a)$ follows by Equation \eqref{eq:R3r}, $(b)$ follows since letting $n := R(2, 3, \ldots, 3)$ we see that every $r$-edge coloring on $K_n$ either admits a monochromatic clique of order $2$ of the appropriate color or we actually have $(r - 1)$-edge coloring on $K_n$. Finally $(c)$ follows directly by the induction hypothesis.
+\end{proof}
+
+
+%\begin{proposition}\label{prop:upper_bounds_form_ramseys_theorem}
+%	Let $G, H$ be graphs with $\abs{V(G)}, \abs{V(H)} \geq 2$ and let $G'$ and $H'$ be subgraphs of $G$ and $H$ respectively obtained by deleting a vertex and the appropriate edges, then:
+%	\begin{equation*}
+%		R(G, H) \leq R(G', H) + R(G, H')
+%	\end{equation*}
+%\end{proposition}
+%We will omit the proof, but note that the basic argument is the same as in the proof of Theorem \ref{thm:ramsey_two_colors}.
+The following Corollary is a natural consequence of Theorem \ref{thm:ramsey_upper_bound} and the fact that $R(\ell, 2) = R(2, \ell) = \ell$ for all $\ell \geq 2$.
+\begin{corollary}
+	Let $\ell, k \in \mathbb{N}$ with $\ell, k \geq 2$, then $R(\ell, k) \leq \binom{\ell + k - 2}{\ell - 1}$
+\end{corollary}
+\begin{proof}
+	We will apply induction on $\ell + k$, in the case where $\ell = 2$ we get that
+	\begin{equation*}
+		R(\ell, k) = k = \frac{k!}{(k - 1)!} = \binom{k + \ell - 2}{\ell - 1}
+	\end{equation*}
+	The case where $k = 2$ follows in a similar manner. Next we assume that $\ell, k \geq 3$, then:
+	\begin{align*}
+		R(\ell, k) \stackrel{(a)}{\leq} R(\ell - 1, k) + R(\ell, k - 1) & \stackrel{(b)}{\leq} \binom{(\ell - 1) + k - 2}{(\ell - 1) - 1} + \binom{\ell + (k - 1) - 2}{\ell - 1} \\
+		                                                                & =  \frac{(\ell + k - 3)!}{(\ell - 2)!(k - 1)!} + \frac{(\ell + k - 3)!}{(\ell - 1)!(k - 2)!}           \\
+		                                                                & =  \frac{(\ell + k - 3)!((\ell - 1) + (k - 1))}{(\ell - 1)!(k - 1)!}
+		= \binom{\ell + k - 2}{\ell - 1}
+	\end{align*}
+	Where $(a)$ follows by Equation \eqref{eq:cor_1} and $(b)$ directly from the induction hypothesis.
+\end{proof}
+
+\begin{corollary}\label{cor:upper_bounds_from_ramseys_theorem_even}
+	Let $G, H$ be graphs with at least two edges and let $G'$ and $H'$ be subgraphs of $G$ and $H$ respectively obtained by deleting a vertex and the appropriate edges, then if both $R(G', H)$ and $R(G, H')$ are even, then:
+	\begin{equation*}
+		R(G, H) \leq R(G', H) + R(G, H') - 1
+	\end{equation*}
+\end{corollary}
+\begin{proof}
+	Assume for the sake of contradiction that the inequality does not hold, then by Theorem \ref{thm:ramsey_upper_bound}, we must have $N := R(G, H) = R(G', H) + R(G, H')$ and hence there exists an $2$-edge coloring $\chi: E(K_{N - 1}) \to \left\{red, blue\right\}$ of $K_{N - 1}$ which admits no $red$-monochromatic subgraphs which are isomorphic to $G$ and no $blue$-monochromatic subgraph which are isomorphic to $H$. For all $v \in V(K_{N - 1})$ we thus must have:
+	\begin{equation*}
+		\abs{\mathcal{N}_{\chi}(v; red)} \leq R(G', H) - 1 \text{ and } \abs{\mathcal{N}_{\chi}(v; blue)} \leq R(G, H') - 1
+	\end{equation*}
+	since we would otherwise have a $red$(or $blue$)-monochromatic subgraph which is isomorphic to $G$ (or $H$). Next since $v$ is adjacent to $N - 2 = R(G', H) + R(G, H') - 2$ vertices we see that we must have:
+	\begin{equation*}
+		\abs{\mathcal{N}_{\chi}(v; red)} = R(G', H) - 1 \text{ and } \abs{\mathcal{N}_{\chi}(v; blue)} = R(G, H') - 1
+	\end{equation*}
+	Next let $k := \abs{\left\{e \in E(K_{N - 1}) | \chi(e) = red\right\}}$ that is $k$ is the number of edges which $\chi$, colors $red$. Thus we may also compute $k$ as:
+	\begin{equation}\label{eq:k_is_not_integer}
+		k = \frac{1}{2}\sum_{u \in V(K_{N - 1})}\abs{\mathcal{N}_{\chi}(u; red)} = \frac{1}{2}(N - 1)(R(G', H) - 1)
+	\end{equation}
+	however both $N-1$ and $R(G', H) - 1$ are odd by our assumptions, combining this with Equation \eqref{eq:k_is_not_integer}, implies that $k$ is not natural number a clear contradiction.
+\end{proof}

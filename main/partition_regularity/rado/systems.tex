@@ -1,0 +1,61 @@
+\subsection{Rado's Full Theorem}
+Rado's Single Equation Theorem \ref{thm:single_eq_rado} has an important generalization to homogeneous systems of linear equations over $\mathbb{Z}$, which we will present without proof. Note that a proof can be found in \cite{rt}[Section 3.3]\footnote{They use a slightly different, but equivalent condition on the matrix $A$, in Theorem \ref{thm:rado_full}.}.
+
+\begin{theorem}[Rado's Full Theorem]\label{thm:rado_full}
+	Let $A = \begin{bmatrix} a_1 & a_2 & \cdots & a_{k} \end{bmatrix} \in \mathbb{Z}^{n \times k}$, then system of homogeneous linear equations $Ax = 0$ is partition regular if and only if there exists a partition $B_1 \cup B_2 \cup \cdots \cup B_{t}$ of $[1; n]$  such that $\sum_{i \in B_1} a_{i} = 0$ and $\sum_{i \in B_s} a_i \in \Span_{\mathbb{Q}} \left\{a_i \middle| i \in B_1 \cup B_2 \cup \cdots \cup B_{s - 1}\right\}$ for every $s \in [2; t]$.
+\end{theorem}
+
+Rado's Full Theorem \ref{thm:rado_full} allows us to combine some of the partition regular configurations which we have already seen previously into more complicated configurations, and to obtain Ramsey-style theorems for these configurations. We present one such example below, the example is based upon \cite{rtoi}[Examples 9.28 and 9.29]
+\begin{example}\label{exmp:rado_full_theorem_yields_combination}
+	Is the configuration $\mathcal{C}: (\mathbb{N}^{+})^{4} \to \mathcal{P}(\mathbb{N}^{+})$ defined as
+	\begin{equation*}
+		\mathcal{C}(x) = \left\{x_1, x_2, x_1 + x_2, x_3, x_3 + x_{4}, x_3 + 2x_{4}\right\}
+	\end{equation*}
+	partition regular? That is given any $r$-coloring $\chi$ on $\mathbb{N}^{+}$ does there always exists a monochromatic Schur triple and a monochromatic (of the same color) $3$-term arithmetic progression.
+	It is easy to see that the configuration $\mathcal{C}$ is partition regular if and only if the system
+	\begin{equation}\label{eq:rado_full_exmp}
+		\begin{bmatrix}
+			1 & 1 & -1 & 0 & 0  & 0  & 0 \\
+			0 & 0 & 0  & 1 & -1 & 0  & 1 \\
+			0 & 0 & 0  & 0 & 1  & -1 & 1 \\
+		\end{bmatrix} \begin{bmatrix} x_1 \\ \vdots \\ x_6 \\ d \end{bmatrix} = 0
+	\end{equation}
+	is partition regular. We will show that the system presented in Equation \eqref{eq:rado_full_exmp}, is partition regular, using Rados Full Theorem \ref{thm:rado_full}, thus we will need to define a partition $B_1 \cup B_2$ of $[1; 7]$, which satisfies the requirements of Rados Full Theorem \ref{thm:rado_full}. One example of such a partion is:
+	\begin{equation*}
+		B_1 = [2; 6], \quad B_2 = \left\{1, 7\right\}
+	\end{equation*}
+	The requirements are satisfied since:
+	\begin{equation*}
+		\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} -1 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix} + \begin{bmatrix} 0 \\ 0 \\ -1 \end{bmatrix} = 0
+	\end{equation*}
+	and
+	\begin{equation*}
+		\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} + 2\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}
+	\end{equation*}
+	Thus there exists a monochromatic solution $x_1, \ldots, x_6, d \in \mathbb{N}^{+}$ to Equation \eqref{eq:rado_full_exmp}. Hence we get the existence of a monochromatic Schur triple $\left\{x_1, x_2, x_3\right\}$ and an monochromatic $3$-term arithmetic progression $\left\{x_4, x_5, x_6\right\}$ of the same color. In fact we also get that the gap $d$ is of the same color as well.
+\end{example}
+This leads us to a corollary of Rado's Full Theorem \ref{thm:rado_full}, which is a strengthend version of van der Waerden's Theorem \ref{thm:van_der_waerden}.
+\begin{corollary}
+	Let $r, k \geq 2$ and $\chi$ be an $r$-coloring of $\mathbb{N}^{+}$, then there exists a monochromatic $k$-term arithmetic progression $\left\{a, a + d, \ldots, a + (k - 1)d\right\}$, such that $\chi(d) = \chi(a)$, that is the configuration $\left\{a, a + d, \ldots, a + (k - 1)d, d\right\}$ is partition regular.
+\end{corollary}
+\begin{proof}
+	Let $a_1, a_2, \ldots, a_k, a_{k + 1} \in \mathbb{Z}^{k}$ be defined as $a_1 = e_{1}, a_k = - e_{k}, a_{k + 1} = \sum_{i = 1}^{k} e_{k}$ and $a_j = e_{j} - e_{j - 1}$ for $j \in [2; k - 1]$. Let $A = \begin{bmatrix} a_1 & a_2 & \cdots & a_k & a_{k + 1} \end{bmatrix}$, then consider the linear system:
+	\begin{equation}\label{eq:cor_of_full_rado}
+		A \begin{bmatrix} x_1 \\ x_{2} \\ \vdots \\ x_k \\ d \end{bmatrix}= \begin{bmatrix}
+			1 & -1 &        &        &    & 1      \\
+			  & 1  & -1     &        &    & 1      \\
+			  &    & \ddots & \ddots &    & \vdots \\
+			  &    &        & 1      & -1 & 1      \\
+		\end{bmatrix}
+		\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_{k} \\ d \end{bmatrix} = 0
+	\end{equation}
+	The partition $B_1 \cup B_2$ of $[1; k + 1]$ defined as:
+	\begin{equation*}
+		B_1 = [1; k], \quad B_2 = \left\{k + 1\right\}
+	\end{equation*}
+	satisfies the conditions of Rado's Full Theorem \ref{thm:rado_full}, since:
+	\begin{equation*}
+		\sum_{i = 1}^k a_i = 0 \text{ and } a_{k + 1} = \sum_{i = 1}^{k} (k - i + 1) a_{i}
+	\end{equation*}
+	hence by Rado's Full Theorem \ref{thm:rado_full} there exists a solution $(x_1, x_2, \ldots, x_k, d)$ to Equation \eqref{eq:cor_of_full_rado}, the rest follows by letting $a := x_{1}$, since this implies $a + jd = x_{j + 1}$ for every $j \in [0; k -1]$.
+\end{proof}
